@@ -77,6 +77,14 @@ WSGI_APPLICATION = 'IIS_project.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+    }
+}
+
+'''
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_kulecnik',
         'USER': 'root',
@@ -85,7 +93,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
