@@ -4,3 +4,9 @@ from django.db import models
 class Table(models.Model):
     name = models.CharField(max_length=30)
 
+class Player(models.Model):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    email = models.EmailField(blank=True, null=True)
+    photo = models.FileField(blank=True, null=True)
+
