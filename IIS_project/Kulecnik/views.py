@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from .forms import NewTournament_S
 from .models import Tournament_S
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, AddTournamentForm
 
 # Create your views here.
 
@@ -42,5 +42,9 @@ def login(request):
             return render(request, template_name='Kulecnik/index.html', context=None)
         else:
             return render(request, template_name='Kulecnik/index.html', context=None)
+
+def add_tournament(request):
+    form = AddTournamentForm()
+    return render(request, template_name='Kulecnik/addtournament.html', context={'form':form})
 
 

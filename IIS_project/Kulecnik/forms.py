@@ -35,3 +35,27 @@ class LoginForm(forms.Form):
             'username': 'test',
             'password': 'heslo'
         }
+
+class AddTournamentForm(forms.ModelForm):
+    '''
+    title = forms.CharField(max_length=60)
+    start_date = forms.DateField(input_formats=['%d/%m/%Y'])
+    end_date = forms.DateField(input_formats=['%d/%m/%Y'])
+    entry_fee = forms.IntegerField()
+    place = forms.CharField(max_length=100)
+    capacity = forms.IntegerField()
+    description = forms.TextInput()
+    reg_deadline = forms.DateField(input_formats=['%d/%m/%Y'])
+    '''
+    class Meta():
+        model = Tournament_S
+        fields = (
+            'title',
+            'start_date',
+            'end_date',
+            'entry_fee',
+            'place',
+            'capacity',
+            'description',
+            'reg_deadline'
+        )
