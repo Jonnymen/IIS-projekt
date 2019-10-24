@@ -35,6 +35,18 @@
                     </li>
                   </ul>
                   <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 50px;">
+                          {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href=#>Vytvořit turnaj</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="/logout/">Odhlášení</a>
+                        </div>
+                      </li>
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="/login/">Přihlášení</a>
                     </li>
@@ -44,6 +56,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/register/">Registrace</a>
                     </li>
+                    {% endif %}
+                  </ul>
                 </div>
               </nav>
               {% block content %}

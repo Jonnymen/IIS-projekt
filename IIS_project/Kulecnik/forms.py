@@ -21,3 +21,17 @@ class RegistrationForm(UserCreationForm):
             'password2'
         )
         
+class LoginForm(forms.Form):
+
+    username = forms.CharField(max_length=40)
+    password = forms.CharField(max_length=32, widget=forms.PasswordInput)
+
+    class Meta():
+        fields = (
+            'username',
+            'password'
+        )
+        labels = {
+            'username': 'test',
+            'password': 'heslo'
+        }

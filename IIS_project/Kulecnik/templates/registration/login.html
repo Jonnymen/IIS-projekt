@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row" style="margin-top: 5rem;">
+    <div class="col-md-4 offset-md-4">
+        <form method="post" action="/login/" style="display: table; margin: auto; border: 1px solid grey; border-radius: 5px; padding: 75px;">
+            <h1>Přihlášení</h1><br>
+            {% csrf_token %}
+            <p>
+                <label for="username">Přihlašovací jméno:</label><br>
+                <input type="text" name="username" placeholder="username">
+            </p>
+            <p>
+                <label for="password">Heslo:</label><br>
+                <input type="password" name="password">
+            </p>
+            <input type="submit" value="Přihlásit" />
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
