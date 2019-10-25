@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,7 @@
 </head>
 <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-logo" href="/"><img src="{% static 'Kulecnik/Logo_pool.png' %}" alt="" style="height: 40px;padding-right: 20px;"/></a>
                 <a class="navbar-brand" href="/">Kulečníkové turnaje</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
