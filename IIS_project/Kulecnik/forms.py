@@ -36,7 +36,7 @@ class LoginForm(forms.Form):
             'password': 'heslo'
         }
 
-class AddTournamentForm(forms.Form):
+class AddTournamentForm(forms.ModelForm):
     '''
     title = forms.CharField(max_length=60)
     start_date = forms.DateField(input_formats=['%d/%m/%Y'])
@@ -56,6 +56,20 @@ class AddTournamentForm(forms.Form):
             'entry_fee',
             'place',
             'capacity',
-            'description',
-            'reg_deadline'
+            'reg_deadline',
+            'description'
         )
+        widgets = {
+            'start_date': forms.TextInput(attrs={'placeholder': 'RRRR-MM-DD'}),
+            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...'}),
+        }
+        labels = {
+            "title": "Název",
+            "start_date": "Začátek",
+            "end_date": "Konec",
+            "entry_fee": "Startovné",
+            "place": "Místo",
+            "capacity": "Kapacita",
+            "description": "Popiss",
+            "reg_deadline": "Konec registrací"
+        }
