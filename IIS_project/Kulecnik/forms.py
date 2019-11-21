@@ -37,7 +37,7 @@ class LoginForm(forms.Form):
         }
 
 class AddTournamentForm(forms.Form):
-
+    '''
     title = forms.CharField(max_length=60)
     start_date = forms.DateField(input_formats=['%d/%m/%Y'])
     end_date = forms.DateField(input_formats=['%d/%m/%Y'])
@@ -46,8 +46,9 @@ class AddTournamentForm(forms.Form):
     capacity = forms.IntegerField()
     description = forms.TextInput()
     reg_deadline = forms.DateField(input_formats=['%d/%m/%Y'])
-    
+    '''
     class Meta():
+        model = Tournament_S
         fields = (
             'title',
             'start_date',

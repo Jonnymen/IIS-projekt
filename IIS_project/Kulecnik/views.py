@@ -50,8 +50,9 @@ def add_tournament(request):
         form = AddTournamentForm()
         return render(request, template_name='Kulecnik/addtournament.html', context={'form':form})
     else:
-        turnaj = Tournament_S
-        turnaj.title = request.POST['title']
-        turnaj.host = request.user
-        turnaj.save(commit=True)
+        form = AddTournamentForm(request.POST)
+        if form.is_valid():
+            turnaj = form.save(commit=False)
+            turnaj.host = request.user
+            turnaj.save()
         return render(request, template_name='Kulecnik/index.html', context=None)
