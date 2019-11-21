@@ -70,6 +70,6 @@ class AddTournamentForm(forms.ModelForm):
             "entry_fee": "Startovné",
             "place": "Místo",
             "capacity": "Kapacita",
-            "description": "Popis",
+            "description": "Popiss",
             "reg_deadline": "Konec registrací"
         }
