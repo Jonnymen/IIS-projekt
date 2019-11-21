@@ -77,14 +77,24 @@ WSGI_APPLICATION = 'IIS_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_kulecnik',
+        'USER': 'xmensi13',
+        'PASSWORD': 'hesloheslo',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase',
     }
 }
-
+'''
 '''
 DATABASES = {
     'default': {
