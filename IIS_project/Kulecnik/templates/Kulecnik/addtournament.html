@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
@@ -7,15 +10,8 @@
   <div class="col-md-6 offset-md-3">
     <form method='post' style="text-align: center;">
         {% csrf_token %}
-        {% for field in form %}
-
-        <p>
-          {{ field.label }}
-          <br>
-          {{ field }}
-        </p>
-
-        {% endfor %}
+        
+        {% crispy name_form %} 
 
         <button type="submit" class="btn btn-outline-success">Sign in</button>
     </form>
