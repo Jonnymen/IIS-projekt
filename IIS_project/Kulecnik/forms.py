@@ -56,14 +56,20 @@ class AddTournamentForm(forms.ModelForm):
             'entry_fee',
             'place',
             'capacity',
-            'description',
-            'reg_deadline'
+            'reg_deadline',
+            'description'
         )
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Name'}),
-            'description': forms.Textarea(
-            attrs={'placeholder': 'Enter description here'}),
+            'start_date': forms.TextInput(attrs={'placeholder': 'RRRR-MM-DD'}),
+            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...'}),
         }
         labels = {
-            "title": "Název"
+            "title": "Název",
+            "start_date": "Začátek",
+            "end_date": "Konec",
+            "entry_fee": "Startovné",
+            "place": "Místo",
+            "capacity": "Kapacita",
+            "description": "Popis",
+            "reg_deadline": "Konec registrací"
         }
