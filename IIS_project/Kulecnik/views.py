@@ -45,7 +45,13 @@ def login(request):
             return render(request, template_name='Kulecnik/index.html', context=None)
 
 def add_tournament(request):
-    form = AddTournamentForm()
-    return render(request, template_name='Kulecnik/addtournament.html', context={'form':form})
 
-
+    if request.method == 'GET':
+        form = AddTournamentForm()
+        return render(request, template_name='Kulecnik/addtournament.html', context={'form':form})
+    else:
+        turnaj = Tournament_S
+        turnaj.title = request.POST['title']
+        turnaj.host = request.user
+        turnaj.save()
+        return render(request, template_name='Kulecnik/index.html', context=None)
