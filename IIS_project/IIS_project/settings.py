@@ -25,7 +25,7 @@ SECRET_KEY = 'my9698b)q3q0u8oru5egyre!sn&rm&xkx2ui4j$41b-zfm)56x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.104',
+ALLOWED_HOSTS = ['pcbobak2.fit.vutbr.cz',
                  'localhost']
 DATE_INPUT_FORMATS = [
     '%d/%m/%Y'
