@@ -9,7 +9,7 @@ urlpatterns = [
     path('logout/', views.log_out, name='logout'),
     path('add_tournament/', views.add_tournament, name='date'),
     path('list_tournament_s/', views.list_tournament_s, name='list_tournament_s'),
-    path('list_tournament_<int: row_id>/', views.tournament_detail, name='tournament_detail')
+    path('list_tournament_s/<int: row_id>/', views.tournament_detail, name='tournament_detail')
     #path('addtournament_s/', views.addTournament_S, name="addTournament_S")
     #path(r'^login/$', auth_views.login, {'template_name': 'festivaly/login.html'}, name='login'),
 ]
