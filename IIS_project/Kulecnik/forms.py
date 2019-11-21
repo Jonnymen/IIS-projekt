@@ -59,3 +59,8 @@ class AddTournamentForm(forms.ModelForm):
             'description',
             'reg_deadline'
         )
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'Name'}),
+            'description': forms.Textarea(
+            attrs={'placeholder': 'Enter description here'}),
+        }
