@@ -56,3 +56,8 @@ def add_tournament(request):
             turnaj.host = request.user
             turnaj.save()
         return render(request, template_name='Kulecnik/index.html', context=None)
+
+def list_tournament_s(request):
+    query = Tournament_S.objects.all()
+    return render(request, template_name="Kulecnik/tournament_s.html", context = {'data':query})
+
