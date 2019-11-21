@@ -63,6 +63,6 @@ def list_tournament_s(request):
 
 def tournament_detail(request, row_id): 
     current_tournament= Tournament_S.objects.get(pk=row_id)
-    return render(request, template_name='Kulecnik/addtournament.html', context= {"tournament":current_tournament})
+    return render(request, template_name='Kulecnik/tournament_detail.html', context= {"tournament":current_tournament})
 
 
