@@ -19,7 +19,8 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.set_password(user.password)
+            password = request.POST["password1"]
+            user.set_password(password)
             user.save()
         return render(request, template_name='Kulecnik/index.html', context=None)
 
