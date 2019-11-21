@@ -15,7 +15,11 @@
           <br>
           {{ field }}
         </p>
-        
+        <script>
+          p = document.createElement("p");
+          p.innerHTML = field.label;
+          document.body.appendChild(p);
+          </script>
 
         {% endfor %}
 
