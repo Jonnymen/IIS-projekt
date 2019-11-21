@@ -1,15 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="row">
+<div class="row" style="margin-top: 5rem;">
     <div class="col-md-4 offset-md-4">
         <p>
             <h1>Turnaje jednotlivců</h1><br>
-            {% for row in data %}
-            <p>
-            <a href="/tournament_s/{{ row.pk }}">{{ row.title }}</a>
-            </p>
-            {% endfor %}
         </p>
     </div>
 </div>
