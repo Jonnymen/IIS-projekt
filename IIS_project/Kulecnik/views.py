@@ -53,5 +53,5 @@ def add_tournament(request):
         turnaj = Tournament_S
         turnaj.title = request.POST['title']
         turnaj.host = request.user
-        turnaj.save(self)
+        turnaj.save(commit=True)
         return render(request, template_name='Kulecnik/index.html', context=None)
