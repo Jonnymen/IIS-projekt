@@ -64,3 +64,6 @@ class AddTournamentForm(forms.ModelForm):
             'description': forms.Textarea(
             attrs={'placeholder': 'Enter description here'}),
         }
+        labels = {
+            "title": "Název"
+        }
