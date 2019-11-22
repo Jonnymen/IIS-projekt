@@ -28,7 +28,7 @@ def log_out(request):
     logout(request)
     return render(request, template_name='Kulecnik/index.html', context=None)
 
-def login(request):
+def log_in(request):
     if request.method == 'GET':
         form = LoginForm()
         return render(request, template_name='Kulecnik/login.html', context={'form':form})
@@ -39,7 +39,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
 
         if user:
-            login(request)
+            log_in(request)
             return render(request, template_name='Kulecnik/index.html', context=None)
         else:
             return render(request, template_name='Kulecnik/index.html', context=None)
@@ -59,10 +59,8 @@ def add_tournament(request):
 
 def list_tournament_s(request):
     query = Tournament_S.objects.all()
-    return render(request, template_name="Kulecnik/tournament_s.html", context = {'data':query})
+    return render(request, template_name="Kulecnik/tournament_s.html", context={'data':query})
 
-def tournament_detail(request, row_id): 
-    current_tournament= Tournament_S.objects.get(pk=row_id)
-    return render(request, template_name='Kulecnik/tournament_detail.html', context= {"tournament":current_tournament})
-
-
+def tournament_detail(request, row_id):
+    current_tournament = Tournament_S.objects.get(pk=row_id)
+    return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament})
