@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
@@ -90,12 +90,12 @@ def tournament_detail(request, row_id):
             if zaznamy.count() < current_tournament.capacity:
                 registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
                 if registered.count() == 1:
-                    return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný"})
+                    return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
                 vazba = Tournament_Players(tournament=current_tournament, player=request.user)
                 vazba.save()
                 return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
             else:
-                return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná"})
+                return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná", "back":"/tournament_s/" + str(row_id) + "/"})
 
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
@@ -118,4 +118,8 @@ def edit_password(request):
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
+            update_session_auth_hash(request, form.user) #to stay logged in after password change
             return redirect('/profile/')
+        else:
+            return render(request, template_name='Kulecnik/message.html', context={"user":request.user})
+
