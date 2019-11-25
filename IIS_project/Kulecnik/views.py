@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
@@ -68,7 +68,7 @@ def list_tournament_s(request):
 def tournament_detail(request, row_id):
     current_tournament = Tournament_S.objects.get(pk=row_id)
     zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
-    
+
     if request.user.is_authenticated:
         pass
     else:
@@ -87,12 +87,12 @@ def tournament_detail(request, row_id):
             Tournament_Players.objects.get(tournament=current_tournament, player=request.user).delete()
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
         else:
-            vazba = Tournament_Players(tournament=current_tournament, player=request.user)
-            vazba.save()
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
-
-
-
+            if zaznamy.count() < current_tournament.capacity:
+                vazba = Tournament_Players(tournament=current_tournament, player=request.user)
+                vazba.save()
+                return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
+            else:
+                return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná"})
 
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
@@ -102,7 +102,17 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
         return render(request, template_name='users/edit_profile.html', context={"form":form})
     else:
-        form = EditProfileForm(request.POST, instance=request.user)
+        form = EditProfileForm(request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile/')
+
+def edit_password(request):
+    if request.method == 'GET':
+        form = PasswordChangeForm(user=request.user)
+        return render(request, template_name='users/edit_password.html', context={"form":form})
+    else:
+        form = PasswordChangeForm(request.Post, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('/profile/')
