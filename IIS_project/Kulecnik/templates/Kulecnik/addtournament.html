@@ -10,10 +10,12 @@
         {% csrf_token %}
         {% for field in form %}
 
-        <p>
-          {{ field.label }}
-          {{ field }}
-        </p>
+        <table>
+          <tr>
+              <td class="titles" align="right">  {{ field.label }}</td>
+              <td>{{ field }}</td>
+          </tr>
+      </table>
 
         {% endfor %}
 
