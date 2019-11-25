@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .forms import NewTournament_S
 from .models import Tournament_S
 from .forms import RegistrationForm, LoginForm, AddTournamentForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -44,6 +45,7 @@ def log_in(request):
         else:
             return render(request, template_name='Kulecnik/index.html', context=None)
 
+@login_required
 def add_tournament(request):
 
     if not request.user.is_authenticated():
