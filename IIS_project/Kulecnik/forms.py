@@ -21,10 +21,10 @@ class RegistrationForm(UserCreationForm):
             'password2'
         )
         labels = {
-            "username": "Uživatelské jméno",
             "email": "E-mail",
             "password1": "Heslo",
             "password2": "Potvrďte heslo",
+            "username": "Uživatelské jméno",
         }
 
 class EditProfileForm(UserChangeForm):
