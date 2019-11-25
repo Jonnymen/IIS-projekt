@@ -90,7 +90,7 @@ def tournament_detail(request, row_id):
             if zaznamy.count() < current_tournament.capacity:
                 registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
                 if registered.count() == 1:
-                    return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný"})
+                    return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
                 vazba = Tournament_Players(tournament=current_tournament, player=request.user)
                 vazba.save()
                 return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
