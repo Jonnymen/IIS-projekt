@@ -68,7 +68,7 @@ def list_tournament_s(request):
 def tournament_detail(request, row_id):
     current_tournament = Tournament_S.objects.get(pk=row_id)
     zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
-    
+
     if request.user.is_authenticated:
         pass
     else:
@@ -84,12 +84,15 @@ def tournament_detail(request, row_id):
         answer = request.POST['registrovan']
         if answer == "yes":
             #Odregistrace
-            Tournament_Players.objects.get(tournament=current_tournament, player=request.user).delete()
+            Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
         else:
-            vazba = Tournament_Players(tournament=current_tournament, player=request.user)
-            vazba.save()
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
+            if zaznamy.count() < current_tournament.capacity:
+                vazba = Tournament_Players(tournament=current_tournament, player=request.user)
+                vazba.save()
+                return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
+            else:
+                return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná"})
 
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
