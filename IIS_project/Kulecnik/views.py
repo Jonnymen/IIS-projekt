@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
@@ -85,9 +85,6 @@ def tournament_detail(request, row_id):
             vazba.save()
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
 
-
-
-
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
 
@@ -96,7 +93,17 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
         return render(request, template_name='users/edit_profile.html', context={"form":form})
     else:
-        form = EditProfileForm(request.POST, instance=request.user)
+        form = EditProfileForm(request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile/')
+
+def edit_password(request):
+    if request.method == 'GET':
+        form = PasswordChangeForm(user=request.user)
+        return render(request, template_name='users/edit_password.html', context={"form":form})
+    else:
+        form = PasswordChangeForm(request.Post, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('/profile/')
