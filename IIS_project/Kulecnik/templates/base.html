@@ -44,11 +44,13 @@
                           {{ user.username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="/profile/">Profil</a>
+                          <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="/add_tournament/">Vytvořit turnaj</a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="/logout/">Odhlášení</a>
                         </div>
-                      </li>
+                    </li>
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="/login/">Přihlášení</a>

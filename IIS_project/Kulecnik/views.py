@@ -45,10 +45,11 @@ def log_in(request):
         else:
             return render(request, template_name='Kulecnik/index.html', context=None)
 
-@login_required
 def add_tournament(request):
 
-    if not request.user.is_authenticated():
+    if request.user:
+        pass
+    else:
         return render(request, template_name="Kulecnik/message.html", context={'message':"Only registered user can create a tournament!"})
 
     if request.method == 'GET':
@@ -69,3 +70,6 @@ def list_tournament_s(request):
 def tournament_detail(request, row_id):
     current_tournament = Tournament_S.objects.get(pk=row_id)
     return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament})
+
+def show_profile(request):
+    return render(request, template_name='Kulecnik/profile.html', context=None)
