@@ -1,6 +1,6 @@
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from Kulecnik import views
+from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
