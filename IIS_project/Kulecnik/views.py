@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
@@ -81,4 +81,4 @@ def edit_profile(request):
         form = UserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return render(request, template_name='users/profile.html', context={"user":request.user})
+            return redirect('/user')
