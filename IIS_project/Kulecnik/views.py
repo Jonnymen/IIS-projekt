@@ -84,7 +84,7 @@ def tournament_detail(request, row_id):
         answer = request.POST['registrovan']
         if answer == "yes":
             #Odregistrace
-            Tournament_Players.objects.get(tournament=current_tournament, player=request.user).delete()
+            Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
         else:
             if zaznamy.count() < current_tournament.capacity:
