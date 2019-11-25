@@ -81,4 +81,4 @@ def edit_profile(request):
         form = UserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('/user')
+            return redirect('/profile/')
