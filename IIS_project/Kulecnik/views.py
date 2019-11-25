@@ -78,7 +78,7 @@ def edit_profile(request):
         form = EditProfileForm(request.POST, instance=request.user)
         return render(request, template_name='users/edit_profile.html', context={"form":form})
     else:
-        form = UserChangeForm(request.POST, instance=request.user)
+        form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('/profile/')
