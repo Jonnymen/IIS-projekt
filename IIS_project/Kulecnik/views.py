@@ -67,8 +67,8 @@ def list_tournament_s(request):
 
 def tournament_detail(request, row_id):
     current_tournament = Tournament_S.objects.get(pk=row_id)
+    zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
     if request.method == 'GET':
-        zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
         registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
         if registered.count() == 0:
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
