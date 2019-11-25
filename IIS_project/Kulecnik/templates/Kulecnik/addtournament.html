@@ -8,12 +8,30 @@
     <form method='post'>
         {% csrf_token %}
         <br>
+        <p align="center" style="font-size:200%;"><b>Vytvoření  turnaje</b></p>
         <br>
         <table align="center">
+
+
+
+      <tr>
+        <td align="right" valign="top"><b>Formát</b></td>
+        <td>&nbsp;&nbsp;</td>
+        <td><p>
+            &nbsp;<input type="radio" name="type_S/T" value="singles" checked="checked"> <b>Jednotlivci</b></input>
+            &nbsp;&nbsp;
+            <input type="radio" name="type_S/T" value="teams"> <b>Týmy</b><br>
+      </p></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
         {% for field in form %}
         
           <tr>
-              <td class="font-weight:bold" align="right">  {{ field.label }}</td>
+              <td  align="right"> <b> {{ field.label }}</b></td>
               <td>&nbsp;&nbsp;</td>
               <td>{{ field }}</td>
           </tr>
@@ -22,6 +40,7 @@
           </tr>
 
         {% endfor %}
+        
         <tr>
             <td></td>
             <td></td>

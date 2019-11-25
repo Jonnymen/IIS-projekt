@@ -1,6 +1,6 @@
 from django.forms import ModelForm, Form
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from .models import Tournament_S
 
@@ -19,6 +19,16 @@ class RegistrationForm(UserCreationForm):
             'email',
             'password1',
             'password2'
+        )
+
+class EditProfileForm(UserChangeForm):
+
+    class Meta():
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'email'
         )
 
 class LoginForm(forms.Form):
@@ -61,7 +71,7 @@ class AddTournamentForm(forms.ModelForm):
         )
         widgets = {
             'start_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...', 'rows':4, 'cols':18}),
+            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...', 'rows':4, 'cols':28}),
             'title': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'end_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'entry_fee': forms.TextInput(attrs={'rows':1, 'cols':15}),
@@ -77,5 +87,5 @@ class AddTournamentForm(forms.ModelForm):
             "place": "Místo",
             "capacity": "Kapacita",
             "description": "Popis",
-            "reg_deadline": "Konec registrací"
+            "reg_deadline": "Konec registrací",
         }
