@@ -9,6 +9,7 @@
     <div class="container">
         <form method="post">
             {% csrf_token %}
+            {{form.as_p}}
             <button type="submit" align="center" class="btn btn-outline-success">Upravit</button>
         </form>
     </div>
