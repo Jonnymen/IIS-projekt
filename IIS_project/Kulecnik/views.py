@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
@@ -118,4 +118,8 @@ def edit_password(request):
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
+            update_session_auth_hash(request, form.user) #to stay logged in after password change
             return redirect('/profile/')
+        else:
+            return render(request, template_name='Kulecnik/message.html', context={"user":request.user})
+
