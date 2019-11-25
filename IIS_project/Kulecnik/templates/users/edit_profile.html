@@ -1,20 +1,38 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Upravit profil</title>
+<title>Upravit heslo</title>
 {% endblock %}
 
 {% block content %}
 
 
 
-<div class="row" style="margin-top: 5rem;">
-        <div class="container">
-            <form method="post">
-                {% csrf_token %}
-                {{form.as_p}}
-                <button type="submit" align="center" class="btn btn-outline-success">Upravit</button>
-            </form>
-        </div>
-    </div>
+<form method='post'>
+        {% csrf_token %}
+        <br>
+        <p align="center" style="font-size:200%;"><b>Změna uživatelských údajů</b></p>
+        <br>
+    <table align="center">
+        {% for field in form %}
+        
+          <tr>
+              <td  align="right"> <b> {{ field.label }}</b></td>
+              <td>&nbsp;&nbsp;</td>
+              <td>{{ field }}</td>
+          </tr>
+          <tr>
+            <td>&nbsp</td>
+          </tr>
+
+        {% endfor %}
+        
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button type="submit" align="center" class="btn btn-outline-success">Uložit změny</button></td>
+        </tr>   
+      </table>
+      
+    </form>
 {% endblock %}
