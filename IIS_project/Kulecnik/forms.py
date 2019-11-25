@@ -60,16 +60,14 @@ class AddTournamentForm(forms.ModelForm):
             'description'
         )
         widgets = {
-            'start_date': forms.TextInput(attrs={'placeholder': 'RRRR-MM-DD'}),
-            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...'}),
-            'title': forms.Textarea(attrs={'rows':1, 'cols':15}),
             'start_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'end_date': forms.Textarea(attrs={'rows':1, 'cols':15}),
-            'entry_fee': forms.Textarea(attrs={'rows':1, 'cols':15}),
-            'place': forms.Textarea(attrs={'rows':1, 'cols':15}),
-            'capacity': forms.Textarea(attrs={'rows':1, 'cols':15}),
-            'description': forms.Textarea(attrs={'rows':4, 'cols':15}),
-            'reg_deadline': forms.Textarea(attrs={'rows':1, 'cols':15}),
+            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...', 'rows':4, 'cols':15}),
+            'title': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'end_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'entry_fee': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'capacity': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'reg_deadline': forms.TextInput(attrs={'rows':1, 'cols':15}),
         }
         labels = {
             "title": "Název",
