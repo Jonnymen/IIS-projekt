@@ -95,7 +95,7 @@ def tournament_detail(request, row_id):
                 vazba.save()
                 return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
             else:
-                return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná"})
+                return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná", "back":"/tournament_s/" + str(row_id) + "/"})
 
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
