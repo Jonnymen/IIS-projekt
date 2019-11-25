@@ -8,8 +8,10 @@
     <form method='post'>
         {% csrf_token %}
         <br>
+        <p align="center" style="font-size:200%;"><b>Registrace turnaje</b></p>
         <br>
         <table align="center">
+
         {% for field in form %}
         
           <tr>
@@ -22,6 +24,7 @@
           </tr>
 
         {% endfor %}
+        
         <tr>
             <td></td>
             <td></td>
