@@ -5,20 +5,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="row" style="margin-top: 5rem;">
-    <div class="container">
-        <p>
-            <h1 style="text-align: center;">{{user.username}}</h1> <br>
-        </p>
-        <p>
-            First name: {{user.first_name}}
-        </p>
-        <p>
-            Last name: {{user.last_name}}
-        </p>
-        <p>
-            <a href="/profile/edit/"><button class="btn btn-outline-success">Upravit</button></a>
-        </p>
-    </div>
-</div>
+
+
+</table>
+    <tr>
+            <td  align="right"> <b> Křestní jméno: </b></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>{{user.first_name}}</td>
+    </tr>
+    <tr>
+            <td > <b> Příjmení: </b></td>
+            <td>&nbsp;&nbsp;</td>
+            <td>{{user.last_name}}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>&nbsp;&nbsp;</td>
+        <td><a href="/profile/edit/"><button class="btn btn-outline-success">Upravit</button></a></td>
+    </tr>   
+</table>
+
 {% endblock %}
