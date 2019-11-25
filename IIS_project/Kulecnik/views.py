@@ -75,7 +75,7 @@ def show_profile(request):
 
 def edit_profile(request):
     if request.method == 'GET':
-        form = UserChangeForm(instance=request.user)
+        form = EditProfileForm()
         return render(request, template_name='users/edit_profile.html', context={"form":form})
     else:
         form = UserChangeForm(request.POST, instance=request.user)
