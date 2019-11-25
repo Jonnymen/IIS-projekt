@@ -105,7 +105,7 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
         return render(request, template_name='users/edit_profile.html', context={"form":form})
     else:
-        form = EditProfileForm(request.POST, user=request.user)
+        form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('/profile/')
@@ -115,7 +115,7 @@ def edit_password(request):
         form = PasswordChangeForm(user=request.user)
         return render(request, template_name='users/edit_password.html', context={"form":form})
     else:
-        form = PasswordChangeForm(request.Post, instance=request.user)
+        form = PasswordChangeForm(request.Post, request.user)
         if form.is_valid():
             form.save()
             return redirect('/profile/')
