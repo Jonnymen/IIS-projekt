@@ -8,6 +8,7 @@
     <form method='post'>
         {% csrf_token %}
         <br>
+        <br>
         <table align="center">
         {% for field in form %}
         
@@ -21,11 +22,13 @@
           </tr>
 
         {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button type="submit" align="center" class="btn btn-outline-success">Vytvoř turnaj</button></td>
+        </tr>   
       </table>
-       
-      <p align="center">
-          <button type="submit" align="center" class="btn btn-outline-success">Vytvoř turnaj</button>
-      </p>
+      
     </form>
 
 <script type="application/javascript">
