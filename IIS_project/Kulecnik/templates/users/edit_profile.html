@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Profil</title>
+<title>Upravit profil</title>
 {% endblock %}
 
 {% block content %}
 
 
 
-<form method='post'>
+<form method="post">
         {% csrf_token %}
         <br>
         <p align="center" style="font-size:200%;"><b>Změna uživatelských údajů</b></p>
@@ -34,5 +34,5 @@
         </tr>   
       </table>
       
-    </form>
+</form>
 {% endblock %}

@@ -88,6 +88,9 @@ def tournament_detail(request, row_id):
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
         else:
             if zaznamy.count() < current_tournament.capacity:
+                registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
+                if registered.count() == 1:
+                    return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný"})
                 vazba = Tournament_Players(tournament=current_tournament, player=request.user)
                 vazba.save()
                 return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
@@ -102,7 +105,7 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
         return render(request, template_name='users/edit_profile.html', context={"form":form})
     else:
-        form = EditProfileForm(request.POST, user=request.user)
+        form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('/profile/')
@@ -112,7 +115,7 @@ def edit_password(request):
         form = PasswordChangeForm(user=request.user)
         return render(request, template_name='users/edit_password.html', context={"form":form})
     else:
-        form = PasswordChangeForm(request.Post, instance=request.user)
+        form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('/profile/')
