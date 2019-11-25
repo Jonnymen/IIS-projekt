@@ -4,8 +4,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
-<div class="row">
-  <div class="col-md-6 offset-md-3">
+
     <form method='post'>
         {% csrf_token %}
         <br>
@@ -17,16 +16,14 @@
               <td class="titles" align="right">  {{ field.label }}</td>
               <td>&nbsp;&nbsp;</td>
               <td>{{ field }}</td>
-          </tr>
-          <br>
+              <br>
+            </tr>
 
         {% endfor %}
       </table>
 
-        <button type="submit" class="btn btn-outline-success">Vytvoř turnaj</button>
+        <button type="submit" align="center" class="btn btn-outline-success">Vytvoř turnaj</button>
     </form>
-  </div>
-</div>
 
 <script type="application/javascript">
         $(function () {
