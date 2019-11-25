@@ -6,11 +6,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <form method='post' style="text-align: center;">
+    <form method='post'>
         {% csrf_token %}
         <br>
         <br>
-        <table>
+        <table align="center">
         {% for field in form %}
         
           <tr>
