@@ -49,9 +49,6 @@ def log_in(request):
 @login_required
 def add_tournament(request):
 
-    if not request.user.is_authenticated():
-        return render(request, template_name="Kulecnik/message.html", context={'message':"Only registered user can create a tournament!"})
-
     if request.method == 'GET':
         form = AddTournamentForm()
         return render(request, template_name='Kulecnik/addtournament.html', context={'form':form})
