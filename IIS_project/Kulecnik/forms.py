@@ -51,6 +51,7 @@ class AddTournamentForm(forms.ModelForm):
         model = Tournament_S
         fields = (
             'title',
+            'type_S/T',
             'start_date',
             'end_date',
             'entry_fee',
@@ -68,6 +69,7 @@ class AddTournamentForm(forms.ModelForm):
             'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'capacity': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'reg_deadline': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'type_S/T' : forms.CheckboxInput(attrs={'class': 'required checkbox form-control'}),
         }
         labels = {
             "title": "Název",
@@ -77,5 +79,6 @@ class AddTournamentForm(forms.ModelForm):
             "place": "Místo",
             "capacity": "Kapacita",
             "description": "Popis",
-            "reg_deadline": "Konec registrací"
+            "reg_deadline": "Konec registrací",
+            "type_S/T": "Typ"
         }
