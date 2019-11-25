@@ -41,7 +41,7 @@ class Game_S(models.Model):
     winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="winner_s")
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
     tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE, null=True)
-    phase = models.CharField(max_length = 40)
+    phase = models.CharField(max_length=40)
 
 class Game_T(models.Model):
     start_time = models.DateTimeField()
@@ -51,6 +51,13 @@ class Game_T(models.Model):
     winner = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name="winner_t")
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE, null=True)
-    phase = models.CharField(max_length = 40)
+    phase = models.CharField(max_length=40)
 
 
+class Tournament_Players(models.Model):
+    tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)
+    player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="player_1")
+
+class Tournament_Teams(models.Model):
+    tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team")
