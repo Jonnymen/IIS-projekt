@@ -61,7 +61,7 @@ class AddTournamentForm(forms.ModelForm):
         )
         widgets = {
             'start_date': forms.TextInput(attrs={'placeholder': 'RRRR-MM-DD'}),
-            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...'}),
+            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popiis...'}),
             'title': forms.Textarea(attrs={'rows':1, 'cols':15}),
             'start_date': forms.Textarea(attrs={'rows':1, 'cols':15}),
             'end_date': forms.Textarea(attrs={'rows':1, 'cols':15}),

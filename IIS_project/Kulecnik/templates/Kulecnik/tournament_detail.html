@@ -4,7 +4,15 @@
     <div class="col-md-6 offset-md-3">
         <p>
             <h1 style="text-align: center;">{{tournament.title}}</h1><br>
+            <h3>{{tournament.start_date}} - {{tournament.end_date}}</h3>
         </p>
+        <p>
+            {{tournament.description}}
+        </p>
+        <p>
+            Max players/teams: {{tournament.capacity}}
+        </p>
+        
     </div>
 </div>
 {% endblock %}
