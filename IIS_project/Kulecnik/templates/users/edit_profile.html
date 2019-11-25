@@ -15,7 +15,9 @@
         <br>
     <table align="center">
         {% for field in form %}
-         {% if !(field.label == 'Password') %}
+         {% if (field.label == 'Password') %}
+         {% endif %}
+         {% else %}
           <tr>
               <td  align="right"> <b> {{ field.label }}</b></td>
               <td>&nbsp;&nbsp;</td>
@@ -24,7 +26,7 @@
           <tr>
             <td>&nbsp</td>
           </tr>
-          {% endif %}
+
         {% endfor %}
         
         <tr>
