@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
-from .models import Tournament_S
+from .models import Tournament_S, Tournament_Players
 from .forms import RegistrationForm, LoginForm, AddTournamentForm
 
 # Create your views here.
@@ -67,7 +67,8 @@ def list_tournament_s(request):
 
 def tournament_detail(request, row_id):
     current_tournament = Tournament_S.objects.get(pk=row_id)
-    return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce"})
+    zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
+    return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy})
 
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
