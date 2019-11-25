@@ -56,8 +56,8 @@ class Game_T(models.Model):
 
 class Tournament_Players(models.Model):
     tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)
-    player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="player")
+    player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tourney_player")
 
 class Tournament_Teams(models.Model):
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team")
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="tourney_team")
