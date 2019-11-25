@@ -5,13 +5,49 @@
 {% endblock %}
 
 {% block content %}
-<div class="row" style="margin-top: 5rem;">
-    <div class="container">
-        <form method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit" align="center" class="btn btn-outline-success">Upravit</button>
-        </form>
-    </div>
-</div>
+
+
+
+<form method='post'>
+        {% csrf_token %}
+        <br>
+        <p align="center" style="font-size:200%;"><b>Změna uživatelských údajů</b></p>
+        <br>
+
+    <table align="center">
+      <tr>
+        <td align="right" valign="top"><b>Formát</b></td>
+        <td>&nbsp;&nbsp;</td>
+        <td><p>
+            &nbsp;<input type="radio" name="type_S/T" value="singles" checked="checked"> <b>Jednotlivci</b></input>
+            &nbsp;&nbsp;
+            <input type="radio" name="type_S/T" value="teams"> <b>Týmy</b><br>
+      </p></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+        {% for field in form %}
+        
+          <tr>
+              <td  align="right"> <b> {{ field.label }}</b></td>
+              <td>&nbsp;&nbsp;</td>
+              <td>{{ field }}</td>
+          </tr>
+          <tr>
+            <td>&nbsp</td>
+          </tr>
+
+        {% endfor %}
+        
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button type="submit" align="center" class="btn btn-outline-success">Vytvoř turnaj</button></td>
+        </tr>   
+      </table>
+      
+    </form>
 {% endblock %}
