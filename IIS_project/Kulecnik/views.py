@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
 from .models import Tournament_S
 from .forms import RegistrationForm, LoginForm, AddTournamentForm
-from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def index(request):
-    turnaje = Tournament_S.objects.all()
+    #turnaje = Tournament_S.objects.all()
     return render(request, template_name='Kulecnik/index.html', context=None)
 
 def register(request):
@@ -71,4 +72,4 @@ def tournament_detail(request, row_id):
     return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament})
 
 def show_profile(request):
-    return render(request, template_name='Kulecnik/profile.html', context=None)
+    return render(request, template_name='Kulecnik/profile.html', context={"user":request.user})
