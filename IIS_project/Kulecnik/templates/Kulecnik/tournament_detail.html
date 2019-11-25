@@ -19,6 +19,7 @@
         {% if registered %}
         <p>
             <form method="post">
+                {% csrf_token %}
                 <input type="hidden" id="registrovan" name="registrovan" value="yes">
                 <button type="submit" align="center" class="btn btn-outline-success">Odregistruj</button>
             </form>
@@ -26,6 +27,7 @@
         {% else %}
         <p>
             <form method="post">
+                {% csrf_token %}
                 <input type="hidden" id="registrovan" name="registrovan" value="no">
                 <button type="submit" align="center" class="btn btn-outline-success">Registruj</button>
             </form>
