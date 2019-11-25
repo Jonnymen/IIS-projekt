@@ -121,5 +121,5 @@ def edit_password(request):
             update_session_auth_hash(request, form.user) #to stay logged in after password change
             return redirect('/profile/')
         else:
-            return render(request, template_name='Kulecnik/message.html', context={"message":"Špatné heslo", "back":"/profile/edit/password"})
+           return render(request, template_name='users/edit_password.html', context={"form":form, "string":"error"})
 
