@@ -47,7 +47,7 @@ def log_in(request):
 
 def add_tournament(request):
 
-    if request.user.is_authenticated():
+    if request.user:
         pass
     else:
         return render(request, template_name="Kulecnik/message.html", context={'message':"Only registered user can create a tournament!"})
