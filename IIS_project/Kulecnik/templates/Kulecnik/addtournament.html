@@ -12,12 +12,17 @@
         <br>
         <table align="center">
 
-        <p align="center">Zvolte formát turnaje: </p>
-        <p align="center">
+
+
+      <tr>
+        <td align="right"><b>Formát</b></td>
+        <td></td>
+        <td><p align="center">
             <input type="radio" align="center" name="type_S/T" value="singles" checked="checked"> <b>Jednotlivci</b></input>
             &nbsp;&nbsp;
             <input type="radio" align="center" name="type_S/T" value="teams"> <b>Týmy</b><br>
-      </p>
+      </p></td>
+      </tr>
 
         {% for field in form %}
         
