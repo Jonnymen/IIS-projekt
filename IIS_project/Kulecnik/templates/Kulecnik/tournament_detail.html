@@ -15,7 +15,25 @@
         <p>
             Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
         </p>
-
+        {% if user.is_authenticated %}
+        {% if registered %}
+        <p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" id="registrovan" name="registrovan" value="yes">
+                <button type="submit" align="center" class="btn btn-outline-success">Odregistruj</button>
+            </form>
+        </p>
+        {% else %}
+        <p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" id="registrovan" name="registrovan" value="no">
+                <button type="submit" align="center" class="btn btn-outline-success">Registruj</button>
+            </form>
+        </p>
+        {% endif %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}
