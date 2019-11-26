@@ -66,7 +66,7 @@ class Tournament_Teams(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    imagee = models.ImageField(default='default.png', upload_to='avatars')
+    image = models.ImageField(default='default.png', upload_to='avatars')
 
     def __str__(self):
         return self.user.username
