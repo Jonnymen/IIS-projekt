@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User, AbstractUser
+
 
 # Create your models here.
 class Table(models.Model):
@@ -61,3 +63,4 @@ class Tournament_Players(models.Model):
 class Tournament_Teams(models.Model):
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="tourney_team")
+
