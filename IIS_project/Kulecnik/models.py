@@ -64,3 +64,9 @@ class Tournament_Teams(models.Model):
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="tourney_team")
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.png', upload_to='avatars')
+
+    def __str__(self):
+        return self.user.username
