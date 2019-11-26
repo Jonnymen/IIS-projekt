@@ -64,8 +64,3 @@ class Tournament_Teams(models.Model):
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="tourney_team")
 
-class UserProfile(AbstractUser):
-    avatar = models.ImageField()
-
-    def __str__(self):
-        return self.username

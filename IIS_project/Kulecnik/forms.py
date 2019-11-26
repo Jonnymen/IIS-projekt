@@ -34,14 +34,12 @@ class EditProfileForm(UserChangeForm):
         fields = (
             'first_name',
             'last_name',
-            'email',
-            'avatar'
+            'email'
         )
         labels = {
             "first_name": "Křestní jméno",
             "last_name": "Příjmení",
             "email": "Email",
-            "avatar": "Obrázek"
         }
 
 class LoginForm(forms.Form):
