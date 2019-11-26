@@ -149,4 +149,4 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'IIS_project.UserProfile' 
+AUTH_USER_MODEL = 'Kulecnik.UserProfile' 
