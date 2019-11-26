@@ -30,7 +30,7 @@ class RegistrationForm(UserCreationForm):
 class EditProfileForm(UserChangeForm):
 
     class Meta():
-        model = UserProfile
+        model = User
         fields = (
             'first_name',
             'last_name',
