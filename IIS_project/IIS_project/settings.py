@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Kulecnik',
+    'users.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'users.UserProfile' 

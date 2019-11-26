@@ -2,7 +2,7 @@ from django.forms import ModelForm, Form
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from .models import Tournament_S
+from .models import Tournament_S, UserProfile
 
 class NewTournament_S(forms.Form):
 
@@ -30,16 +30,18 @@ class RegistrationForm(UserCreationForm):
 class EditProfileForm(UserChangeForm):
 
     class Meta():
-        model = User
+        model = UserProfile
         fields = (
             'first_name',
             'last_name',
-            'email'
+            'email',
+            'avatar'
         )
         labels = {
             "first_name": "Křestní jméno",
             "last_name": "Příjmení",
             "email": "Email",
+            "avatar": "Obrázek"
         }
 
 class LoginForm(forms.Form):
