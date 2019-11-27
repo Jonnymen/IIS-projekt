@@ -31,6 +31,7 @@ def register(request):
             login(request, user)
             return render(request, template_name='Kulecnik/index.html', context=None)
         else:
+            messages.error(request, "Někde se stala chyba.")
             return render(request, template_name='Kulecnik/index.html', context=None)
 
 def log_out(request):
