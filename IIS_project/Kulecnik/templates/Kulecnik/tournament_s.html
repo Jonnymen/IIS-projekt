@@ -5,11 +5,19 @@
     <div class="col-md-4 offset-md-4">
         <p>
             <h1>Turnaje jednotlivců</h1><br>
+
+            <tr>
+                <td>Název turnaje</td>
+                <td>Konec Registrací</td>
+                <td>Obsazenost</td>
+            </tr>
+            
             {% for row in data %}
-            <p>
-            <a href="/tournament_s/{{ row.pk }}/">{{ row.title }}</a>
-            {{row.capacity}} {{row.reg_deadline}}
-            </p>
+            <tr>
+                <td><a href="/tournament_s/{{ row.pk }}/">{{ row.title }}</a></td>
+                <td>{{row.reg_deadline}}</td>
+                <td>x/{{row.capacity}}</td>
+            </tr>
             {% endfor %}
         </p>
     </div>
