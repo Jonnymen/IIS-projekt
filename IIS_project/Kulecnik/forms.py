@@ -2,7 +2,7 @@ from django.forms import ModelForm, Form
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from .models import Tournament_S, Profile
+from .models import Tournament_S, Profile, Team
 
 class NewTournament_S(forms.Form):
 
@@ -63,16 +63,7 @@ class LoginForm(forms.Form):
         }
 
 class AddTournamentForm(forms.ModelForm):
-    '''
-    title = forms.CharField(max_length=60)
-    start_date = forms.DateField(input_formats=['%d/%m/%Y'])
-    end_date = forms.DateField(input_formats=['%d/%m/%Y'])
-    entry_fee = forms.IntegerField()
-    place = forms.CharField(max_length=100)
-    capacity = forms.IntegerField()
-    description = forms.TextInput()
-    reg_deadline = forms.DateField(input_formats=['%d/%m/%Y'])
-    '''
+    
     class Meta():
         model = Tournament_S
         fields = (
@@ -104,4 +95,15 @@ class AddTournamentForm(forms.ModelForm):
             "capacity": "Kapacita",
             "description": "Popis",
             "reg_deadline": "Konec registrací",
+        }
+
+class NewTeamForm(forms.ModelForm):
+
+    class Meta():
+        model = Team
+        fields = (
+            'name',
+        )
+        labels = {
+            "name": "Jméno týmu:",
         }

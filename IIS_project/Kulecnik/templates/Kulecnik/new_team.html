@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row" style="padding-top: 7rem;">
+    <div class="col-md-4 offset-md-4">
+        <div style="text-align: center;">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-outline-success">Vytvořit</button>
+            </form>
+            {% if success %}
+            <p style="color: green;">{{ success }}</p>
+            {% endif %}
+            {% if failure %}
+            <p style="color: red;">{{ failure }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

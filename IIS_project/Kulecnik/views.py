@@ -5,8 +5,8 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
-from .models import Tournament_S, Tournament_Players, Profile
-from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture
+from .models import Tournament_S, Tournament_Players, Profile, Team
+from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture, NewTeamForm
 
 # Create your views here.
 
@@ -127,3 +127,20 @@ def edit_password(request):
             return redirect('/profile/')
         else:
             return render(request, template_name='users/edit_password.html', context={"form":form, "string":"error"})
+
+def new_team(request):
+    if request.method == 'GET':
+        form = NewTeamForm()
+        return render(request, template_name='Kulecnik/new_team.html', context={'form':form})
+    else:
+        form = NewTeamForm(request.POST)
+        if form.is_valid():
+            team = form.save(commit=False)
+            check_teams = Team.objects.filter(name=team.name)
+            if check_teams.count() > 0:
+                return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'failure':"Tým s tímto názvem již existuje, vyberte prosím jiný název"})    
+            team.captain = request.user
+            team.save()
+            return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'success':"Tým byl vytvořen!"})
+        else:
+            return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'failure':"Tým nebylo možné vytvořit (název je moc dlouhý nebo obsahuje nepovolené znaky!"})
