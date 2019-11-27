@@ -105,7 +105,8 @@ def show_profile(request):
 def edit_profile(request):
     if request.method == 'GET':
         form = EditProfileForm(instance=request.user)
-        return render(request, template_name='users/edit_profile.html', context={"form":form, "picture":form})
+        picture = EditPicture(instance=request.user.profile)
+        return render(request, template_name='users/edit_profile.html', context={"form":form, "picture":picture})
     else:
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
