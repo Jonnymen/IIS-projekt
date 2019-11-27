@@ -15,7 +15,9 @@ urlpatterns = [
     path('profile/', views.show_profile, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('profile/edit/password/', views.edit_password, name='edit_password'),
-    path('new_team/', views.new_team, name='new_team')
+    path('profile_page/<int:row_id>/', views.player_detail, name='player_detail'),
+    path('new_team/', views.new_team, name='new_team'),
+    path('my_teams/', views.my_teams, name='my_teams')
 
     #path('addtournament_s/', views.addTournament_S, name="addTournament_S")
     #path(r'^login/$', auth_views.login, {'template_name': 'festivaly/login.html'}, name='login'),
