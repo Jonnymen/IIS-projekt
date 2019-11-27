@@ -122,7 +122,10 @@ def add_player_to_team(request, team_id):
     if team.captain.pk is not request.user.pk:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný přidat hráče do týmu, ve kterém nejsi kapitán!"})
     if request.method == 'GET':
-        return render(request, template_name='Kulecnik/addplayertoteam.html', context={'team_id':team_id})
+        if team.player is not None:
+            return render(request, template_name='Kulecnik/message.html', context={"message":"Tým je plný!"})
+        else:
+            return render(request, template_name='Kulecnik/addplayertoteam.html', context={'team_id':team_id})
     else:
         team = Team.objects.get(id=request.POST['team'])
         if team is None:
