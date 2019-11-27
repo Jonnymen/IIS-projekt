@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_Players, Profile
-from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture
+from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture, NewTeamForm
 
 # Create your views here.
 
@@ -127,3 +127,8 @@ def edit_password(request):
             return redirect('/profile/')
         else:
             return render(request, template_name='users/edit_password.html', context={"form":form, "string":"error"})
+
+def new_team(request):
+    if request.method == 'GET':
+        form = NewTeamForm()
+        return render(request, template_name='Kulecnik/new_team.html', context={'form':form})
