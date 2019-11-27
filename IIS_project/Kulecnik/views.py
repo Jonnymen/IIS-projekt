@@ -29,7 +29,7 @@ def register(request):
             messages.success(request, "Byli jste úspěšně registrováni.")
             user = authenticate(username=form.cleaned_data['username'], password=password)
             login(request, user)
-            return render(request, template_name='Kulecnik/index.html', context=None)
+            return render(request, template_name='Kulecnik/index.html', context={'result':"success"})
         else:
             messages.error(request, "Někde se stala chyba.")
             return render(request, template_name='Kulecnik/index.html', context=None)
