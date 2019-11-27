@@ -20,6 +20,16 @@
                         <td style="text-align: right;"><b>Druhý hráč:</b></td>
                         <td><a href="/profile_page/{{ team.player.id }}/">{{ team.player.username }}</a></td>
                 </tr>
+                {% if user.id == team.captain %}
+                <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-outline-success">Přidat</button>
+                        </td>
+                </tr>
+                {% endif %}
             </table>
         </div>
     </div>
