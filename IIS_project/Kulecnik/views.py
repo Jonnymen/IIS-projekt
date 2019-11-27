@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_T, Tournament_Players, Profile, Team
-from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture, NewTeamForm
+from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm
 
 # Create your views here.
 
@@ -58,10 +58,23 @@ def log_in(request):
 def add_tournament_s(request):
 
     if request.method == 'GET':
-        form = AddTournamentForm()
+        form = AddTournamentFormS()
         return render(request, template_name='Kulecnik/addtournament_s.html', context={'form':form})
     else:
-        form = AddTournamentForm(request.POST)
+        form = AddTournamentFormS(request.POST)
+        if form.is_valid():
+            turnaj = form.save(commit=False)
+            turnaj.host = request.user
+            turnaj.save()
+        return render(request, template_name='Kulecnik/index.html', context=None)
+
+def add_tournament_t(request):
+
+    if request.method == 'GET':
+        form = AddTournamentFormT()
+        return render(request, template_name='Kulecnik/addtournament_t.html', context={'form':form})
+    else:
+        form = AddTournamentFormT(request.POST)
         if form.is_valid():
             turnaj = form.save(commit=False)
             turnaj.host = request.user
