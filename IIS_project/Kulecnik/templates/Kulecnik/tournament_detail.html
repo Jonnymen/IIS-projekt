@@ -37,6 +37,11 @@
         {% endif %}
         {% endif %}
         {% endif %}
+        {% for row in ucast %}
+            <p>
+            <a href="/profile_page/{{ row.pk }}/">{{ row.username }}</a>
+            </p>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
