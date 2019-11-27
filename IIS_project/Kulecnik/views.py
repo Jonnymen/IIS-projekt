@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
-from .models import Tournament_S, Tournament_Players, Profile, Team
+from .models import Tournament_S, Tournament_T, Tournament_Players, Profile, Team
 from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture, NewTeamForm
 
 # Create your views here.
@@ -72,7 +72,7 @@ def list_tournament_s(request):
     query = Tournament_S.objects.all()
     return render(request, template_name="Kulecnik/tournament_s.html", context={'data':query})
 
-def tournament_detail(request, row_id):
+def tournament_detail_s(request, row_id):
     current_tournament = Tournament_S.objects.get(pk=row_id)
     zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
 
@@ -103,6 +103,10 @@ def tournament_detail(request, row_id):
                 return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
             else:
                 return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná", "back":"/tournament_s/" + str(row_id) + "/"})
+
+def list_tournament_t(request):
+    query = Tournament_T.objects.all()
+    return render(request, template_name="Kulecnik/tournament_t.html", context={'data':query})
 
 def team_detail(request, team_id):
     team = Team.objects.get(pk=team_id)
