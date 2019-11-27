@@ -7,11 +7,9 @@
 {% block content %}
 
 {% if messages %}
-  <ul class="messages">
     {% for message in messages %}
-      <li class="{{ message.tags }}">{{ message }}</li>
+      message.tags
     {% endfor %}
-  </ul>
 {% endif %}
 
 {% load static %}
