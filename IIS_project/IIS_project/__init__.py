@@ -1,5 +1,5 @@
 
-//default_app_config = 'Kulecnik.apps.KulecnikConfig'
+#default_app_config = 'Kulecnik.apps.KulecnikConfig'
 
 
 #import pymysql
