@@ -115,6 +115,31 @@ def team_detail(request, team_id):
     else:
         return render(request, template_name='Kulecnik/team_detail.html', context={'team':team})
 
+def add_player_to_team(request, team_id):
+    team = Team.objects.get(id=team_id)
+    if team is None:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
+    if team.captain is not request.user:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný přidat hráče do týmu, ve kterém nejsi kapitán!"})
+    if request.method == 'GET':
+        return render(request, template_name='Kulecnik/addplayertoteam.html', context={'team_id':team_id})
+    else:
+        team = Team.objects.get(id=request.POST['team'])
+        if team is None:
+            return render(request, template_name='Kulecnik/message.html', context={"message":"Tým neexistuje!"})
+        player_name = request.POST['player']
+        spec_user = User.objects.get(username=player_name)
+        if spec_user is None:
+            return render(request, template_name='Kulecnik/addplayertoteam.html', context={'team_id':team_id, 'failure':"Zvoleý hráč neexistuje!"})
+        else:
+            if team.player is not None:
+                return render(request, template_name='Kulecnik/message.html', context={"message":"Tým je plný!"})
+            else:
+                team.player = spec_user
+                team.save()
+                return redirect("/team/" + team_id + "/")
+
+
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
 

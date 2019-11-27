@@ -8,13 +8,14 @@
 
 {% if messages %}
     {% for message in messages %}
-    {% if messages == "success" %}
-        <p style="font-size:20px" style="color: green;" align="center">
-            <b>Byl jste úspěšně zaregistrován!</b>
+        <br>
+    {% if message == "success" %}
+        <p style="color: green;font-size:20px" align="center">
+            <b>Byl jste úspěšně zaregistrován!</b>{{message}}
         </p>
     {% else %}
-        <p style="font-size:20px" style="color: red;" align="center">
-            <b>Registrace se nezdařila!</b>
+        <p style="color: red;font-size:20px" align="center">
+            <b>Registrace se nezdařila!</b>{{message}}
         </p>
     {% endif %}
 
