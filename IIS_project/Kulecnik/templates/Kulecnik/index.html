@@ -7,11 +7,18 @@
 {% block content %}
 
 {% if messages %}
-  <ul class="messages">
     {% for message in messages %}
-      <li class="{{ message.tags }}">{{ message }}</li>
+    {% if messages == "ahoj" %}
+        <p style="color: green;" align="center">
+            {{message.tags}}
+        </p>
+    {% else %}
+        <p style="color: red;" align="center">
+            {{message.tags}}
+        </p>
+    {% endif %}
+
     {% endfor %}
-  </ul>
 {% endif %}
 
 {% load static %}
