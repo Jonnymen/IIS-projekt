@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Jednotlivci</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Týmy</a>
+  </li>
+</ul>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+
+    <form method='post'>
+        {% csrf_token %}
+        <br>
+        <p align="center" style="font-size:200%;"><b>Vytvoření  turnaje</b></p>
+        <br>
+        <table align="center">
+
+
+
+      <tr>
+        <td align="right" valign="top"><b>Formát</b></td>
+        <td>&nbsp;&nbsp;</td>
+        <td><p>
+            &nbsp;<input type="radio" name="type_S" value="singles" checked="checked"> <b>Jednotlivci</b></input>
+            &nbsp;&nbsp;
+            <input type="radio" name="type_T" value="teams"> <b>Týmy</b><br>
+      </p></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+        {% for field in form %}
+        
+          <tr>
+              <td  align="right"> <b> {{ field.label }}</b></td>
+              <td>&nbsp;&nbsp;</td>
+              <td>{{ field }}</td>
+          </tr>
+          <tr>
+            <td>&nbsp</td>
+          </tr>
+
+        {% endfor %}
+        
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button type="submit" align="center" class="btn btn-outline-success">Vytvořit</button></td>
+        </tr>   
+      </table>
+      
+    </form>
+
+<script type="application/javascript">
+        $(function () {
+          $("#id_start_date").datepicker({
+            format:'yyyy-mm-dd',
+          });
+          $("#id_end_date").datepicker({
+            format:'yyyy-mm-dd',
+          });
+          $("#id_reg_deadline").datepicker({
+            format:'yyyy-mm-dd',
+          });
+        });
+      </script>
+
+{% endblock %}

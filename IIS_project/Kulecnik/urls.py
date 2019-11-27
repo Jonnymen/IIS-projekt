@@ -9,7 +9,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(), {'template_name':'Kulecnik/login.html'}),
     path('logout/', views.log_out, name='logout'),
-    path('add_tournament/', views.add_tournament, name='date'),
+    path('add_tournament_s/', views.add_tournament_s, name='date'),
     path('list_tournament_s/', views.list_tournament_s, name='list_tournament_s'),
     path('tournament_s/<int:row_id>/', views.tournament_detail_s, name='tournament_detail'),
     path('list_tournament_t/', views.list_tournament_t, name='list_tournament_t'),
