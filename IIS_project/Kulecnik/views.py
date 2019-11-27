@@ -109,8 +109,10 @@ def edit_profile(request):
         return render(request, template_name='users/edit_profile.html', context={"form":form, "picture":picture})
     else:
         form = EditProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
+        picture = EditPicture(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid() and picture.is_valid():
             form.save()
+            picture.save()
             return redirect('/profile/')
 
 def edit_password(request):
