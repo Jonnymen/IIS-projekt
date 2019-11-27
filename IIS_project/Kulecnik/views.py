@@ -144,3 +144,8 @@ def new_team(request):
             return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'success':"Tým byl vytvořen!"})
         else:
             return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'failure':"Tým nebylo možné vytvořit (název je moc dlouhý nebo obsahuje nepovolené znaky!"})
+
+def my_teams(request):
+    teams_as_captain = Team.objects.filter(captain=request.user)
+    teams_as_player = Team.objects.filter(player=request.user)
+    return render(request,template_name="Kulecnik/my_teams.html", context={'teams_c':teams_as_captain, 'teams_p':teams_as_player})
