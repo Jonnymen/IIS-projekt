@@ -115,6 +115,10 @@ def edit_profile(request):
             picture.save()
             return redirect('/profile/')
 
+def player_detail(request, row_id):
+    current_user = User.objects.get(pk=row_id)
+    return render(request, template_name='users/profile_view.html', context={"user":current_user})
+
 def edit_password(request):
     if request.method == 'GET':
         form = PasswordChangeForm(user=request.user)
@@ -138,7 +142,7 @@ def new_team(request):
             team = form.save(commit=False)
             check_teams = Team.objects.filter(name=team.name)
             if check_teams.count() > 0:
-                return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'failure':"Tým s tímto názvem již existuje, vyberte prosím jiný název"})    
+                return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'failure':"Tým s tímto názvem již existuje, vyberte prosím jiný název"})
             team.captain = request.user
             team.save()
             return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'success':"Tým byl vytvořen!"})

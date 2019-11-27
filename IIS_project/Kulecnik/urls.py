@@ -15,6 +15,7 @@ urlpatterns = [
     path('profile/', views.show_profile, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('profile/edit/password/', views.edit_password, name='edit_password'),
+    path('profile_page/<int:row_id>/', views.player_detail, name='player_detail'),
     path('new_team/', views.new_team, name='new_team')
 
     #path('addtournament_s/', views.addTournament_S, name="addTournament_S")
