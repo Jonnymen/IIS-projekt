@@ -6,14 +6,14 @@
 
             <h1 align="center">Turnaje jednotlivců</h1><br>
         <table align="center" cellpadding = "5" cellspacing = "5">
-            <tr>
+            <tr align="center">
                 <td><b>Název turnaje</b></td>
                 <td width="30%"><b>Konec Registrací</b></td>
                 <td><b>Obsazenost</b></td>
             </tr>
 
             {% for row in data %}
-            <tr>
+            <tr align="center">
                 <td><a href="/tournament_s/{{ row.pk }}/">{{ row.title }}</a></td>
                 <td>{{row.reg_deadline}}</td>
                 <td>x/{{row.capacity}}</td>
