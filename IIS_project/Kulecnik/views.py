@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
-from .models import Tournament_S, Tournament_Players
+from .models import Tournament_S, Tournament_Players, Profile
 from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm
 
 # Create your views here.
@@ -25,6 +25,7 @@ def register(request):
             password = request.POST["password1"]
             user.set_password(password)
             user.save()
+            Profile.object.create(user)
         return render(request, template_name='Kulecnik/index.html', context=None)
 
 def log_out(request):
