@@ -45,7 +45,7 @@ class EditProfileForm(UserChangeForm):
 class EditPicture(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('image')
+        fields = ('image',)
 
 class LoginForm(forms.Form):
 
