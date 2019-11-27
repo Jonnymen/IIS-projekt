@@ -104,6 +104,13 @@ def tournament_detail(request, row_id):
             else:
                 return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná", "back":"/tournament_s/" + str(row_id) + "/"})
 
+def team_detail(request, team_id):
+    team = Team.objects.get(pk=team_id)
+    if team == None:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
+    else:
+        return render(request, template_name='Kulecnik/team_detail.html', context={'team':team})
+
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
 
