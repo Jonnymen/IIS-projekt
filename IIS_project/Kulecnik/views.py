@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_Players, Profile
-from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm
+from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture
 
 # Create your views here.
 
@@ -105,7 +105,7 @@ def show_profile(request):
 def edit_profile(request):
     if request.method == 'GET':
         form = EditProfileForm(instance=request.user)
-        return render(request, template_name='users/edit_profile.html', context={"form":form})
+        return render(request, template_name='users/edit_profile.html', context={"form":form, "picture":form})
     else:
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():

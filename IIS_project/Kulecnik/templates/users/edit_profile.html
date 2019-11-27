@@ -27,7 +27,7 @@
           </tr>
           {% endif %}
         {% endfor %}
-        
+        {{picture.as_p}}
         <tr>
             <td></td>
             <td></td>
@@ -37,6 +37,9 @@
             <td><a href="/profile/edit/password/" class="btn btn-outline-success">Změna Hesla</a></td>
         </tr>   
       </table>
+      <br>
       
-    </form>
+      
+</form>
+
 {% endblock %}
