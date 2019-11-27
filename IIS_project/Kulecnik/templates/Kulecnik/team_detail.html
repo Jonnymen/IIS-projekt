@@ -20,7 +20,7 @@
                         <td style="text-align: right;"><b>Druhý hráč:</b></td>
                         <td><a href="/profile_page/{{ team.player.id }}/">{{ team.player.username }}</a></td>
                 </tr>
-                {% if user.id == team.captain %}
+                {% if user.id == team.captain.id %}
                 <tr>
                         <td>
                             &nbsp;
