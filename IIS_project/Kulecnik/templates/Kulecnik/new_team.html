@@ -2,11 +2,13 @@
 {% block content %}
 <div class="row" style="padding-top: 7rem;">
     <div class="col-md-4 offset-md-4">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-outline-success">Vytvořit</button>
-        </form>
+        <div style="text-align: center;">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-outline-success">Vytvořit</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
