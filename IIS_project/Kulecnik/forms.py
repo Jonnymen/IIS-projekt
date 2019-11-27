@@ -2,7 +2,7 @@ from django.forms import ModelForm, Form
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from .models import Tournament_S, Profile, Team
+from .models import Tournament_S, Tournament_T, Profile, Team
 
 class NewTournament_S(forms.Form):
 
@@ -62,10 +62,45 @@ class LoginForm(forms.Form):
             'password': 'heslo'
         }
 
-class AddTournamentForm(forms.ModelForm):
+class AddTournamentFormS(forms.ModelForm):
 
     class Meta():
         model = Tournament_S
+        fields = (
+            'title',
+            'start_date',
+            'end_date',
+            'entry_fee',
+            'place',
+            'capacity',
+            'reg_deadline',
+            'description'
+        )
+        widgets = {
+            'start_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...', 'rows':4, 'cols':28}),
+            'title': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'end_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'entry_fee': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'capacity': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'reg_deadline': forms.TextInput(attrs={'rows':1, 'cols':15}),
+        }
+        labels = {
+            "title": "Název",
+            "start_date": "Začátek",
+            "end_date": "Konec",
+            "entry_fee": "Startovné",
+            "place": "Místo",
+            "capacity": "Kapacita",
+            "description": "Popis",
+            "reg_deadline": "Konec registrací",
+        }
+
+class AddTournamentFormT(forms.ModelForm):
+
+    class Meta():
+        model = Tournament_T
         fields = (
             'title',
             'start_date',
@@ -107,4 +142,3 @@ class NewTeamForm(forms.ModelForm):
         labels = {
             "name": "Jméno týmu:",
         }
-        
