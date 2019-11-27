@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_Players, Profile, Team
 from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture, NewTeamForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -25,9 +26,13 @@ def register(request):
             password = request.POST["password1"]
             user.set_password(password)
             user.save()
+            messages.success(request, "Byli jste úspěšně registrováni.")
             user = authenticate(username=form.cleaned_data['username'], password=password)
             login(request, user)
-        return render(request, template_name='Kulecnik/index.html', context=None)
+            return render(request, template_name='Kulecnik/index.html', context=None)
+        else:
+            return render(request, template_name='Kulecnik/index.html', context=None)
+            
 
 def log_out(request):
     logout(request)
