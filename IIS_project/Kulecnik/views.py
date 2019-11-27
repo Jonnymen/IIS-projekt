@@ -101,7 +101,7 @@ def tournament_detail(request, row_id):
 
 def team_detail(request, team_id):
     team = Team.objects.get(pk=team_id)
-    if team == None:
+    if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
     else:
         return render(request, template_name='Kulecnik/team_detail.html', context={'team':team})
