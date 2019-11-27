@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_T, Tournament_Players, Profile, Team
-from .forms import RegistrationForm, LoginForm, AddTournamentFormS, EditProfileForm, EditPicture, NewTeamForm
+from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm
 
 # Create your views here.
 
