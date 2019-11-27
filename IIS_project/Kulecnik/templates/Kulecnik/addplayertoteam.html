@@ -3,10 +3,11 @@
 <div class="row" style="padding-top: 7rem;">
     <div class="col-md-4 offset-md-4">
         <form method="post">
+            {% csrf_token %}
             <label for="player">Zadejte přezdívku hráče:</label><br>
             <input type="text" name="player" id="player"><br>
             <input type="hidden" name="team" id="team" value="{{ team_id }}">
-            <input type="submit" value="Přidat">
+            <button type="submit" class="btn btn-outline-success">Přidat</button>
         </form>
         {% if failure %}
         <p style="color: red;">{{ failure }}</p>
