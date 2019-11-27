@@ -63,7 +63,7 @@ class LoginForm(forms.Form):
         }
 
 class AddTournamentForm(forms.ModelForm):
-    
+
     class Meta():
         model = Tournament_S
         fields = (
@@ -107,3 +107,4 @@ class NewTeamForm(forms.ModelForm):
         labels = {
             "name": "Jméno týmu:",
         }
+        

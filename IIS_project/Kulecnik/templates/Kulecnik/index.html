@@ -3,15 +3,23 @@
 {% block head %}
 <title>Kulečníkové turnaje</title>
 {% endblock %}
-
+<br>
 {% block content %}
 
 {% if messages %}
-  <ul class="messages">
     {% for message in messages %}
-      <li class="{{ message.tags }}">{{ message }}</li>
+        <br>
+    {% if message == "success" %}
+        <p style="color: green;font-size:20px" align="center">
+            <b>Byl jste úspěšně zaregistrován!</b>
+        </p>
+    {% else %}
+        <p style="color: red;font-size:20px" align="center">
+            <b>Registrace se nezdařila!</b>
+        </p>
+    {% endif %}
+
     {% endfor %}
-  </ul>
 {% endif %}
 
 {% load static %}

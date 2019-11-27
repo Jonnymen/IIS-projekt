@@ -2,6 +2,21 @@
 
 {% block content %}
 
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
 
@@ -18,9 +33,9 @@
         <td align="right" valign="top"><b>Formát</b></td>
         <td>&nbsp;&nbsp;</td>
         <td><p>
-            &nbsp;<input type="radio" name="type_S/T" value="singles" checked="checked"> <b>Jednotlivci</b></input>
+            &nbsp;<input type="radio" name="type_S" value="singles" checked="checked"> <b>Jednotlivci</b></input>
             &nbsp;&nbsp;
-            <input type="radio" name="type_S/T" value="teams"> <b>Týmy</b><br>
+            <input type="radio" name="type_T" value="teams"> <b>Týmy</b><br>
       </p></td>
       </tr>
       <tr>
