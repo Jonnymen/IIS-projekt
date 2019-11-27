@@ -55,14 +55,13 @@ def log_in(request):
             return render(request, template_name='Kulecnik/index.html', context=None)
 
 @login_required
-def add_tournament(request):
+def add_tournament_s(request):
 
     if request.method == 'GET':
         form = AddTournamentForm()
-        return render(request, template_name='Kulecnik/addtournament.html', context={'form':form})
+        return render(request, template_name='Kulecnik/addtournament_s.html', context={'form':form})
     else:
-        form_s = AddTournamentForm(request.POST)
-        form_t = AddTournamentFormTeam(request.POST)
+        form = AddTournamentForm(request.POST)
         if form.is_valid():
             turnaj = form.save(commit=False)
             turnaj.host = request.user
@@ -120,7 +119,7 @@ def add_player_to_team(request, team_id):
     team = Team.objects.get(id=team_id)
     if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
-    if team.captain is not request.user:
+    if team.captain.pk is not request.user.pk:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný přidat hráče do týmu, ve kterém nejsi kapitán!"})
     if request.method == 'GET':
         return render(request, template_name='Kulecnik/addplayertoteam.html', context={'team_id':team_id})
