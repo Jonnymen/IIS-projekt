@@ -3,13 +3,13 @@
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
-        <p>
+
             <h1>Turnaje jednotlivců</h1><br>
-            <table align="center"></table>
+        <table align="center">
             <tr>
-                <td>Název turnaje</td>
-                <td>Konec Registrací</td>
-                <td>Obsazenost</td>
+                <td><b>Název turnaje</b></td>
+                <td><b>Konec Registrací</b></td>
+                <td><b>Obsazenost</b></td>
             </tr>
 
             {% for row in data %}
@@ -20,7 +20,7 @@
             </tr>
             {% endfor %}
         </table>
-        </p>
+
     </div>
 </div>
 {% endblock %}
