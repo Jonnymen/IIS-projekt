@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
@@ -7,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_Players, Profile, Team
 from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture, NewTeamForm
-from django.contrib import messages
 
 # Create your views here.
 
@@ -32,7 +32,6 @@ def register(request):
             return render(request, template_name='Kulecnik/index.html', context=None)
         else:
             return render(request, template_name='Kulecnik/index.html', context=None)
-            
 
 def log_out(request):
     logout(request)
@@ -164,4 +163,4 @@ def new_team(request):
 def my_teams(request):
     teams_as_captain = Team.objects.filter(captain=request.user)
     teams_as_player = Team.objects.filter(player=request.user)
-    return render(request,template_name="Kulecnik/my_teams.html", context={'teams_c':teams_as_captain, 'teams_p':teams_as_player})
+    return render(request, template_name="Kulecnik/my_teams.html", context={'teams_c':teams_as_captain, 'teams_p':teams_as_player})
