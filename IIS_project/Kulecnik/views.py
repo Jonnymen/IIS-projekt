@@ -132,3 +132,12 @@ def new_team(request):
     if request.method == 'GET':
         form = NewTeamForm()
         return render(request, template_name='Kulecnik/new_team.html', context={'form':form})
+    else:
+        form = NewTeamForm(request.POST)
+        if form.is_valid():
+            team = form.save(commit=False)
+            team.captain = request.user
+            team.save()
+            return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'success':"Tým byl vytvořen!"})
+        else:
+            return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'failure':"Tým byl vytvořen!"})
