@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_Players, Profile, Team
 from .forms import RegistrationForm, LoginForm, AddTournamentForm, EditProfileForm, EditPicture, NewTeamForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -25,9 +26,13 @@ def register(request):
             password = request.POST["password1"]
             user.set_password(password)
             user.save()
+            messages.success(request, "Byli jste úspěšně registrováni.")
             user = authenticate(username=form.cleaned_data['username'], password=password)
             login(request, user)
-        return render(request, template_name='Kulecnik/index.html', context=None)
+            return render(request, template_name='Kulecnik/index.html', context=None)
+        else:
+            return render(request, template_name='Kulecnik/index.html', context=None)
+            
 
 def log_out(request):
     logout(request)
@@ -98,6 +103,13 @@ def tournament_detail(request, row_id):
                 return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
             else:
                 return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná", "back":"/tournament_s/" + str(row_id) + "/"})
+
+def team_detail(request, team_id):
+    team = Team.objects.get(pk=team_id)
+    if team == None:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
+    else:
+        return render(request, template_name='Kulecnik/team_detail.html', context={'team':team})
 
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
