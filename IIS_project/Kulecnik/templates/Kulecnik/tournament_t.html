@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+
+            <h1>Turnaje týmů</h1><br>
+        <table align="center" cellpadding = "5" cellspacing = "5">
+            <tr>
+                <td><b>Název turnaje</b></td>
+                <td><b>Konec Registrací</b></td>
+                <td><b>Obsazenost</b></td>
+            </tr>
+
+            {% for row in data %}
+            <tr>
+                <td><a href="/tournament_s/{{ row.pk }}/">{{ row.title }}</a></td>
+                <td>{{row.reg_deadline}}</td>
+                <td>x/{{row.capacity}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
+{% endblock %}
