@@ -11,11 +11,11 @@
         <br>
     {% if message == "Byli jste úspěšně registrováni." %}
         <p style="color: green;font-size:20px" align="center">
-            <b>Byl jste úspěšně zaregistrován!</b>{{message}}
+            <b>Byl jste úspěšně zaregistrován!</b>{{message}}{{messages}}
         </p>
     {% else %}
         <p style="color: red;font-size:20px" align="center">
-            <b>Registrace se nezdařila!</b>{{message}}
+            <b>Registrace se nezdařila!</b>{{message}}{{messages}}
         </p>
     {% endif %}
 
