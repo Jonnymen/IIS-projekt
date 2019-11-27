@@ -25,7 +25,7 @@ def register(request):
             password = request.POST["password1"]
             user.set_password(password)
             user.save()
-            user_profile = Profile(user)
+            user_profile = Profile(user=user)
             user_profile.save()
         return render(request, template_name='Kulecnik/index.html', context=None)
 
