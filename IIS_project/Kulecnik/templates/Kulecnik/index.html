@@ -3,18 +3,18 @@
 {% block head %}
 <title>Kulečníkové turnaje</title>
 {% endblock %}
-
+<br>
 {% block content %}
 
 {% if messages %}
     {% for message in messages %}
-    {% if messages == "ahoj" %}
-        <p style="color: green;" align="center">
-            {{message.tags}}
+    {% if messages == "success" %}
+        <p style="font-size:20px" style="color: green;" align="center">
+            <b>Byl jste úspěšně zaregistrován!</b>
         </p>
     {% else %}
-        <p style="color: red;" align="center">
-            {{message.tags}}
+        <p style="font-size:20px" style="color: red;" align="center">
+            <b>Registrace se nezdařila!</b>
         </p>
     {% endif %}
 
