@@ -137,7 +137,7 @@ def add_player_to_team(request, team_id):
             else:
                 team.player = spec_user
                 team.save()
-                return redirect("/team/" + team_id + "/")
+                return redirect("/team/" + str(team_id) + "/")
 
 
 def show_profile(request):
