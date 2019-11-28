@@ -26,6 +26,8 @@ def register(request):
             password = request.POST["password1"]
             user.set_password(password)
             user.save()
+            user_profile = Profile(user=user)
+            user_profile.save()
             messages.success(request, "Byli jste úspěšně registrováni.")
             user = authenticate(username=form.cleaned_data['username'], password=password)
             login(request, user)
@@ -33,6 +35,8 @@ def register(request):
         else:
             messages.error(request, "Někde se stala chyba.")
             return render(request, template_name='Kulecnik/index.html', context=None)
+
+    
 
 def log_out(request):
     logout(request)
@@ -218,7 +222,9 @@ def leave_team(request, team_id):
     return redirect("/my_teams/")
 
 def show_profile(request):
-    return render(request, template_name='users/profile.html', context={"user":request.user})
+    my_tournaments_s = Tournament_S.objects.filter(host=request.user)
+    my_tournaments_t = Tournament_T.objects.filter(host=request.user)
+    return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t})
 
 def edit_profile(request):
     if request.method == 'GET':
