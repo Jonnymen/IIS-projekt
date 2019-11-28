@@ -65,6 +65,7 @@ class Tournament_Players(models.Model):
 class Tournament_Teams(models.Model):
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="tourney_team")
+    registered = models.BooleanField(default=False)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

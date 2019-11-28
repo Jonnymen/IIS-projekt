@@ -141,9 +141,11 @@ def tournament_detail_t(request, row_id):
         answer = request.POST['registrovan']
         if answer == "yes":
             #Odregistrace
-            Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user).delete()
-            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
+            #Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user).delete()
+            #return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
         else:
+
+            
             if zaznamy.count() < current_tournament.capacity:
                 registered = Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user)
                 if registered.count() == 1:
