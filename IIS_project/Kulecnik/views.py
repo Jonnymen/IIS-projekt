@@ -242,8 +242,7 @@ def deny_team(request, tournament_id, team_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
-    link.registered = False
-    link.save()
+    link.delete()
     return redirect("/profile/")
 
 def confirm_player(request, tournament_id, player_id):
