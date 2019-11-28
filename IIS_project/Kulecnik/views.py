@@ -147,7 +147,7 @@ def tournament_detail_t(request, row_id):
             pass
         else:
             team = request.POST['team']
-            team = Team.objects.filter(id=team)
+            team = Team.objects.get(id=team)
             Tournament_Teams(tournament=current_tournament, team=team).save()
             return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams})
 def team_detail(request, team_id):
