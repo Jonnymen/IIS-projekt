@@ -142,9 +142,8 @@ def tournament_detail_t(request, row_id):
         answer = request.POST['registrovan']
         if answer == "yes":
             #Odregistrace
-            #Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user).delete()
-            #return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
-            pass
+            Tournament_Teams.objects.filter(tournament=current_tournament, team__captain=request.user).delete()
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams})
         else:
             team = request.POST['team']
             team = Team.objects.get(id=team)
