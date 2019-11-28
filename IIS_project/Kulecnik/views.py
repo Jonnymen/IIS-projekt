@@ -21,6 +21,8 @@ def register(request):
         return render(request, template_name='Kulecnik/registration.html', context={'form':form})
     else:
         form = RegistrationForm(request.POST)
+        if not form.password2:
+            raise form.ValidationError("You must confirm your password.")
         if form.is_valid():
             user = form.save()
             password = request.POST["password1"]
