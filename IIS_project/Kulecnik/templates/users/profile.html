@@ -22,13 +22,11 @@
                     <td>&nbsp;&nbsp;</td>
                     <td>{{user.last_name}}</td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td style="text-align: left;"><a href="/profile/edit/"><button class="btn btn-outline-success">Upravit</button></a></td>
-            </tr>
+            
         </table>
-        <a href="/profile/edit/"><button style="text-align: center;" class="btn btn-outline-success">Upravit</button></a>
+        <div class="center" style ="text-align: center;">
+                <a href="/profile/edit/"><button style="text-align: center;" class="btn btn-outline-success">Upravit</button></a>
+        </div>
         {% for tournament in my_tournaments_t %}
             <p>{{tournament.title}}</p>
             {% if my_tournaments_t_link.count != 0 %}
@@ -48,9 +46,7 @@
         {% endfor %}
     </div>
 </div>
-<div class="center" style ="text-align: center;">
-        <a href="/profile/edit/"><button style="text-align: center;" class="btn btn-outline-success">Upravit</button></a>
-</div>
+
 
 
 {% endblock %}
