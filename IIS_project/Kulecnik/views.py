@@ -205,7 +205,7 @@ def delete_team(request, team_id):
     if team.captain.pk is not request.user.pk:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný smazat tým, ve kterém nejsi kapitán!","back":"/team/" + str(team_id) + "/"})
     if request.method == 'GET':
-        return render(request, template_name='Kulecnik/confirmation.html', context={"message":"Určitě si přeješ smazat tým " + team.name + "?","cancel_href":"/team/" + team_id + "/"})
+        return render(request, template_name='Kulecnik/confirmation.html', context={"message":"Určitě si přeješ smazat tým " + team.name + "?","cancel_href":"/team/" + str(team_id) + "/"})
     else:
         # request POST if user chooses 'yes' in confirmation
         team.delete()
