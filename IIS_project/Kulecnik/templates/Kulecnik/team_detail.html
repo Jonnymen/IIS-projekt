@@ -27,7 +27,7 @@
                         </td>
                         <td>
                             {% if player %}
-                            <a href=#><button type="submit" class="btn btn-outline-danger">Odebrat hráče</button></a>
+                            <a href="/team/{{ team.id }}/removeplayer/"><button type="submit" class="btn btn-outline-danger">Odebrat hráče</button></a>
                             {% else %}
                             <a href="/team/{{ team.id }}/addplayer/"><button type="submit" class="btn btn-outline-success">Přidat hráče</button></a>
                             {% endif %}
