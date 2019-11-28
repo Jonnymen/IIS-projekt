@@ -125,7 +125,6 @@ def tournament_detail_t(request, row_id):
     current_tournament = Tournament_T.objects.get(pk=row_id)
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
 
-
     if request.user.is_authenticated:
         pass
     else:
@@ -133,13 +132,11 @@ def tournament_detail_t(request, row_id):
 
     if request.method == 'GET':
         player_teams = Team.objects.filter(captain=request.user)
-        if player_teams.count() == 0:
-            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "no_teams":True})
-        registered = Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user)
+        registered = Tournament_Teams.objects.filter(tournament=current_tournament, team_captain=request.user)
         if registered.count() == 0:
-            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams})
         else:
-            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True})
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams})
     else:
         answer = request.POST['registrovan']
         if answer == "yes":

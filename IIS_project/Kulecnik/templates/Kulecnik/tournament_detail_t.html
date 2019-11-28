@@ -16,7 +16,7 @@
             Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
         </p>
         {% if user.is_authenticated %}
-        {% if no_teams != None %}
+        {% if player_teams.count != 0 %}
         {% if registered %}
         <p>
             <form method="post">
