@@ -52,7 +52,7 @@ def log_in(request):
             log_in(request)
             return render(request, template_name='Kulecnik/index.html', context=None)
         else:
-            return render(request, template_name='Kulecnik/index.html', context=None)
+            return render(request, template_name='Kulecnik/index.html', context={"failure":"Chybná přezdívka nebo heslo!"})
 
 @login_required
 def add_tournament_s(request):
@@ -159,7 +159,7 @@ def team_detail(request, team_id):
     if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
     else:
-        return render(request, template_name='Kulecnik/team_detail.html', context={'team':team, 'player':player})
+        return render(request, template_name='Kulecnik/team_detail.html', context={'team':team})
 
 def add_player_to_team(request, team_id):
     team = Team.objects.get(id=team_id)
