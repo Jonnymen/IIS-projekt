@@ -4,11 +4,11 @@
 
 <script> 
   function checkDateSyntax(date) {
-    var re = new RegExp("^\d{2}-\d{2}-\d{4}$");
-    if (re.test(date)) {
-        console.log("Valid");
+    var re = new RegExp("^\d{4}-\d{2}-\d{2}$");
+    if (re.match(date)) {
+        alert ("\nValid");
     } else {
-        console.log("Invalid");
+        alert ("\nInvalid");
     }  
   }
 
