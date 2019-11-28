@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
-from .models import Tournament_S, Tournament_T, Tournament_Players, Profile, Team
+from .models import Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams, Profile, Team
 from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm
 
 # Create your views here.
@@ -120,6 +120,38 @@ def tournament_detail_s(request, row_id):
 def list_tournament_t(request):
     query = Tournament_T.objects.all()
     return render(request, template_name="Kulecnik/tournament_t.html", context={'data':query})
+
+def tournament_detail_t(request, row_id):
+    current_tournament = Tournament_T.objects.get(pk=row_id)
+    zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
+
+    if request.user.is_authenticated:
+        pass
+    else:
+        return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
+
+    if request.method == 'GET':
+        registered = Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user)
+        if registered.count() == 0:
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
+        else:
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
+    else:
+        answer = request.POST['registrovan']
+        if answer == "yes":
+            #Odregistrace
+            Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
+        else:
+            if zaznamy.count() < current_tournament.capacity:
+                registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
+                if registered.count() == 1:
+                    return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
+                vazba = Tournament_Players(tournament=current_tournament, player=request.user)
+                vazba.save()
+                return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
+            else:
+                return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná", "back":"/tournament_s/" + str(row_id) + "/"})
 
 def team_detail(request, team_id):
     team = Team.objects.get(pk=team_id)
