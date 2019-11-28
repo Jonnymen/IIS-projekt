@@ -52,7 +52,7 @@ def log_in(request):
             log_in(request)
             return render(request, template_name='Kulecnik/index.html', context=None)
         else:
-            return render(request, template_name='Kulecnik/index.html', context={"failure":"Chybná přezdívka nebo heslo!"})
+            return render(request, template_name='Kulecnik/index.html', context=None)
 
 @login_required
 def add_tournament_s(request):
