@@ -9,13 +9,13 @@
 {% if messages %}
     {% for message in messages %}
         <br>
-    {% if message == "Byli jste úspěšně registrováni." %}
+    {% if result == "success" %}
         <p style="color: green;font-size:20px" align="center">
-            <b>Byl jste úspěšně zaregistrován!</b>{{message}}{{messages}}
+            <b>Byl jste úspěšně zaregistrován!</b>
         </p>
     {% else %}
         <p style="color: red;font-size:20px" align="center">
-            <b>Registrace se nezdařila!</b>{{message}}{{messages}}
+            <b>Registrace se nezdařila!</b>
         </p>
     {% endif %}
 
