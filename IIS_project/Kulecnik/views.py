@@ -154,6 +154,7 @@ def tournament_detail_t(request, row_id):
                 return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams})
             except:
                 return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams})
+
 def team_detail(request, team_id):
     team = Team.objects.get(pk=team_id)
     player = team.player
@@ -234,6 +235,7 @@ def confirm_team(request, tournament_id, team_id):
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
     link.registered = True
+    link.save()
     return redirect("/profile/")
 
 def deny_team(request, tournament_id, team_id):
@@ -241,6 +243,7 @@ def deny_team(request, tournament_id, team_id):
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
     link.registered = False
+    link.save()
     return redirect("/profile/")
 
 def confirm_player(request, tournament_id, player_id):
