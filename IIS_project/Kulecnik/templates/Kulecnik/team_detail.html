@@ -34,6 +34,16 @@
                         </td>
                 </tr>
                 {% endif %}
+                {% if user.id == team.captain.id %}
+                <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <a href="/team/{{ team.id }}/delete/"><button type="submit" class="btn btn-danger">Smazat tým</button></a>
+                        </td>
+                </tr>
+                {% endif %}
             </table>
         </div>
     </div>

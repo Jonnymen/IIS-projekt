@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row" style="margin-top: 5rem;">
+    <div class="col-md-4 offset-md-4">
+        <div style="text-align: center;">
+            <h2>{{ message }}</h2>
+            <form method="post">
+                {% csrf_token %}
+                <p>
+                    <input type="submit" class="btn btn-success" value="Ano">
+                </p>
+                <p>
+                    <a href="{{ cancel_href }}"><input type="button" class="btn btn-danger" value="Ne"></a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

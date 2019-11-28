@@ -198,6 +198,18 @@ def remove_player_from_team(request, team_id):
     team.save()
     return redirect("/team/" + str(team_id) + "/")
 
+def delete_team(request, team_id):
+    team = Team.objects.get(id=team_id)
+    if team is None:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
+    if team.captain.pk is not request.user.pk:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný smazat tým, ve kterém nejsi kapitán!","back":"/team/" + str(team_id) + "/"})
+    if request.method == 'GET':
+        return render(request, template_name='Kulecnik/confirmation.html', context={"message":"Určitě si přeješ smazat tým " + team.name + "?","cancel_href":"/team/" + team_id + "/"})
+    else:
+        # request POST if user chooses 'yes' in confirmation
+        team.delete()
+        return redirect("/my_teams/")
 
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
