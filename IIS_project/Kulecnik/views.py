@@ -36,8 +36,6 @@ def register(request):
             messages.error(request, "Někde se stala chyba.")
             return render(request, template_name='Kulecnik/index.html', context=None)
 
-    
-
 def log_out(request):
     logout(request)
     return render(request, template_name='Kulecnik/index.html', context=None)
@@ -224,7 +222,9 @@ def leave_team(request, team_id):
 def show_profile(request):
     my_tournaments_s = Tournament_S.objects.filter(host=request.user)
     my_tournaments_t = Tournament_T.objects.filter(host=request.user)
-    return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t})
+    my_tournaments_s_link = Tournament_Players.objects.filter(tournament__host=request.user)
+    my_tournaments_t_link = Tournament_Teams.objects.filter(tournament__host=request.user)
+    return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t, "my_tournaments_s_link":my_tournaments_s_link, "my_tournaments_t_link":my_tournaments_t_link})
 
 def edit_profile(request):
     if request.method == 'GET':
