@@ -33,9 +33,9 @@
             {% if my_tournaments_t_link.count != 0 %}
                 <div class="list-group">
             {% for team in my_tournaments_t_link %}
-                    {% if tournament.tournament.id == team.tournament.id %}
+                    
                     <a href="/{{tournament.id}}/confirm/{{player.id}}/" class="list-group-item list-group-item-action">{{team.team.name}}</a>
-                    {% endif %}
+                    
             {% endfor %}
                 </div>
             {% endif %}
