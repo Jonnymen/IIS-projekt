@@ -28,7 +28,7 @@
                 <td style="text-align: left;"><a href="/profile/edit/"><button class="btn btn-outline-success">Upravit</button></a></td>
             </tr>
         </table>
-        <a href="/profile/edit/"><button style="margin-left:auto; margin-right:auto; text-align: right;" class="btn btn-outline-success">Upravit</button></a>
+        <a href="/profile/edit/"><button style="text-align: center;" class="btn btn-outline-success">Upravit</button></a>
         {% for tournament in my_tournaments_t %}
             <p>{{tournament.title}}</p>
             {% if my_tournaments_t_link.count != 0 %}
@@ -48,4 +48,6 @@
         {% endfor %}
     </div>
 </div>
+<a href="/profile/edit/"><button style="text-align: center;" class="btn btn-outline-success">Upravit</button></a>
+
 {% endblock %}
