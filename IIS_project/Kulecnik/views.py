@@ -132,8 +132,8 @@ def tournament_detail_t(request, row_id):
         return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
 
     if request.method == 'GET':
-        player_teams = Team.objects.filter(captain = request.user)
-        if player_teams.count()  == 0:
+        player_teams = Team.objects.filter(captain=request.user)
+        if player_teams.count() == 0:
             return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True})
         registered = Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user)
         if registered.count() == 0:
@@ -170,7 +170,7 @@ def add_player_to_team(request, team_id):
     if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
     if team.captain.pk is not request.user.pk:
-        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný přidat hráče do týmu, ve kterém nejsi kapitán!","back":"/team/" + str(team_id) + "/"})
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný přidat hráče do týmu, ve kterém nejsi kapitán!", "back":"/team/" + str(team_id) + "/"})
     if request.method == 'GET':
         if team.player is not None:
             return render(request, template_name='Kulecnik/message.html', context={"message":"Tým je plný!", "back":"/team/" + str(team_id) + "/"})
@@ -197,7 +197,7 @@ def remove_player_from_team(request, team_id):
     if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
     if team.captain.pk is not request.user.pk:
-        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný odebrat hráče z týmu, ve kterém nejsi kapitán!","back":"/team/" + str(team_id) + "/"})
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný odebrat hráče z týmu, ve kterém nejsi kapitán!", "back":"/team/" + str(team_id) + "/"})
     team.player = None
     team.save()
     return redirect("/team/" + str(team_id) + "/")
@@ -207,9 +207,9 @@ def delete_team(request, team_id):
     if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
     if team.captain.pk is not request.user.pk:
-        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný smazat tým, ve kterém nejsi kapitán!","back":"/team/" + str(team_id) + "/"})
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný smazat tým, ve kterém nejsi kapitán!", "back":"/team/" + str(team_id) + "/"})
     if request.method == 'GET':
-        return render(request, template_name='Kulecnik/confirmation.html', context={"message":"Určitě si přeješ smazat tým " + team.name + "?","cancel_href":"/team/" + str(team_id) + "/"})
+        return render(request, template_name='Kulecnik/confirmation.html', context={"message":"Určitě si přeješ smazat tým " + team.name + "?", "cancel_href":"/team/" + str(team_id) + "/"})
     else:
         # request POST if user chooses 'yes' in confirmation
         team.delete()
@@ -220,7 +220,7 @@ def leave_team(request, team_id):
     if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
     if team.player.pk is not request.user.pk:
-        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný vystoupit z týmu, ve kterém nejsi!","back":"/team/" + str(team_id) + "/"})
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný vystoupit z týmu, ve kterém nejsi!", "back":"/team/" + str(team_id) + "/"})
     team.player = None
     team.save()
     return redirect("/my_teams/")
