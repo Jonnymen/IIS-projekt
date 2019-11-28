@@ -134,7 +134,7 @@ def tournament_detail_t(request, row_id):
     if request.method == 'GET':
         player_teams = Team.objects.filter(captain=request.user)
         if player_teams.count() == 0:
-            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True}, "no_teams":True)
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "no_teams":True})
         registered = Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user)
         if registered.count() == 0:
             return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
