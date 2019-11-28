@@ -44,6 +44,16 @@
                         </td>
                 </tr>
                 {% endif %}
+                {% if user.id == team.player.id %}
+                <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <a href="/team/{{ team.id }}/leave/"><button type="submit" class="btn btn-outline-danger">Opustit tým</button></a>
+                        </td>
+                </tr>
+                {% endif %}
             </table>
         </div>
     </div>

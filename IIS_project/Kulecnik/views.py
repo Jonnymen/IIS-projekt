@@ -211,6 +211,15 @@ def delete_team(request, team_id):
         team.delete()
         return redirect("/my_teams/")
 
+def leave_team(request, team_id):
+    team = Team.objects.get(id=team_id)
+    if team is None:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
+    if team.player.pk is not request.user.pk:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný vystoupit z týmu, ve kterém nejsi!","back":"/team/" + str(team_id) + "/"})
+    team.player = None
+    return redirect("/my_teams/")
+
 def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user})
 
