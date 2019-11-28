@@ -8,9 +8,11 @@
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
+        
         <div class="img-container" style="text-align: center; padding-top: 10rem;">
             <img class = "rounded-circle account-img" src = "{{user.profile.image.url}}" width="100px">    
         </div>
+
         <table style="margin-top:50px; margin-left:auto; margin-right:auto">
             <tr>
                     <td  align="right"> <b> Křestní jméno: </b></td>
@@ -22,11 +24,14 @@
                     <td>&nbsp;&nbsp;</td>
                     <td>{{user.last_name}}</td>
             </tr>
-            
         </table>
-        <div class="center" style ="text-align: center;">
+
+        <br>
+
+        <div class="center" style="text-align: center;">
                 <a href="/profile/edit/"><button style="text-align: center;" class="btn btn-outline-success">Upravit</button></a>
         </div>
+
         {% for tournament in my_tournaments_t %}
             <p>{{tournament.title}}</p>
             {% if my_tournaments_t_link.count != 0 %}
