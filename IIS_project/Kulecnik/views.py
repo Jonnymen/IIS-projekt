@@ -226,6 +226,28 @@ def show_profile(request):
     my_tournaments_t_link = Tournament_Teams.objects.filter(tournament__host=request.user)
     return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t, "my_tournaments_s_link":my_tournaments_s_link, "my_tournaments_t_link":my_tournaments_t_link})
 
+def confirm_team(request, tournament_id, team_id):
+    tournament = Tournament_T.objects.get(id=tournament_id)
+    team = Team.objects.get(id=team_id)
+    link = Tournament_Teams.objects.get(team=team, tournament=tournament)
+    link.registered = True
+    return redirect("/profile/")
+
+def deny_team(request, tournament_id, team_id):
+    tournament = Tournament_T.objects.get(id=tournament_id)
+    team = Team.objects.get(id=team_id)
+    link = Tournament_Teams.objects.get(team=team, tournament=tournament)
+    link.registered = False
+    return redirect("/profile/")
+
+def confirm_player(request, tournament_id, player_id):
+    #TODO
+    pass
+
+def deny_player(request, tournament_id, player_id):
+    #TODO
+    pass
+
 def edit_profile(request):
     if request.method == 'GET':
         form = EditProfileForm(instance=request.user)
