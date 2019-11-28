@@ -24,10 +24,10 @@
       }else if (capacity < 3) { 
         alert ("\nOčekávaná kapacita turnaje je pro 3 a více hráčů!") 
         return false; 
-      } 
-      checkDateSyntax(startDate, "Začátek");
-      checkDateSyntax(endDate, "Konec");
-      checkDateSyntax(regEndDate, "Konec registrací");      
+      }
+      if ( !checkDateSyntax(startDate, "Začátek") || !checkDateSyntax(endDate, "Konec") || !checkDateSyntax(regEndDate, "Konec registrací")){
+        return false;
+      }       
   }
 </script> 
 
