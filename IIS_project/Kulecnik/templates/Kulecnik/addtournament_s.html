@@ -2,6 +2,20 @@
 
 {% block content %}
 
+<script> 
+  function checkValues(form) { 
+      capacity = form.capacity.value;
+      entryFee = form.entry_fee; 
+      if (entryFee < 0) {
+        alert ("\nRegistrační poplatek nemůže být záporný!!") 
+        return false;   
+      }else if (capacity < 3) { 
+        alert ("\nOčekávaná kapacita turnaje je pro 3 a více hráčů!") 
+        return false; 
+      } 
+  } 
+</script> 
+
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" href="#">Jednotlivci</a>
@@ -14,7 +28,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
 
-    <form method='post'>
+    <form onSubmit = "return checkValues(this)" method='post'>
         {% csrf_token %}
         <br>
         <p align="center" style="font-size:200%;"><b>Vytvoření  turnaje</b></p>
