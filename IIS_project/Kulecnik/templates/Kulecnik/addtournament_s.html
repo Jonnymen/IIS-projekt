@@ -3,6 +3,12 @@
 {% block content %}
 
 <script> 
+  function checkDateSyntax(date) {
+    for (var i = 0; i < date.length; i++) {
+        alert(date.charAt(i));
+    }      
+  }
+
   function checkValues(form) { 
       capacity = form.capacity.value;
       entryFee = form.entry_fee.value;
@@ -17,6 +23,12 @@
         alert ("\nOčekávaná kapacita turnaje je pro 3 a více hráčů!") 
         return false; 
       } 
+      checkDateSyntax(startDate);
+      checkDateSyntax(endDate);
+      checkDateSyntax(regEndDate);
+      
+}
+
   } 
 </script> 
 
