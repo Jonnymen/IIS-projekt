@@ -128,28 +128,28 @@ def tournament_detail_t(request, row_id):
     if request.user.is_authenticated:
         pass
     else:
-        return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
+        return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
 
     if request.method == 'GET':
         registered = Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user)
         if registered.count() == 0:
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
         else:
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True})
     else:
         answer = request.POST['registrovan']
         if answer == "yes":
             #Odregistrace
-            Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False})
+            Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user).delete()
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
         else:
             if zaznamy.count() < current_tournament.capacity:
-                registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
+                registered = Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user)
                 if registered.count() == 1:
                     return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
-                vazba = Tournament_Players(tournament=current_tournament, player=request.user)
+                vazba = Tournament_Teams(tournament=current_tournament, player=request.user)
                 vazba.save()
-                return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True})
+                return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True})
             else:
                 return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná", "back":"/tournament_s/" + str(row_id) + "/"})
 
@@ -168,7 +168,7 @@ def add_player_to_team(request, team_id):
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný přidat hráče do týmu, ve kterém nejsi kapitán!"})
     if request.method == 'GET':
         if team.player is not None:
-            return render(request, template_name='Kulecnik/message.html', context={"message":"Tým je plný!","back":"/team/" + str(team_id) + "/"})
+            return render(request, template_name='Kulecnik/message.html', context={"message":"Tým je plný!", "back":"/team/" + str(team_id) + "/"})
         else:
             return render(request, template_name='Kulecnik/addplayertoteam.html', context={'team_id':team_id})
     else:
