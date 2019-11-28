@@ -3,12 +3,10 @@
 {% block content %}
 
 <script> 
-  function checkDateSyntax(date) {
+  function checkDateSyntax(date, field) {
     var re = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
-    if (date.match(re)) {
-        alert ("\nValid" + date);
-    } else {
-        alert ("\nInvalid" + date);
+    if (!date.match(re)) {
+        alert ("\nPole" + field + "musí být ve formátu rrrr-mm-dd!");
     }  
   }
 
@@ -26,9 +24,9 @@
         alert ("\nOčekávaná kapacita turnaje je pro 3 a více hráčů!") 
         return false; 
       } 
-      checkDateSyntax(startDate);
-      checkDateSyntax(endDate);
-      checkDateSyntax(regEndDate);      
+      checkDateSyntax(startDate, "Začátek");
+      checkDateSyntax(endDate, "Konec");
+      checkDateSyntax(regEndDate, "Konec registrací");      
   }
 </script> 
 
