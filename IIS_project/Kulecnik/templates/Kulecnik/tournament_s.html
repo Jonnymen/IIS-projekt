@@ -16,7 +16,7 @@
             {% for row in data %}
             <tr>
                 <td><a href="/tournament_s/{{ row.pk }}/">{{ row.title }}</a></td>
-                <td width="40%" align="center">{{row.reg_deadline}}</td>
+                <td width="40%" align="center">{{row.reg_deadline|date:"j.n.Y"}}</td>
                 <td align="center">x/{{row.capacity}}</td>
             </tr>
             {% endfor %}
