@@ -123,10 +123,11 @@ def list_tournament_t(request):
 
 def team_detail(request, team_id):
     team = Team.objects.get(pk=team_id)
+    player = team.player
     if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
     else:
-        return render(request, template_name='Kulecnik/team_detail.html', context={'team':team})
+        return render(request, template_name='Kulecnik/team_detail.html', context={'team':team, 'player':player})
 
 def add_player_to_team(request, team_id):
     team = Team.objects.get(id=team_id)
