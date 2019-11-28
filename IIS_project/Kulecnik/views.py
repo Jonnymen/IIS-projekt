@@ -218,6 +218,7 @@ def leave_team(request, team_id):
     if team.player.pk is not request.user.pk:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nejsi autorizovaný vystoupit z týmu, ve kterém nejsi!","back":"/team/" + str(team_id) + "/"})
     team.player = None
+    team.save()
     return redirect("/my_teams/")
 
 def show_profile(request):
