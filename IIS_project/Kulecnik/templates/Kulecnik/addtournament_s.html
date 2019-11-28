@@ -5,7 +5,7 @@
 <script> 
   function checkDateSyntax(date) {
     var re = new RegExp("^\d{4}-\d{2}-\d{2}$");
-    if (re.match(date)) {
+    if (date.match(re)) {
         alert ("\nValid");
     } else {
         alert ("\nInvalid");
