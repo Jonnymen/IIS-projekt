@@ -138,23 +138,17 @@ def tournament_detail_t(request, row_id):
         else:
             return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams})
     else:
+        player_teams = Team.objects.filter(captain=request.user)
         answer = request.POST['registrovan']
         if answer == "yes":
             #Odregistrace
-            #Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user).delete()
-            #return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False})
-            pass
+            Tournament_Teams.objects.filter(tournament=current_tournament, team__captain=request.user).delete()
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams})
         else:
-            if zaznamy.count() < current_tournament.capacity:
-                registered = Tournament_Teams.objects.filter(tournament=current_tournament, player=request.user)
-                if registered.count() == 1:
-                    return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
-                vazba = Tournament_Teams(tournament=current_tournament, player=request.user)
-                vazba.save()
-                return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True})
-            else:
-                return render(request, template_name='Kulecnik/message.html', context={"message":"Kapacita účastníků turnaje je zaplněná", "back":"/tournament_s/" + str(row_id) + "/"})
-
+            team = request.POST['team']
+            team = Team.objects.get(id=team)
+            Tournament_Teams(tournament=current_tournament, team=team).save()
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams})
 def team_detail(request, team_id):
     team = Team.objects.get(pk=team_id)
     player = team.player
