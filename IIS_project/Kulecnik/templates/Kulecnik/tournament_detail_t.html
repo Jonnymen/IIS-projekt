@@ -30,9 +30,11 @@
         {% else %}
         <p>
             <form method="post">
-                {% csrf_token %}
-                <input type="hidden" id="registrovan" name="registrovan" value="no">
-                <button type="submit" align="center" class="btn btn-outline-success">Registruj</button>
+                {% csrf_token %}     
+        {% for row in player_teams %}
+                <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
+        {% endfor %}
+            <button type="submit" align="center" class="btn btn-outline-success">Přihlásit tým</button>
             </form>
         </p>
         {% endif %}
