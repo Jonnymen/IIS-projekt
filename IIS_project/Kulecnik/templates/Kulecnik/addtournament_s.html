@@ -4,9 +4,12 @@
 
 <script> 
   function checkDateSyntax(date) {
-    for (var i = 0; i < date.length; i++) {
-        alert(date.charAt(i));
-    }      
+    var re = new RegExp("^\d{2}-\d{2}-\d{4}$");
+    if (re.test(date)) {
+        console.log("Valid");
+    } else {
+        console.log("Invalid");
+    }  
   }
 
   function checkValues(form) { 
@@ -17,7 +20,7 @@
       regEndDate = form.reg_deadline.value;
 
       if (entryFee < 0) {
-        alert ("\nRegistrační poplatek nemůže být záporný!!" + regEndDate); 
+        alert ("\nRegistrační poplatek nemůže být záporný!!"); 
         return false;   
       }else if (capacity < 3) { 
         alert ("\nOčekávaná kapacita turnaje je pro 3 a více hráčů!") 
