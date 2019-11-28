@@ -6,9 +6,9 @@
   function checkValues(form) { 
       capacity = form.capacity.value;
       entryFee = form.entry_fee.value;
-      startDate = form.start_date;
-      endDate = form.end_date;
-      regEndDate = form.reg_deadline;
+      startDate = form.start_date.value;
+      endDate = form.end_date.value;
+      regEndDate = form.reg_deadline.value;
 
       if (entryFee < 0) {
         alert ("\nRegistrační poplatek nemůže být záporný!!" + regEndDate); 
