@@ -35,8 +35,9 @@
             {% for team in my_tournaments_t_link %}
                     {% if tournament.id == team.tournament.id %}
                     {{team.team.name}}
-                    <a href="/{{tournament.id}}/confirm/{{player.id}}/" class="btn btn-outline-success" role="button" aria-pressed="true">Potvrdit</a>
-                    <a href="/{{tournament.id}}/deny/{{player.id}}/" class="btn btn-outline-danger" role="button" aria-pressed="true">Zamítnout</a>
+                    <a href="/{{tournament.id}}/confirm/{{player.id}}/" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">Potvrdit</a>
+                    <a href="/{{tournament.id}}/deny/{{player.id}}/" class="btn btn-outline-danger btn-sm" role="button" aria-pressed="true">Zamítnout</a>
+                    <br>
                     {% endif %}
             {% endfor %}
         
