@@ -31,13 +31,15 @@
         {% for tournament in my_tournaments_t %}
             <p>{{tournament.title}}</p>
             {% if my_tournaments_t_link.count != 0 %}
-                <div class="list-group">
+                
             {% for team in my_tournaments_t_link %}
                     {% if tournament.id == team.tournament.id %}
-                    <a href="/{{tournament.id}}/confirm/{{player.id}}/" class="list-group-item list-group-item-action">{{team.team.name}}</a>
+                    {{team.team.name}}
+                    <a href="/{{tournament.id}}/confirm/{{player.id}}/" class="btn btn-outline-success" role="button" aria-pressed="true">Potvrdit</a>
+                    <a href="/{{tournament.id}}/deny/{{player.id}}/" class="btn btn-outline-danger" role="button" aria-pressed="true">Zamítnout</a>
                     {% endif %}
             {% endfor %}
-                </div>
+        
             {% endif %}
         {% endfor %}
     </div>
