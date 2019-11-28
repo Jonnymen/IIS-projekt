@@ -6,8 +6,12 @@
   function checkValues(form) { 
       capacity = form.capacity.value;
       entryFee = form.entry_fee.value;
-      if (entryFee < 1) {
-        alert ("\nRegistrační poplatek nemůže být záporný!!") 
+      startDate = form.start_date.value;
+      endDate = form.end_date.value;
+      regEndDate = form.reg_deadline.value;
+
+      if (entryFee < 0) {
+        alert ("\nRegistrační poplatek nemůže být záporný!!" + regEndDate); 
         return false;   
       }else if (capacity < 3) { 
         alert ("\nOčekávaná kapacita turnaje je pro 3 a více hráčů!") 
