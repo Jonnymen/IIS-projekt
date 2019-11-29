@@ -48,7 +48,7 @@
 
       var today = new Date();
       var todaysDate = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
-      todaysDate = todaysDate.substr(3, 2) + '-' + todaysDate.substr(0, 2) + '-' + todaysDate.substr(6,4);
+      today_final = todaysDate.substr(3, 2) + '-' + todaysDate.substr(0, 2) + '-' + todaysDate.substr(6,4);
 
       var a = new Date(String(convertDateFormat(regEndDate)));
       var b = new Date(String(convertDateFormat(startDate)));
@@ -64,7 +64,7 @@
       }*/
       
       if( !(a.getTime() < b.getTime()) ){
-        alert("Ukončení registrací musí končit před začátkem turnaje!" + todaysDate + regEndDate);
+        alert("Ukončení registrací musí končit před začátkem turnaje!" + today_final + " " + regEndDate);
         return false;
       }else if( !(b.getTime() <= c.getTime()) ){
         alert("Turnaj nemůže skončit dříve než začne!");
