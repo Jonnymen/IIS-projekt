@@ -97,14 +97,14 @@ class AddTournamentFormS(forms.ModelForm):
             "reg_deadline": "Konec registrací",
         }
 
+
+class AddTournamentFormT(forms.ModelForm):
 CAPACITY_CHOICES= [
     ('4', '4'),
     ('8', '8'),
     ('16', '16'),
     ('32', '32'),
     ]
-class AddTournamentFormT(forms.ModelForm):
-
     class Meta():
         model = Tournament_T
 
@@ -125,7 +125,7 @@ class AddTournamentFormT(forms.ModelForm):
             'end_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'entry_fee': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'capacity': forms.Select(choices=CAPACITY_CHOICES), #forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'capacity': forms.ChoiceField(choices=CAPACITY_CHOICES), #forms.TextInput(attrs={'rows':1, 'cols':15}),
             'reg_deadline': forms.TextInput(attrs={'rows':1, 'cols':15}),
         }
         labels = {
