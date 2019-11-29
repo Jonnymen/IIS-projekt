@@ -332,7 +332,7 @@ def game_generator_t(request, tournament_id):
     games = Game_T.objects.filter(tournament=current_tournament)
 
     if games.count() > 0:
-        return redirect("/tournament_t/" + str(tournament_id) + "/")
+        games.delete()
 
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
     stages = math.log2(current_tournament.capacity)
@@ -347,9 +347,10 @@ def game_generator_t(request, tournament_id):
         team_1 = all_teams.pop(0)
         try:
             team_2 = all_teams.pop(0)
+            team_2 = team2.team
         except:
             team_2 = None
-        game = Game_T(team_1=team_1.team, team_2=team_2.team, tournament=current_tournament, stage=stage)
+        game = Game_T(team_1=team_1.team, team_2=team_2, tournament=current_tournament, stage=stage)
         game.save()
         game_list.append(game)
 
@@ -369,7 +370,7 @@ def game_generator_t(request, tournament_id):
         tmp_list.clear()
         stages -= 1
         stage += 1
-    return redirect("/tournament_t/" + str(tournament_id) + "/")
+    return redirect("/bracket/" + str(tournament_id) + "/")
 
 def game_bracket(request, tournament_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
