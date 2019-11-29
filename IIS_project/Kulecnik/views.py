@@ -97,6 +97,7 @@ def tournament_detail_s(request, row_id):
     pocet = Tournament_Players.objects.filter(tournament=current_tournament, registered=True).count()
     zapasy = Game_S.objects.filter(tournament=current_tournament)
     rozhodci = Tournament_S_referees.objects.filter(tournament=current_tournament)
+    if_referee = Tournament_S_referees.objects.get(tournament=current_tournament, referee=request.user)
 
     if request.user.is_authenticated:
         pass
@@ -122,6 +123,25 @@ def tournament_detail_s(request, row_id):
             vazba = Tournament_Players(tournament=current_tournament, player=request.user)
             vazba.save()
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci})
+
+def reg_referee(request, row_id, ref_id):
+    current_tournament = Tournament_S.objects.get(id=row_id)
+    player_check = Tournament_Players.object.get(tournament=current_tournament, player=request.user)
+    if player_check is not None:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný jako hráč", "back":"/tournament_s/" + str(row_id) + "/"})
+    if ref_id == request.user.id:
+        Tournament_S_referees(tournament=current_tournament, referee=request.user).save()
+        return redirect("/tournament_s/" + str(row_id) + "/")
+    else:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš přihlásit jiného uživatele jako rozhodčího", "back":"/tournament_s/" + str(row_id) + "/"})
+
+def unreg_referee(request, row_id, ref_id):
+    current_tournament = Tournament_S.objects.get(id=row_id)
+    if ref_id == request.user.id:
+        Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user).delete()
+        return redirect("/tournament_s/" + str(row_id) + "/")
+    else:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš odregistrovat jiného uživatele jako rozhodčího", "back":"/tournament_s/" + str(row_id) + "/"})
 
 def list_tournament_t(request):
     query = Tournament_T.objects.all()
