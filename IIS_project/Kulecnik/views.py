@@ -138,7 +138,8 @@ def reg_referee(request, row_id, ref_id):
 def unreg_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
     if ref_id == request.user.id:
-        Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user).delete()
+        vazba = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user)
+        vazba.delete()
         return redirect("/tournament_s/" + str(row_id) + "/")
     else:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš odregistrovat jiného uživatele jako rozhodčího", "back":"/tournament_s/" + str(row_id) + "/"})
