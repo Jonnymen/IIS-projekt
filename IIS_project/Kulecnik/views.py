@@ -95,7 +95,7 @@ def tournament_detail_s(request, row_id):
     zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
     pocet = Tournament_Players.objects.filter(tournament=current_tournament, registered=True).count()
     zapasy = Game_S.objects.filter(tournament=current_tournament)
-    is_past = (date.today() > current_tournament.reg_deadline)
+
     if request.user.is_authenticated:
         pass
     else:
