@@ -17,6 +17,7 @@
         <p>
             Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
         </p>
+    </div>
         {% if user.is_authenticated %}
         {% if player_teams.count != 0 %}
         {% if registered %}
@@ -40,7 +41,7 @@
             <button type="submit" align="center" class="btn btn-outline-success">Přihlásit tým</button>
             </form>
         </p>
-    </div>
+    
         {% endif %}
         {% endif %}
         {% endif %}
