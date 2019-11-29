@@ -53,8 +53,9 @@
       var a = new Date(String(convertDateFormat(regEndDate)));
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
+      today = new Date(String(convertDateFormat(todaysDate)));
 
-      if (a.getTime() < todaysDate.getTime()){
+      if (a.getTime() < today.getTime()){
         alert("Chybné datum konce registrace!");
         return false;
       }else{
