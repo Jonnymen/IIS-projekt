@@ -1,5 +1,8 @@
 # IIS-projekt
 
+MAIN:
+Výsledky a seznam her, nějak rozumně
+
 1) Hvězdička u povinných údajů ve formulářích
 2) Přidat placeholdery k políčkám se speciálním formátem
 3) U singl turnajů se může registrovat i pořadatel
