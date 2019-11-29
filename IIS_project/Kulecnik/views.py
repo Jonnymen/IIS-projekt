@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams, Profile, Team, Game_T, Game_S
 from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm
@@ -129,7 +130,8 @@ def tournament_detail_t(request, row_id):
     current_tournament = Tournament_T.objects.get(pk=row_id)
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
     pocet = Tournament_Teams.objects.filter(tournament=current_tournament, registered=True).count()
-    is_past = (datetime.today() > current_tournament.reg_deadline)
+    today = timezone.now()
+    is_past = (today > current_tournament.reg_deadline)
     if request.user.is_authenticated:
         pass
     else:
