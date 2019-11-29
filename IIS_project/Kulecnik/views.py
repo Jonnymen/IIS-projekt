@@ -250,7 +250,7 @@ def deny_team(request, tournament_id, team_id):
 
 def confirm_player(request, tournament_id, player_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
-    pocet = Tournament_Players.objects.filter(tournament=tournament, registered=True)
+    pocet = Tournament_Players.objects.filter(tournament=tournament, registered=True).count()
     if request.user.id is not tournament.host.id:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!","back":"/tournament_s/" + str(tournament_id) + "/"})
     if pocet == tournament.capacity:
