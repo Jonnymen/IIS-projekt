@@ -336,6 +336,7 @@ def game_generator_t(request, tournament_id):
 
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
     stages = math.log2(current_tournament.capacity)
+    capacity = current_tournament.capacity / 2
     all_teams = list(zaznamy)
     random.shuffle(all_teams)
     next_stage = None
@@ -343,16 +344,25 @@ def game_generator_t(request, tournament_id):
     tmp_list = []
     stage = 1
 
-    while len(all_teams) > 0:
-        team_1 = all_teams.pop(0)
+    while capacity > 0:
+        try:
+            team_1 = all_teams.pop(0)
+            team_1 = team_1.team
+        except:
+            team_1 = None
+
         try:
             team_2 = all_teams.pop(0)
             team_2 = team2.team
         except:
             team_2 = None
-        game = Game_T(team_1=team_1.team, team_2=team_2, tournament=current_tournament, stage=stage)
+        if team_2 is None:
+            game = Game_T(team_1=team_1, team_2=team_2, tournament=current_tournament, stage=stage, winner=team_1)
+        else:
+            game = Game_T(team_1=team_1, team_2=team_2, tournament=current_tournament, stage=stage)
         game.save()
         game_list.append(game)
+        capacity -= 1
 
     while stages > 1:
         while len(game_list) > 1:
