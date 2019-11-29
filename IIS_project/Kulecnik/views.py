@@ -324,7 +324,7 @@ def my_teams(request):
 def game_generator_t(request, tournament_id):
 
     current_tournament = Tournament_T.objects.get(id=tournament_id)
-    games = Game_T.object.filter(tournament=current_tournament)
+    games = Game_T.objects.filter(tournament=current_tournament)
 
     if games.count() > 0:
         return redirect("/tournament_t/" + str(tournament_id) + "/")
