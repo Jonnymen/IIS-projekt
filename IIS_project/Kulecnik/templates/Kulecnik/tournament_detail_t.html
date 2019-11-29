@@ -37,10 +37,12 @@
         <p>
             <form method="post">
                 {% csrf_token %}
-                <input type="hidden" id="registrovan" name="registrovan" value="no">     
+                <input type="hidden" id="registrovan" name="registrovan" value="no">  
+                <div style="margin: 0 auto; width:100px; text-align:left;"> 
         {% for row in player_teams %}
                 <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
         {% endfor %}
+                </div>  
             <button type="submit" align="center" class="btn btn-outline-success">Přihlásit tým</button>
             </form>
         </p>
