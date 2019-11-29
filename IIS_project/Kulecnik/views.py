@@ -420,7 +420,7 @@ def game_bracket(request, tournament_id):
     return render(request, template_name='Kulecnik/games_bracket.html', context={'stages':stages, 'tournament':tournament, 'games':games})
 
 def list_games_t(request, tournament_id):
-    tournament = Tournament_T.objects.filter(id=tournament_id)
+    tournament = Tournament_T.objects.get(id=tournament_id)
     stages_no = math.log2(tournament.capacity)
     stages = []
     i = 1
