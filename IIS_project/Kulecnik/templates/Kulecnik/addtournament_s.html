@@ -10,6 +10,7 @@
     var temp2 = String(temp.getDate()).padStart(2, '0') + '-' + String(temp.getMonth() + 1).padStart(2, '0') + '-' + temp.getFullYear();
     temp3 = temp2.substr(6, 4) + '-' + temp2.substr(3, 2) + '-' + temp2.substr(0,2);
     today = new Date(String(temp3));
+    alert("a:" + a + "," + "a.getTime():" + a.getTime() + "," + "today:" + today + "," + "today.getTime():" + today.getTime());
 
     if (a.getTime() <= today.getTime()){
         alert("Chybné datum " + message + "!");
