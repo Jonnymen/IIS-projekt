@@ -61,10 +61,10 @@
             {% if row.registered %}
                 <tr>
                     <td>
-                        <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
+                        <a href="/team/{{ row.team.pk }}/">{{ row.team.name }}</a>
                     </td>
                     <td>
-                        <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
+                        <a href="/{{ tournament.id }}/deny_t/{{ row.team.id }}/">
                             <input type="button" class="btn btn-outline-danger" value="Odebrat">
                         </a>
                     </td>
@@ -73,7 +73,7 @@
             {% endfor %}
             </table>
     </div>
-    
+
 <div class="col-md-3">
             <h3>Žádosti o registraci</h3>
             <br>
@@ -83,16 +83,16 @@
                 {% else %}
                     <tr>
                         <td>
-                            <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
+                            <a href="/team/{{ row.team.pk }}/">{{ row.player.username }}</a>
                         </td>
                         {% if tournament.host.id == user.id %}
                         <td>
-                            <a href="/tournament_s/{{ tournament.id }}/confirm_s/{{ row.player.id }}/">
+                            <a href="/{{ tournament.id }}/confirm_t/{{ row.team.id }}/">
                                 <input type="button" class="btn btn-outline-success" value="Potvrdit">
                             </a>
                         </td>
                         <td>
-                            <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
+                            <a href="/{{ tournament.id }}/deny_t/{{ row.team.id }}/">
                                 <input type="button" class="btn btn-outline-danger" value="Zamítnout">
                             </a>
                         </td>
