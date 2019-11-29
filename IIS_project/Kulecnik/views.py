@@ -1,5 +1,6 @@
 import random
 import math
+from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -94,6 +95,7 @@ def tournament_detail_s(request, row_id):
     zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
     pocet = Tournament_Players.objects.filter(tournament=current_tournament, registered=True).count()
     zapasy = Game_S.objects.filter(tournament=current_tournament)
+    is_past = (date.today() > current_tournament.reg_deadline)
     if request.user.is_authenticated:
         pass
     else:

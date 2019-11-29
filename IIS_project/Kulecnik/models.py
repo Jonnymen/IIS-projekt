@@ -24,6 +24,7 @@ class Tournament_S(models.Model):
     description = models.TextField(blank=True, null=True)
     reg_deadline = models.DateTimeField(blank=True, null=True)
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    registered = models.IntegerField(default=0)
 
 class Tournament_T(models.Model):
     title = models.CharField(max_length=60)
@@ -35,6 +36,7 @@ class Tournament_T(models.Model):
     description = models.TextField(blank=True, null=True)
     reg_deadline = models.DateTimeField(blank=True, null=True)
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    registered = models.IntegerField(default=0)
 
 class Game_S(models.Model):
     player_1 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="player_1")
