@@ -15,7 +15,7 @@
                 {{ucastnici}} (max.: {{tournament.capacity}})
             </p>
             <p>
-                Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
+                Obsazenost turnaje: {{pocet}}/{{tournament.capacity}}
             </p>
         </div>
         {% if user.is_authenticated %}
@@ -31,7 +31,7 @@
         </p>
         </div>
         {% else %}
-        {% if ucast.count == tournament.capacity %}
+        {% if pocet == tournament.capacity %}
         {% else %}
         <div class="center" style="text-align: center;">
         <p>
