@@ -47,6 +47,9 @@
             <a href="/team/{{ row.team.pk }}/">{{ row.team.name }}</a>
             </p>
         {% endfor %}
+        <div class="center" style="text-align: center;">
+            <a href="/generate/{{ tournament.pk }}"><button style="text-align: center;" class="btn btn-outline-success">Generovat hry</button></a>
+        </div>
     </div>
 </div>
 {% endblock %}

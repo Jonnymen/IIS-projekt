@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -6,7 +7,7 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
-from .models import Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams, Profile, Team
+from .models import Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams, Profile, Team, Game_T
 from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm
 
 # Create your views here.
@@ -135,10 +136,12 @@ def tournament_detail_t(request, row_id):
     if request.method == 'GET':
         player_teams = Team.objects.filter(captain=request.user)
         registered = Tournament_Teams.objects.filter(tournament=current_tournament, team__captain=request.user)
+        
         if registered.count() == 0:
             return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams})
         else:
             return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams})
+
     else:
         player_teams = Team.objects.filter(captain=request.user)
         answer = request.POST['registrovan']
@@ -304,3 +307,26 @@ def my_teams(request):
     teams_as_captain = Team.objects.filter(captain=request.user)
     teams_as_player = Team.objects.filter(player=request.user)
     return render(request, template_name="Kulecnik/my_teams.html", context={'teams_c':teams_as_captain, 'teams_p':teams_as_player})
+
+def game_generator_t(request, tournament_id):
+
+    current_tournament = Tournament_T.objects.get(pk=tournament_id)
+    zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
+    all_teams = zaznamy
+    random.shuffle(all_teams)
+    counter = 0
+    game_list = []
+    while all_teams.count() != 0:
+        team_1 = all_teams.pop()
+        try:
+            team_2 = all_teams.pop()
+        except:
+            team_2 = None
+        game = Game_T(team_1=team_1, team_2=team_2).save()
+        game_list.append(game)
+        counter += 1
+        if counter == 2:
+            game = Game_T().save()
+            game_list.append(game)
+            counter = 0
+    
