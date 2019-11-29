@@ -38,7 +38,7 @@
 
       var ret = Math.log(capacity) / Math.log(2); // log_e x
       if(!(Number.isInteger(ret)) ){
-        alert("Přípustná kapacita je 4, 8, 16 nebo 32 účastníků..");
+        alert("Přípustná kapacita je 4, 8, 16 nebo 32 účastníků.");
         return false;
       }
 
@@ -48,10 +48,16 @@
 
       var today = new Date();
       var todaysDate = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
-      
+      todaysDate = todaysDate.substr(3, 2) + '-' + todaysDate.substr(0, 2) + '-' + todaysDate.substr(6,4);
+
       var a = new Date(String(convertDateFormat(regEndDate)));
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
+
+      if (a.getTime() < todaysDate.getTime()){
+        alert("Chybné datum konce registrace!");
+        return false;
+      }
       
       if( !(a.getTime() < b.getTime()) ){
         alert("Ukončení registrací musí končit před začátkem turnaje!" + todaysDate);
