@@ -91,7 +91,7 @@ def list_tournament_s(request):
 def tournament_detail_s(request, row_id):
     current_tournament = Tournament_S.objects.get(pk=row_id)
     zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
-    pocet = Tournament_Players.objects.filetr(tournament=current_tournament, registered=True)
+    pocet = Tournament_Players.objects.filter(tournament=current_tournament, registered=True)
     if request.user.is_authenticated:
         pass
     else:
