@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import NewTournament_S
-from .models import Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams, Profile, Team, Game_T
+from .models import Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams, Profile, Team, Game_T, Game_S
 from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm
 
 # Create your views here.
@@ -92,6 +92,7 @@ def tournament_detail_s(request, row_id):
     current_tournament = Tournament_S.objects.get(pk=row_id)
     zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
     pocet = Tournament_Players.objects.filter(tournament=current_tournament, registered=True).count()
+    zapasy = Game_S
     if request.user.is_authenticated:
         pass
     else:
