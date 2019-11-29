@@ -1,6 +1,6 @@
 import random
 import math
-from datetime import date
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -129,7 +129,7 @@ def tournament_detail_t(request, row_id):
     current_tournament = Tournament_T.objects.get(pk=row_id)
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
     pocet = Tournament_Teams.objects.filter(tournament=current_tournament, registered=True).count()
-    is_past = (date.today() > current_tournament.reg_deadline)
+    is_past = (datetime.today() > current_tournament.reg_deadline)
     if request.user.is_authenticated:
         pass
     else:
