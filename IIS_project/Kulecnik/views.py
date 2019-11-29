@@ -234,6 +234,7 @@ def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t, "my_tournaments_s_link":my_tournaments_s_link, "my_tournaments_t_link":my_tournaments_t_link})
 
 def confirm_team(request, tournament_id, team_id):
+    #TODO kontrola jestli je přihlášen pořadatel
     tournament = Tournament_T.objects.get(id=tournament_id)
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
@@ -242,6 +243,7 @@ def confirm_team(request, tournament_id, team_id):
     return redirect("/profile/")
 
 def deny_team(request, tournament_id, team_id):
+    #TODO kontrola jestli je přihlášen pořadatel
     tournament = Tournament_T.objects.get(id=tournament_id)
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
@@ -249,12 +251,23 @@ def deny_team(request, tournament_id, team_id):
     return redirect("/profile/")
 
 def confirm_player(request, tournament_id, player_id):
-    #TODO
-    pass
+    tournament = Tournament_S.objects.get(id=tournament_id)
+    if request.user.id is not tournament.host.id:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!","back":"/tournament_s/" + str(tournament_id) + "/"})
+    player = User.objects.get(id=player_id)
+    link = Tournament_Players.objects.get(player=player, tournament=tournament)
+    link.registered = True
+    link.save()
+    return redirect("/tournament_s/" + str(tournament_id) + "/")
 
 def deny_player(request, tournament_id, player_id):
-    #TODO
-    pass
+    tournament = Tournament_S.objects.get(id=tournament_id)
+    if request.user.id is not tournament.host.id:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!","back":"/tournament_s/" + str(tournament_id) + "/"})
+    player = User.objects.get(id=player_id)
+    link = Tournament_Players.objects.get(player=player, tournament=tournament)
+    link.delete()
+    return redirect("/tournament_s/" + str(tournament_id) + "/")
 
 def edit_profile(request):
     if request.method == 'GET':
