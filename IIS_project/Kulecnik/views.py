@@ -369,7 +369,7 @@ def game_generator_t(request, tournament_id):
         tmp_list.clear()
         stages -= 1
         stage += 1
-    return redirect("/tournament_t/" + str(tournament_id) + "/")
+    return redirect("/bracket/" + str(tournament_id) + "/")
 
 def game_bracket(request, tournament_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
