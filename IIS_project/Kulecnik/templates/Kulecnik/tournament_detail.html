@@ -16,7 +16,8 @@
         border-radius: 15px 50px 30px;
         padding: 20px; 
         width: 300px;
-        height: 40px; 
+        height: 40px;
+        text-align: center; 
     }
 </style>
 
@@ -28,7 +29,7 @@
     <div class="col-md-6 offset-md-3">
         <p>
             <h1 style="text-align: center;font-weight: bold;">{{tournament.title}}</h1><br>
-            <h4 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h4>
+            <h4>{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h4>
         </p>
         <p>
             <b>Popis: </b>{{tournament.description}}
