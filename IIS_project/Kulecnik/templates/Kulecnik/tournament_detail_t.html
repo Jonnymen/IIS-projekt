@@ -26,7 +26,7 @@
             <form method="post">
                 {% csrf_token %}
                 <input type="hidden" id="registrovan" name="registrovan" value="yes">
-                <button type="submit" align="center" class="btn btn-outline-success">Odregistruj</button>
+                <button type="submit" style="min-width: 12rem; max-width: 12rem;" align="center" class="btn btn-outline-success">Odregistruj</button>
             </form>
         </p>
         </div>
@@ -43,7 +43,7 @@
                 <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
         {% endfor %}
                 </div>  
-            <button type="submit" align="center" class="btn btn-outline-success">Přihlásit tým</button>
+            <button type="submit" style="min-width: 12rem; max-width: 12rem;" align="center" class="btn btn-outline-success">Přihlásit tým</button>
             </form>
         </p>
         </div>
@@ -53,16 +53,16 @@
         {% endif %}
         
         <div class="center" style="text-align: center;">
-            <a href="/generate/{{ tournament.id }}/"><button style="text-align: center;" class="btn btn-outline-success">Generovat hry</button></a>
+            <a href="/generate/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-success">Generovat hry</button></a>
         </div>
         <div class="center" style="text-align: center;">
-                <a href="/bracket/{{ tournament.id }}/"><button style="text-align: center;" class="btn btn-outline-success">Juknout na pavouka</button></a>
+                <a href="/bracket/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-success">Juknout na pavouka</button></a>
         </div>
     </div>
 </div>
 <div class="row" style="margin-top: 5rem;">
     <div class="col-md-4 offset-md-3" style>
-            <h3>Registrovaní hráči</h3>
+            <h3>Registrované týmy</h3>
             <br>
             <table>
             {% for row in ucast %}
