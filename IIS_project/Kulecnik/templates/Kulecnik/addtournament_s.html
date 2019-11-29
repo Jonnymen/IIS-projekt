@@ -50,7 +50,7 @@
       var todaysDate = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
       todaysDate = todaysDate.substr(3, 2) + '-' + todaysDate.substr(0, 2) + '-' + todaysDate.substr(6,4);
       
-      if (a.getTime() < todaysDate.getTime){
+      if (a.getTime() < todaysDate.getTime()){
         alert("Chybné datum konce registrace!");
         return false;
       }
