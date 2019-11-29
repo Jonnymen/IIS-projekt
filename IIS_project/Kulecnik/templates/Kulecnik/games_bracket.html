@@ -1,6 +1,10 @@
-{% extends 'base.html' %}
-{% block content %}
 {% load static %}
+{% extends 'base.html' %}
+{% block head %}
+<link rel="shortcut icon" href="{% static 'Kulecnik/favicon.ico' type='image/x-icon' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bracket.css' type='text/css' %}">
+{% endblock %}
+{% block content %}
 <h1>2013 NCAA Tournament - Midwest Bracket</h1>
 <main id="tournament">
     <ul class="round round-1">
