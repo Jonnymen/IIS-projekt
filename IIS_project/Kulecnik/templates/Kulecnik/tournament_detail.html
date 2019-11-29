@@ -10,6 +10,10 @@
       padding: 12px;
       border-bottom: 2px solid white; 
     }
+
+    h1 {
+        border: 1px solid powderblue;
+    }
 </style>
 
 
@@ -23,7 +27,7 @@
             <h3 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
         </p>
         <p>
-            <b>Popis:</b>{{tournament.description}}
+            <b>Popis: </b>{{tournament.description}}
         </p>
         <p>
             <b>Kapacita:</b> {{tournament.capacity}} hráčů
@@ -32,7 +36,7 @@
             <b>Obsazenost turnaje:</b> {{pocet}}/{{tournament.capacity}}
         </p>
         <p>
-            </b>Pořadatel:</b> <a href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
+            <b>Pořadatel:</b> <a href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
         </p>
         {% if user.id == tournament.host.id %}
         {% else %}
