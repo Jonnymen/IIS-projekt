@@ -12,7 +12,7 @@
   function checkDateSyntax(date, field) {
     var re = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
     if (!date.match(re)) {
-      alert ("\nPole " + field + " musí být ve formátu rrrr-mm-dd!" + date);
+      alert ("\nPole " + field + " musí být ve formátu rrrr-mm-dd!");
       return false;
     }else{
       return true;
@@ -22,9 +22,9 @@
   function checkValues(form) { 
       capacity = form.capacity.value;
       entryFee = form.entry_fee.value;
-      startDate = convertDateFormat(form.start_date.value);
-      endDate = convertDateFormat(form.end_date.value);
-      regEndDate = convertDateFormat(form.reg_deadline.value);
+      startDate = form.start_date.value;
+      endDate = form.end_date.value;
+      regEndDate = form.reg_deadline.value;
 
       if (entryFee < 0) {
         alert ("\nRegistrační poplatek nemůže být záporný!!"); 
@@ -40,9 +40,9 @@
       var today = new Date();
       var todaysDate = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
       
-      var a = new Date(String(regEndDate));
-      var b = new Date(String(startDate));
-      var c = new Date(String(endDate));
+      var a = new Date(String(convertDateFormat(regEndDate)));
+      var b = new Date(String(convertDateFormat(startDate)));
+      var c = new Date(String(convertDateFormat(endDate)));
       if( a.getTime() < b.getTime() <= c.getTime()){
         alert("V pořádku!");
         return false;
