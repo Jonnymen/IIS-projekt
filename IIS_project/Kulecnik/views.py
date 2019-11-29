@@ -338,7 +338,7 @@ def game_generator_t(request, tournament_id):
     tmp_list = []
     stage = 1
 
-    while all_teams.len() > 0:
+    while len(all_teams) > 0:
         team_1 = all_teams.pop(0)
         try:
             team_2 = all_teams.pop(0)
