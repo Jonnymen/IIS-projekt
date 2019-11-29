@@ -33,6 +33,7 @@
         {% else %}
         {% if ucast.count == tournament.capacity %}
         {% else %}
+        <div class="center" style="text-align: center;">
         <p>
             <form method="post">
                 {% csrf_token %}
@@ -43,7 +44,7 @@
             <button type="submit" align="center" class="btn btn-outline-success">Přihlásit tým</button>
             </form>
         </p>
-    
+        </div>
         {% endif %}
         {% endif %}
         {% endif %}
