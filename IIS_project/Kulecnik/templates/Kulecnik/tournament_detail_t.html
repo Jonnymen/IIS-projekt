@@ -2,25 +2,26 @@
 {% block content %}
 <div class="row" style="margin-top: 5rem;">
     <div class="col-md-6 offset-md-3">
-            <div class="center" style="text-align: center;">
-        <p>
-            <h1 style="text-align: center;">{{tournament.title}}</h1><br>
-            <h3>{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
-        </p>
-            
-        <p>
-            {{tournament.description}}
-        </p>
-        <p>
-            {{ucastnici}} (max.: {{tournament.capacity}})
-        </p>
-        <p>
-            Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
-        </p>
-    </div>
+        <div class="center" style="text-align: center;">
+            <p>
+                <h1 style="text-align: center;">{{tournament.title}}</h1><br>
+                <h3>{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
+            </p>
+                
+            <p>
+                {{tournament.description}}
+            </p>
+            <p>
+                {{ucastnici}} (max.: {{tournament.capacity}})
+            </p>
+            <p>
+                Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
+            </p>
+        </div>
         {% if user.is_authenticated %}
         {% if player_teams.count != 0 %}
         {% if registered %}
+        <div class="center" style="text-align: center;"></div>
         <p>
             <form method="post">
                 {% csrf_token %}
@@ -28,6 +29,7 @@
                 <button type="submit" align="center" class="btn btn-outline-success">Odregistruj</button>
             </form>
         </p>
+        </div>
         {% else %}
         {% if ucast.count == tournament.capacity %}
         {% else %}
