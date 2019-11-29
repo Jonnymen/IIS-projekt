@@ -12,10 +12,10 @@
     if (givenDate.getTime() < today.getTime()){
         alert("Chybné datum" + message + "!");
         return false;
-      }else{
+    }else{
         alert("Je to ouk");
         return false;
-      }
+    }
   }
 
   function convertDateFormat(oldDate){
@@ -64,6 +64,11 @@
       var a = new Date(String(convertDateFormat(regEndDate)));
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
+      
+      if( !(compareWithToday(a, "konce registrace")) || !(compareWithToday(b, "začátku turnaje")) ||  !(compareWithToday(c, "konce turnaje")) ){
+        return false;
+      }
+      
       compareWithToday(a, "konce registrace");
       compareWithToday(b, "začátku turnaje");
       compareWithToday(c, "konce turnaje");
