@@ -69,11 +69,13 @@
                     <td>
                         <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
                     </td>
+                    {% if tournament.host.id == user.id %}
                     <td>
                         <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
                             <input type="button" class="btn btn-outline-danger" value="Odebrat">
                         </a>
                     </td>
+                    {% endif %}
                 </tr>
             {% endif %}
             {% endfor %}
