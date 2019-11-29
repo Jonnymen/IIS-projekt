@@ -352,10 +352,10 @@ def game_generator_t(request, tournament_id):
             next_stage = Game_T(tournament=current_tournament, stage=stage + 1).save()
             tmp_list.append(next_stage)
             game_1 = game_list.pop(0)
-            game_1.next_game = next_stage
+            game_1.next_game_id = next_stage
             game_1.save()
             game_2 = game_list.pop(0)
-            game_2.next_game = next_stage
+            game_2.next_game_id = next_stage
             game_2.save()
 
         game_list = tmp_list
