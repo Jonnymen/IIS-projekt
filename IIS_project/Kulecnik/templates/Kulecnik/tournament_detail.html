@@ -37,11 +37,50 @@
         {% endif %}
         {% endif %}
         {% endif %}
-        {% for row in ucast %}
-            <p>
-            <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
-            </p>
-        {% endfor %}
+    </div>
+</div>
+<div class="row" style="margin-top: 5rem;">
+    <div class="col-md-3 offset-md-3">
+        <div style="text-align: center;">
+            <h3>Registrovaní hráči</h3>
+            <br>
+            {% for row in ucast %}
+            {% if row.registered %}
+                <p>
+                <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
+                </p>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div style="text-align: center;">
+            <h3>Žádosti o registraci</h3>
+            <br>
+            <table>
+                {% for row in ucast %}
+                {% if !row.registered %}
+                    <tr>
+                        <td>
+                            <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
+                        </td>
+                        {% if tournament.host.id == user.id %}
+                        <td>
+                            <a href="tournament_s/{{ tournament.id }}/confirm_s/{{ row.player.id }}/">
+                                <input type="button" class="btn btn-outline-success" value="Potvrdit">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
+                                <input type="button" class="btn btn-outline-danger" value="Zamítnout">
+                            </a>
+                        </td>
+                        {% endif %}    
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
     </div>
 </div>
 {% endblock %}
