@@ -52,11 +52,11 @@
         </div>
     </div>
 </div>
-<div style="margin-top: 5rem; text-align: center;">
+<div class="row" style="margin-top: 5rem;">
     <div class="col-md-3 offset-md-3">
             <h3>Registrovaní hráči</h3>
             <br>
-            <table style="margin-left:auto; margin-right:auto">
+            <table>
             {% for row in ucast %}
             {% if row.registered %}
                 <tr>
@@ -74,10 +74,10 @@
             </table>
     </div>
 
-<div style="text-align: center;">
+<div class="col-md-3">
             <h3>Žádosti o registraci</h3>
             <br>
-            <table style="margin-left:auto; margin-right:auto">
+            <table>
                 {% for row in ucast %}
                 {% if row.registered %}
                 {% else %}
