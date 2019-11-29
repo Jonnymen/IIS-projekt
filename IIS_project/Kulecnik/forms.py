@@ -81,7 +81,7 @@ class AddTournamentFormS(forms.ModelForm):
             'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...', 'rows':4, 'cols':28}),
             'title': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'end_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'entry_fee': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'entry_fee': forms.TextInput(attrs={'placeholder': 'Kč', 'rows':1, 'cols':15}),
             'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'capacity': forms.TextInput(attrs={'rows':1, 'cols':15}),
             'reg_deadline': forms.TextInput(attrs={'rows':1, 'cols':15}),
