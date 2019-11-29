@@ -1,24 +1,34 @@
 <style>
     table {
       border-collapse: collapse;
-      border-radius: 1em;
       overflow: hidden;
+      border-radius: 1em;
     }
     
     th, td {
+      background: #FFDFDF;
       padding: 12px;
-      background: #ddd;
       border-bottom: 2px solid white; 
     }
+
+    #borderStyle{
+    border-radius: 15px 50px 30px;
+    border: #FFDFDF;
+    padding: 20px; 
+    width: 200px;
+    height: 150px; 
+    }
 </style>
+
+
 
 {% extends 'base.html' %}
 {% block content %}
 <div class="row" style="margin-top: 5rem;">
     <div class="col-md-6 offset-md-3">
-        <p>
-            <h1 style="text-align: center;">{{tournament.title}}</h1><br>
-            <h3>{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
+        <p id="borderStyle">
+            <h1 style="text-align: center;font-weight: bold;">{{tournament.title}}</h1><br>
+            <h3 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
         </p>
         <p>
             {{tournament.description}}
