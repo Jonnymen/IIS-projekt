@@ -332,7 +332,7 @@ def game_generator_t(request, tournament_id):
     games = Game_T.objects.filter(tournament=current_tournament)
 
     if games.count() > 0:
-        return redirect("/tournament_t/" + str(tournament_id) + "/")
+        games.delete()
 
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
     stages = math.log2(current_tournament.capacity)
