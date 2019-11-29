@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bracket.css' type='text/css' %}">
+{% endblock %}
+{% block content %}
+<h1>{{tournament.name}}</h1>
+
+<main id="tournament">
+        {% for stage in stages %}
+        <ul class="round round-{{stage}}">
+            {% for game in games %}
+                {% if game.stage == stage %}
+                    <li class="spacer">&nbsp;</li>
+                    <li class="game game-top {% if game.winner is not None %} {% if game.winner == game.team_1 %}winner{% endif %}{% endif %}">{% if game.player_1 %} 
+                        {{game.player_1.name}} {%else%} N/A {% endif %}</li>
+                    <li class="game game-spacer">&nbsp;</li>
+                    <li class="game game-bottom {% if game.winner is not None %} {% if game.winner == game.team_2 %}winner{% endif %}{% endif %}">{% if game.player_2 %} 
+                        {{game.player_2.name}} {%else%} N/A {% endif %}</li>
+                {% endif %}
+            {% endfor %}
+                    <li class="spacer">&nbsp;</li>
+        </ul>
+        {% endfor %}
+</main>
+
+{% endblock %}
