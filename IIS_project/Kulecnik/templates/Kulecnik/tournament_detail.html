@@ -1,3 +1,17 @@
+<style>
+    table {
+      border-collapse: collapse;
+      border-radius: 1em;
+      overflow: hidden;
+    }
+    
+    th, td {
+      padding: 1em;
+      background: #ddd;
+      border-bottom: 2px solid white; 
+    }
+</style>
+
 {% extends 'base.html' %}
 {% block content %}
 <div class="row" style="margin-top: 5rem;">
@@ -66,7 +80,7 @@
     <div class="col-md-3">
             <h3>Žádosti o registraci</h3>
             <br>
-            <table>
+            <table style="background-color: #FFC300;">
                 {% for row in ucast %}
                 {% if row.registered %}
                 {% else %}
