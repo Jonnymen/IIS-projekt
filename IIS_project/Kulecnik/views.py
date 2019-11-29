@@ -1,4 +1,5 @@
 import random
+import math
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -134,7 +135,7 @@ def tournament_detail_t(request, row_id):
     if request.method == 'GET':
         player_teams = Team.objects.filter(captain=request.user)
         registered = Tournament_Teams.objects.filter(tournament=current_tournament, team__captain=request.user)
-        
+
         if registered.count() == 0:
             return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams})
         else:
@@ -158,7 +159,7 @@ def tournament_detail_t(request, row_id):
 
 def team_detail(request, team_id):
     team = Team.objects.get(pk=team_id)
-    player = team.player
+    #player = team.player
     if team is None:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
     else:
@@ -250,9 +251,9 @@ def confirm_player(request, tournament_id, player_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
     pocet = Tournament_Players.objects.filter(tournament=tournament, registered=True).count()
     if request.user.id is not tournament.host.id:
-        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!","back":"/tournament_s/" + str(tournament_id) + "/"})
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_s/" + str(tournament_id) + "/"})
     if pocet == tournament.capacity:
-        return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj je zaplněn!","back":"/tournament_s/" + str(tournament_id) + "/"})
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj je zaplněn!", "back":"/tournament_s/" + str(tournament_id) + "/"})
     player = User.objects.get(id=player_id)
     link = Tournament_Players.objects.get(player=player, tournament=tournament)
     link.registered = True
@@ -262,7 +263,7 @@ def confirm_player(request, tournament_id, player_id):
 def deny_player(request, tournament_id, player_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
     if request.user.id is not tournament.host.id:
-        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!","back":"/tournament_s/" + str(tournament_id) + "/"})
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_s/" + str(tournament_id) + "/"})
     player = User.objects.get(id=player_id)
     link = Tournament_Players.objects.get(player=player, tournament=tournament)
     link.delete()
@@ -328,18 +329,27 @@ def game_generator_t(request, tournament_id):
     random.shuffle(all_teams)
     counter = 0
     game_list = []
+
     while all_teams.count() != 0:
         team_1 = all_teams.pop()
         try:
             team_2 = all_teams.pop()
         except:
             team_2 = None
-        game = Game_T(team_1=team_1, team_2=team_2).save()
+        game = Game_T(team_1=team_1, team_2=team_2, tournament=current_tournament).save()
         game_list.append(game)
         counter += 1
-        if counter == 2:
-            game = Game_T().save()
+
+    while counter > 1:
+        counter /= 2
+        loop = counter
+        while loop != 0:
+            game = Game_T(tournament=current_tournament).save()
             game_list.append(game)
-            counter = 0
-def game_bracket(request):
-    return render(request, template_name='Kulecnik/games_bracket.html')
+            loop -= 1
+
+def game_bracket(request, tournament_id):
+    tournament = Tournament_T.objects.get(id=tournament_id)
+    stages = math.log2(tournament.capacity)
+    games = Game_T.objects.filter(tournament=tournament)
+    return render(request, template_name='Kulecnik/games_bracket.html', context={'stages':stages, 'tournament':tournament, 'games':games})
