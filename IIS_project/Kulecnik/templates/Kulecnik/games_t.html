@@ -18,11 +18,11 @@
 
             {% for stage in stages %}
                 {% for game in games %}
-                    {% if stages.count() - stage == 2}
+                    {% if stages.count - stage == 2}
                         <p>Čtvrtfinále</p>
-                    {% elif stages.count() - stage == 1}
+                    {% elif stages.count - stage == 1}
                         <p>Semifinále</p>
-                    {% elif stages.count() - stage == 0}
+                    {% elif stages.count - stage == 0}
                         <p>Finále</p>
                 
                     {% if game.stage == stage %}
