@@ -44,7 +44,7 @@
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
       if( a.getTime() < b.getTime() <= c.getTime()){
-        alert("V pořádku!" + regEndDate + startDate + endDate);
+        alert("V pořádku!" + convertDateFormat(regEndDate) + "  " + convertDateFormat(startDate) + "  " + convertDateFormat(endDate));
         return false;
       }else{
         alert("Něco není v pořádku");
