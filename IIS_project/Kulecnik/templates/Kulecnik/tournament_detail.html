@@ -59,7 +59,8 @@
             <br>
             <table>
                 {% for row in ucast %}
-                {% if !row.registered %}
+                {% if row.registered %}
+                {% else %}
                     <tr>
                         <td>
                             <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
