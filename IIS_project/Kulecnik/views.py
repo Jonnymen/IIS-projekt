@@ -97,32 +97,32 @@ def tournament_detail_s(request, row_id):
     pocet = Tournament_Players.objects.filter(tournament=current_tournament, registered=True).count()
     zapasy = Game_S.objects.filter(tournament=current_tournament)
     rozhodci = Tournament_S_referees.objects.filter(tournament=current_tournament)
-    if_referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user)
+    if_referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user).count()
 
     if request.user.is_authenticated:
         pass
     else:
-        return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci})
+        return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
 
     if request.method == 'GET':
         registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
         if registered.count() == 0:
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci})
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
         else:
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci})
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
     else:
         answer = request.POST['registrovan']
         if answer == "yes":
             #Odregistrace
             Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci})
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
         else:
             registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
             if registered.count() == 1:
                 return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
             vazba = Tournament_Players(tournament=current_tournament, player=request.user)
             vazba.save()
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci})
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
 
 def reg_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
