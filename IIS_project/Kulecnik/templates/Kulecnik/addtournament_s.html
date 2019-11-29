@@ -12,7 +12,7 @@
   function checkDateSyntax(date, field) {
     var re = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
     if (!date.match(re)) {
-      alert ("\nPole " + field + " musí být ve formátu rrrr-mm-dd!");
+      alert ("\nPole " + field + " musí být ve formátu rrrr-mm-dd!" + date);
       return false;
     }else{
       return true;
