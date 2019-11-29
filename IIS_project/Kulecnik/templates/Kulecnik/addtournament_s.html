@@ -3,6 +3,12 @@
 {% block content %}
 
 <script> 
+  function convertDateFormat(oldDate){
+    // from 2019-11-13 (yyyy-mm-dd) to 11-13-2019 (mm-dd-yyyy)
+    var newDate = oldDate.substr(5, 6) + '-' + oldDate.substr(0, 4); 
+    return newDate;
+  }
+
   function checkDateSyntax(date, field) {
     var re = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
     if (!date.match(re)) {
@@ -16,9 +22,9 @@
   function checkValues(form) { 
       capacity = form.capacity.value;
       entryFee = form.entry_fee.value;
-      startDate = form.start_date.value;
-      endDate = form.end_date.value;
-      regEndDate = form.reg_deadline.value;
+      startDate = convertDateFormat(form.start_date.value);
+      endDate = convertDateFormat(form.end_date.value);
+      regEndDate = convertDateFormat(form.reg_deadline.value);
 
       if (entryFee < 0) {
         alert ("\nRegistrační poplatek nemůže být záporný!!"); 
@@ -32,8 +38,18 @@
       }
 
       var today = new Date();
-      var todayy = String(today.getMonth() + 1).padStart(2, '0'); + '-' + String(today.getDate()).padStart(2, '0'); + '-' + today.getFullYear();
-      alert("ahoj" + todayy);
+      var todaysDate = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
+      
+      var a = new Date(String(regEndDate));
+      var b = new Date(String(startDate));
+      var c = new Date(String(endDate));
+      if( a.getTime() < b.getTime() <= c.getTime()){
+        alert("V pořádku");
+        return false;
+      }else{
+        alert("Něco není v pořádku");
+        return false;
+      }
 
   }
 </script> 
