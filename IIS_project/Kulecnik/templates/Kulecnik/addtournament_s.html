@@ -3,14 +3,14 @@
 {% block content %}
 
 <script>
-  function compareWithToday(givenDate){
+  function compareWithToday(givenDate, message){
     var temp = new Date();
     var temp2 = String(temp.getDate()).padStart(2, '0') + '-' + String(temp.getMonth() + 1).padStart(2, '0') + '-' + temp.getFullYear();
     temp3 = temp2.substr(6, 4) + '-' + temp2.substr(3, 2) + '-' + temp2.substr(0,2);
     today = new Date(String(temp3));
 
     if (givenDate.getTime() < today.getTime()){
-        alert("Chybné datum konce registrace!");
+        alert("Chybné datum" + message + "!");
         return false;
       }else{
         alert("Je to ouk");
@@ -64,9 +64,9 @@
       var a = new Date(String(convertDateFormat(regEndDate)));
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
-      compareWithToday(a);
-      //compareWithToday(b);
-      //compareWithToday(b);
+      compareWithToday(a, "konce registrace");
+      compareWithToday(b, "začátku turnaje");
+      compareWithToday(c, "konce turnaje");
       
       
       if( !(a.getTime() < b.getTime()) ){
