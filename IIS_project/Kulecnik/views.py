@@ -97,7 +97,7 @@ def tournament_detail_s(request, row_id):
     pocet = Tournament_Players.objects.filter(tournament=current_tournament, registered=True).count()
     zapasy = Game_S.objects.filter(tournament=current_tournament)
     rozhodci = Tournament_S_referees.objects.filter(tournament=current_tournament)
-    if_referee = Tournament_S_referees.objects.get(tournament=current_tournament, referee=request.user)
+    if_referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user)
 
     if request.user.is_authenticated:
         pass
