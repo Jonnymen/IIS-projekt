@@ -331,14 +331,14 @@ def game_generator_t(request, tournament_id):
 
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
     stages = math.log2(current_tournament.capacity)
-    all_teams = zaznamy
+    all_teams = list(zaznamy)
     random.shuffle(all_teams)
     next_stage = None
     game_list = []
     tmp_list = []
     stage = 1
 
-    while all_teams.count() != 0:
+    while len(all_teams) > 0:
         team_1 = all_teams.pop(0)
         try:
             team_2 = all_teams.pop(0)
