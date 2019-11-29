@@ -110,7 +110,7 @@ def tournament_detail_s(request, row_id):
             Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet})
         else:
-            if zaznamy.count() < current_tournament.capacity:
+            if pocet < current_tournament.capacity:
                 registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
                 if registered.count() == 1:
                     return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
@@ -252,8 +252,11 @@ def deny_team(request, tournament_id, team_id):
 
 def confirm_player(request, tournament_id, player_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
+    pocet = Tournament_Players.object.filter(tournament=tournament, registered=True)
     if request.user.id is not tournament.host.id:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!","back":"/tournament_s/" + str(tournament_id) + "/"})
+    if pocet == tournament.capacity:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj je zaplněn!","back":"/tournament_s/" + str(tournament_id) + "/"})
     player = User.objects.get(id=player_id)
     link = Tournament_Players.objects.get(player=player, tournament=tournament)
     link.registered = True
