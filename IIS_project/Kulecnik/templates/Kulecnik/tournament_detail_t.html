@@ -42,11 +42,7 @@
         {% endif %}
         {% endif %}
         {% endif %}
-        {% for row in ucast %}
-            <p>
-            <a href="/team/{{ row.team.pk }}/">{{ row.team.name }}</a>
-            </p>
-        {% endfor %}
+        
         <div class="center" style="text-align: center;">
             <a href="/generate/{{ tournament.id }}/"><button style="text-align: center;" class="btn btn-outline-success">Generovat hry</button></a>
         </div>
