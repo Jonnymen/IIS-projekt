@@ -97,14 +97,13 @@ class AddTournamentFormS(forms.ModelForm):
             "reg_deadline": "Konec registrací",
         }
 
-
-class AddTournamentFormT(forms.ModelForm):
 CAPACITY_CHOICES= [
     ('4', '4'),
     ('8', '8'),
     ('16', '16'),
     ('32', '32'),
     ]
+class AddTournamentFormT(forms.ModelForm):
     class Meta():
         model = Tournament_T
 
