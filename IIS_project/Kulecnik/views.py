@@ -117,6 +117,9 @@ def tournament_detail_s(request, row_id):
             Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
         else:
+            referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user)
+            if referee.count() == 1:
+                return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný jako rozhodčí", "back":"/tournament_s/" + str(row_id) + "/"})
             registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
             if registered.count() == 1:
                 return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
