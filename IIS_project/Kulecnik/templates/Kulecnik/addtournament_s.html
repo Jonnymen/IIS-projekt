@@ -49,19 +49,20 @@
       var today = new Date();
       var todaysDate = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
       today_final = todaysDate.substr(6, 4) + '-' + todaysDate.substr(3, 2) + '-' + todaysDate.substr(0,2);
+      today = new Date(String(today_final));
 
       var a = new Date(String(convertDateFormat(regEndDate)));
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
-      //today = new Date(String(convertDateFormat(todaysDate)));
+      today = new Date(String(convertDateFormat(today_final)));
 
-      /*if (a.getTime() < today.getTime()){
+      if (a.getTime() < today.getTime()){
         alert("Chybné datum konce registrace!");
         return false;
       }else{
         alert("Je to ouk");
         return false;
-      }*/
+      }
       
       if( !(a.getTime() < b.getTime()) ){
         alert("Ukončení registrací musí končit před začátkem turnaje!" + today_final + " " + todaysDate);
