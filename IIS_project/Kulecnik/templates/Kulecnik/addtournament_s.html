@@ -36,21 +36,21 @@
       if ( !checkDateSyntax(startDate, "Začátek") || !checkDateSyntax(endDate, "Konec") || !checkDateSyntax(regEndDate, "Konec registrací")){
         return false;
       }
-/*
+
       var today = new Date();
       var todaysDate = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
       
       var a = new Date(String(convertDateFormat(regEndDate)));
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
-      if( a.getTime() < b.getTime() <= c.getTime()){
-        alert("V pořádku!" + convertDateFormat(regEndDate) + "  " + convertDateFormat(startDate) + "  " + convertDateFormat(endDate));
+      
+      if( (a.getTime() < b.getTime()) && (b.getTime() <= c.getTime()) ){
+        alert("V pořádku!");
         return false;
       }else{
         alert("Něco není v pořádku");
         return false;
-      }*/
-
+      }
   }
 </script> 
 
@@ -66,7 +66,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
 
-    <form method='post'>
+    <form onSubmit = "return checkValues(this)" method='post'>
         {% csrf_token %}
         <br>
         <p align="center" style="font-size:200%;"><b>Vytvoření  turnaje</b></p>

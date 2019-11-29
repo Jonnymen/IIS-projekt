@@ -30,8 +30,6 @@
             </form>
         </p>
         {% else %}
-        {% if pocet == tournament.capacity %}
-        {% else %}
         <p>
             <form method="post">
                 {% csrf_token %}
@@ -39,7 +37,6 @@
                 <button type="submit" align="center" class="btn btn-outline-success">Registruj</button>
             </form>
         </p>
-        {% endif %}
         {% endif %}
         {% endif %}
         {% endif %}
