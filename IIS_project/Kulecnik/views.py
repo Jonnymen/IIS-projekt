@@ -344,12 +344,14 @@ def game_generator_t(request, tournament_id):
             team_2 = all_teams.pop(0)
         except:
             team_2 = None
-        game = Game_T(team_1=team_1.team, team_2=team_2.team, tournament=current_tournament, stage=stage).save()
+        game = Game_T(team_1=team_1.team, team_2=team_2.team, tournament=current_tournament, stage=stage)
+        game.save()
         game_list.append(game)
 
     while stages > 1:
         while len(game_list) > 1:
-            next_stage = Game_T(tournament=current_tournament, stage=stage + 1).save()
+            next_stage = Game_T(tournament=current_tournament, stage=stage + 1)
+            next_stage.save()
             tmp_list.append(next_stage)
             game_1 = game_list.pop(0)
             game_1.next_game_id = next_stage
