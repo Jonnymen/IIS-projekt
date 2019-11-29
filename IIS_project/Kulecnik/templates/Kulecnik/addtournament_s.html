@@ -44,11 +44,14 @@
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
       
-      if( (a.getTime() < b.getTime()) && (b.getTime() <= c.getTime()) ){
-        alert("V pořádku!");
+      if( !(a.getTime() < b.getTime()) ){
+        alert("Ukončení registrací musí končit před začátkem turnaje!");
+        return false;
+      }else if( !(b.getTime() <= c.getTime()) ){
+        alert("Turnaj nemůže skončit dříve než začne!");
         return false;
       }else{
-        alert("Něco není v pořádku");
+        alert("V pořádku");
         return false;
       }
   }
