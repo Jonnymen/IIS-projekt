@@ -99,15 +99,14 @@ class AddTournamentFormS(forms.ModelForm):
 
 
 class AddTournamentFormT(forms.ModelForm):
-    CAPACITY_CHOICES= (
-    ('4', '4'),
-    ('8', '8'),
-    ('16', '16'),
-    ('32', '32'),
-    )
     class Meta():
         model = Tournament_T
-
+        CAPACITY_CHOICES= (
+        ('4', '4'),
+        ('8', '8'),
+        ('16', '16'),
+        ('32', '32'),
+        )
         fields = (
             'title',
             'start_date',
