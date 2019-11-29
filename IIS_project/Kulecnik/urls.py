@@ -30,6 +30,7 @@ urlpatterns = [
     path('tournament_s/<int:tournament_id>/deny_s/<int:player_id>/', views.deny_player, name='confirm_player'),
     path('<int:tournament_id>/confirm_t/<int:team_id>/', views.confirm_team, name='confirm_team'),
     path('<int:tournament_id>/deny_t/<int:team_id>/', views.deny_team, name='deny_team'),
+    path('generate/<int:tournament_id>/', views.game_generator_t, name='game_generator_t'),
     path('bracket/', views.game_bracket, name='game_bracket')
     #path('addtournament_s/', views.addTournament_S, name="addTournament_S")
     #path(r'^login/$', auth_views.login, {'template_name': 'festivaly/login.html'}, name='login'),
