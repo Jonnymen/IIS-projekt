@@ -57,6 +57,20 @@
         {% endif %}
         {% endif %}
     </div>
+    {% if user.id == tournament.host.id %}
+    <div class="col-md-3">
+        <h3>Registrovaní rozhodčí</h3>
+        <table>
+            {% for row in rozhodci %}
+            <tr>
+                <td>
+                    <a href="/profile_page/{{ row.id }}/">{{ row.username }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
 </div>
 <div class="row" style="margin-top: 5rem;">
     <div class="col-md-3 offset-md-3">
