@@ -340,3 +340,5 @@ def game_generator_t(request, tournament_id):
             game = Game_T().save()
             game_list.append(game)
             counter = 0
+def game_bracket(request):
+    return render(request, template_name='Kulecnik/games_bracket.html')
