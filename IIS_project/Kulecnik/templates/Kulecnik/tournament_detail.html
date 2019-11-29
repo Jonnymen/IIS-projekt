@@ -15,6 +15,9 @@
         <p>
             Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
         </p>
+        <p>
+            Pořadatel: <a href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
+        </p>
         {% if user.id == tournament.host.id %}
         {% else %}
         {% if user.is_authenticated %}
