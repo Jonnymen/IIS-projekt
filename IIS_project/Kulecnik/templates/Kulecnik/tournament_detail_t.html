@@ -19,6 +19,7 @@
             </p>
         </div>
         {% if user.is_authenticated %}
+        {% if is_past == false %}
         {% if player_teams.count != 0 %}
         {% if registered %}
         <div class="center" style="text-align: center;">
@@ -47,6 +48,7 @@
             </form>
         </p>
         </div>
+        {% endif %}
         {% endif %}
         {% endif %}
         {% endif %}
