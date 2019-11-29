@@ -33,12 +33,14 @@
 
       if( !(Number.isInteger(capacity)) || !(capacity >= 4) || !(capacity <= 32) ){
         alert("Přípustná kapacita je 4, 8, 16 nebo 32 účastníků.");
+        return false;
       }
 
       var ret = Math.log(capacity) / Math.log(2); // log_e x
       if(!(Number.isInteger(ret)) ){
         document.write("NaN");
         alert("Přípustná kapacita je 4, 8, 16 nebo 32 účastníků.");
+        return false;
       }
 
       if ( !checkDateSyntax(startDate, "Začátek") || !checkDateSyntax(endDate, "Konec") || !checkDateSyntax(regEndDate, "Konec registrací")){
