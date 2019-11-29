@@ -234,7 +234,6 @@ def show_profile(request):
     return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t, "my_tournaments_s_link":my_tournaments_s_link, "my_tournaments_t_link":my_tournaments_t_link})
 
 def confirm_team(request, tournament_id, team_id):
-    #TODO kontrola jestli je přihlášen pořadatel
     tournament = Tournament_T.objects.get(id=tournament_id)
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
@@ -243,7 +242,6 @@ def confirm_team(request, tournament_id, team_id):
     return redirect("/profile/")
 
 def deny_team(request, tournament_id, team_id):
-    #TODO kontrola jestli je přihlášen pořadatel
     tournament = Tournament_T.objects.get(id=tournament_id)
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
