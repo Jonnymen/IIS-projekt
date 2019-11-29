@@ -53,8 +53,7 @@ class Game_T(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE, null=True)
     stage = models.IntegerField(blank=True, null=True)
-
-
+    next_game = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
 
 class Tournament_Players(models.Model):
     tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)

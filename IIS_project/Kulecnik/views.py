@@ -323,33 +323,54 @@ def my_teams(request):
 
 def game_generator_t(request, tournament_id):
 
-    current_tournament = Tournament_T.objects.get(pk=tournament_id)
+    current_tournament = Tournament_T.objects.get(id=tournament_id)
+    games = Game_T.object.filter(tournament=current_tournament)
+
+    if games.count() > 0:
+        return redirect("/tournament_t/" + str(tournament_id) + "/")
+
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
+    stages = math.log2(current_tournament.capacity)
     all_teams = zaznamy
     random.shuffle(all_teams)
-    counter = 0
+    next_stage = None
     game_list = []
+    tmp_list = []
+    stage = 1
 
     while all_teams.count() != 0:
-        team_1 = all_teams.pop()
+        team_1 = all_teams.pop(0)
         try:
-            team_2 = all_teams.pop()
+            team_2 = all_teams.pop(0)
         except:
             team_2 = None
-        game = Game_T(team_1=team_1, team_2=team_2, tournament=current_tournament).save()
+        game = Game_T(team_1=team_1, team_2=team_2, tournament=current_tournament, stage=stage).save()
         game_list.append(game)
-        counter += 1
 
-    while counter > 1:
-        counter /= 2
-        loop = counter
-        while loop != 0:
-            game = Game_T(tournament=current_tournament).save()
-            game_list.append(game)
-            loop -= 1
+    while stages > 1:
+        while game_list.count() > 1:
+            next_stage = Game_T(tournament=current_tournament, stage=stage + 1).save()
+            tmp_list.append(next_stage)
+            game_1 = game_list.pop(0)
+            game_1.next_game = next_stage
+            game_1.save()
+            game_2 = game_list.pop(0)
+            game_2.next_game = next_stage
+            game_2.save()
+
+        game_list = tmp_list
+        tmp_list.clear()
+        stages -= 1
+        stage += 1
+    return redirect("/tournament_t/" + str(tournament_id) + "/")
 
 def game_bracket(request, tournament_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
-    stages = math.log2(tournament.capacity)
+    stages_no = math.log2(tournament.capacity)
+    stages = []
+    i = 1
+    while i <= stages_no:
+        stages.append(i)
+        i += 1
     games = Game_T.objects.filter(tournament=tournament)
     return render(request, template_name='Kulecnik/games_bracket.html', context={'stages':stages, 'tournament':tournament, 'games':games})
