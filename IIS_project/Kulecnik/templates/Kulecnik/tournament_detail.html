@@ -56,6 +56,20 @@
         {% endif %}
         {% endif %}
         {% endif %}
+        {% if if_referee %}
+        <p>
+            <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ user.id }}/">
+                <input type="button" class="btn btn-outline-danger" value="Odregistrovat jako rozhodčí">
+            </a>
+            Jsi registrován jako rozhodčí
+        </p>
+        {% else %}
+        <p>
+            <a href="/tournament_s/{{ tournament.id }}/refreg/{{ user.id }}/">
+                <input type="button" class="btn btn-outline-success" value="Registrovat jako rozhodčí">
+            </a>
+        </p>
+        {% endif %}
     </div>
     {% if user.id == tournament.host.id %}
     <div class="col-md-3">
@@ -64,7 +78,7 @@
             {% for row in rozhodci %}
             <tr>
                 <td>
-                    <a href="/profile_page/{{ row.id }}/">{{ row.username }}</a>
+                    <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
                 </td>
             </tr>
             {% endfor %}
