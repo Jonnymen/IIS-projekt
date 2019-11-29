@@ -83,7 +83,7 @@
                 {% else %}
                     <tr>
                         <td>
-                            <a href="/team/{{ row.team.pk }}/">{{ row.player.username }}</a>
+                            <a href="/team/{{ row.team.pk }}/">{{ row.team.name }}</a>
                         </td>
                         {% if tournament.host.id == user.id %}
                         <td>
