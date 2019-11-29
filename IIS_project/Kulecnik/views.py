@@ -348,7 +348,7 @@ def game_generator_t(request, tournament_id):
         game_list.append(game)
 
     while stages > 1:
-        while game_list.count() > 1:
+        while len(game_list) > 1:
             next_stage = Game_T(tournament=current_tournament, stage=stage + 1).save()
             tmp_list.append(next_stage)
             game_1 = game_list.pop(0)
