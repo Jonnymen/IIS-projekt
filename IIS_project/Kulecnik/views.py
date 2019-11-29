@@ -98,24 +98,26 @@ def tournament_detail_s(request, row_id):
     zapasy = Game_S.objects.filter(tournament=current_tournament)
     rozhodci = Tournament_S_referees.objects.filter(tournament=current_tournament)
     if_referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user).count()
+    today = timezone.now()
+    is_past = (today > current_tournament.reg_deadline)
 
     if request.user.is_authenticated:
         pass
     else:
-        return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
+        return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
 
     if request.method == 'GET':
         registered = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user)
         if registered.count() == 0:
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
         else:
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
     else:
         answer = request.POST['registrovan']
         if answer == "yes":
             #Odregistrace
             Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
         else:
             referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user)
             if referee.count() == 1:
@@ -125,7 +127,7 @@ def tournament_detail_s(request, row_id):
                 return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný", "back":"/tournament_s/" + str(row_id) + "/"})
             vazba = Tournament_Players(tournament=current_tournament, player=request.user)
             vazba.save()
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee})
+            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
 
 def reg_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
@@ -408,6 +410,62 @@ def game_generator_t(request, tournament_id):
         stage += 1
     return redirect("/bracket/" + str(tournament_id) + "/")
 
+def game_generator_s(request, tournament_id):
+    current_tournament = Tournament_S.objects.get(id=tournament_id)
+    games = Game_S.objects.filter(tournament=current_tournament)
+
+    if games.count() > 0:
+        games.delete()
+
+    zaznamy = Tournament_Players.objects.filter(tournament=current_tournament)
+    stages = math.log2(current_tournament.capacity)
+    capacity = current_tournament.capacity / 2
+    all_teams = list(zaznamy)
+    random.shuffle(all_teams)
+    next_stage = None
+    game_list = []
+    tmp_list = []
+    stage = 1
+
+    while capacity > 0:
+        try:
+            team_1 = all_teams.pop(0)
+            team_1 = team_1.team
+        except:
+            team_1 = None
+
+        try:
+            team_2 = all_teams.pop(0)
+            team_2 = team_2.team
+        except:
+            team_2 = None
+
+        if team_2 is None:
+            game = Game_S(player_1=team_1, player_2=team_2, tournament=current_tournament, stage=stage, winner=team_1)
+        else:
+            game = Game_S(player_1=team_1, player_2=team_2, tournament=current_tournament, stage=stage)
+        game.save()
+        game_list.append(game)
+        capacity -= 1
+
+    while stages > 1:
+        while len(game_list) > 1:
+            next_stage = Game_S(tournament=current_tournament, stage=stage + 1)
+            next_stage.save()
+            tmp_list.append(next_stage)
+            game_1 = game_list.pop(0)
+            game_1.next_game_id = next_stage
+            game_1.save()
+            game_2 = game_list.pop(0)
+            game_2.next_game_id = next_stage
+            game_2.save()
+
+        game_list = tmp_list[:]
+        tmp_list.clear()
+        stages -= 1
+        stage += 1
+    return redirect("/bracket_s/" + str(tournament_id) + "/")
+
 def game_bracket(request, tournament_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
     stages_no = math.log2(tournament.capacity)
@@ -418,6 +476,17 @@ def game_bracket(request, tournament_id):
         i += 1
     games = Game_T.objects.filter(tournament=tournament)
     return render(request, template_name='Kulecnik/games_bracket.html', context={'stages':stages, 'tournament':tournament, 'games':games})
+
+def game_bracket_s(request, tournament_id):
+    tournament = Tournament_S.objects.get(id=tournament_id)
+    stages_no = math.log2(tournament.capacity)
+    stages = []
+    i = 1
+    while i <= stages_no:
+        stages.append(i)
+        i += 1
+    games = Game_S.objects.filter(tournament=tournament)
+    return render(request, template_name='Kulecnik/games_bracket_s.html', context={'stages':stages, 'tournament':tournament, 'games':games})
 
 def list_games_t(request, tournament_id):
     tournament = Tournament_T.objects.get(id=tournament_id)

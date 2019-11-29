@@ -70,6 +70,32 @@
             </a>
         </p>
         {% endif %}
+        {% if tournament.host.id == user.id %}
+        {% if is_past %}
+        <div class="center" style="text-align: center;">
+            <a href="/generate/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Generovat hry</button></a>
+        </div>
+        {% else %}
+        <div class="center" style="text-align: center;">
+                <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Generovat hry</button></a>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% if is_past %}
+        <div class="center" style="text-align: center;">
+                <a href="/bracket/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Zobrazit pavouka</button></a>
+        </div>
+        <div class="center" style="text-align: center;">
+                <a href="/games_t/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Zobrazit hry</button></a>
+        </div>
+        {% else %}
+        <div class="center" style="text-align: center;">
+                <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Zobrazit pavouka</button></a>
+        </div>
+        <div class="center" style="text-align: center;">
+                <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Zobrazit hry</button></a>
+        </div>
+        {% endif %}
     </div>
     {% if user.id == tournament.host.id %}
     <div class="col-md-3">
