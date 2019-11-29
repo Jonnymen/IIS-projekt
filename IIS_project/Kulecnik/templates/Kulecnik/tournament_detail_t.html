@@ -21,7 +21,7 @@
         {% if user.is_authenticated %}
         {% if player_teams.count != 0 %}
         {% if registered %}
-        <div class="center" style="text-align: center;"></div>
+        <div class="center" style="text-align: center;">
         <p>
             <form method="post">
                 {% csrf_token %}
