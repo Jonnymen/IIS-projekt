@@ -126,8 +126,8 @@ def tournament_detail_s(request, row_id):
 
 def reg_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
-    player_check = Tournament_Players.objects.get(tournament=current_tournament, player=request.user)
-    if player_check is not None:
+    player_check = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).count()
+    if player_check != 0:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný jako hráč", "back":"/tournament_s/" + str(row_id) + "/"})
     if ref_id == request.user.id:
         Tournament_S_referees(tournament=current_tournament, referee=request.user).save()
