@@ -13,20 +13,11 @@
                 <td align="center"><b>Tým č.1</b></td>
                 <td align="center"><b>Tým č.2</b></td>
                 <td align="center"><b>Stůl</b></td>
-            </tr>
-        </table>
+            
 
             {% for stage in stages %}
                 {% for game in games %}
-                    {% if stages.count() - stage == 2}
-                        <p>Čtvrtfinále</p>
-                    {% elif stages.count() - stage == 1}
-                        <p>Semifinále</p>
-                    {% elif stages.count() - stage == 0}
-                        <p>Finále</p>
-                    {% endif %}
                     {% if game.stage == stage %}
-                    <table align="center" cellpadding = "5" cellspacing = "5">
                         <tr>
                             <td align="center"><{{ game.winner }}</td>
                             <td align="center">{{ game.team_1 }}</td>
