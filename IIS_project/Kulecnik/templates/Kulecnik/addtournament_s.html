@@ -65,9 +65,8 @@
       var b = new Date(String(convertDateFormat(startDate)));
       var c = new Date(String(convertDateFormat(endDate)));
       
-      alert(a.getTime());
 
-      if( !compareWithToday(a, "konce registrace") || !compareWithToday(b, "začátku turnaje") ||  !compareWithToday(c, "konce turnaje") ){
+      if( !compareWithToday(new Date(String(convertDateFormat(regEndDate)), "konce registrace") || !compareWithToday(new Date(String(convertDateFormat(startDate))), "začátku turnaje") ||  !compareWithToday(Date(String(convertDateFormat(endDate))), "konce turnaje") ){
         return false;
       }
       
