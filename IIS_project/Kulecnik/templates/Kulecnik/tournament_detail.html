@@ -44,13 +44,22 @@
         <div style="text-align: center;">
             <h3>Registrovaní hráči</h3>
             <br>
+            <table>
             {% for row in ucast %}
             {% if row.registered %}
-                <p>
-                <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
-                </p>
+                <tr>
+                    <td>
+                        <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
+                    </td>
+                    <td>
+                        <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
+                            <input type="button" class="btn btn-outline-danger" value="Odebrat">
+                        </a>
+                    </td>
+                </tr>
             {% endif %}
             {% endfor %}
+            </table>
         </div>
     </div>
     <div class="col-md-3">
