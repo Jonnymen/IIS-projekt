@@ -353,9 +353,10 @@ def game_generator_t(request, tournament_id):
 
         try:
             team_2 = all_teams.pop(0)
-            team_2 = team2.team
+            team_2 = team_2.team
         except:
             team_2 = None
+
         if team_2 is None:
             game = Game_T(team_1=team_1, team_2=team_2, tournament=current_tournament, stage=stage, winner=team_1)
         else:
