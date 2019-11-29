@@ -67,12 +67,12 @@
                         </td>
                         {% if tournament.host.id == user.id %}
                         <td>
-                            <a href="tournament_s/{{ tournament.id }}/confirm_s/{{ row.player.id }}/">
+                            <a href="/tournament_s/{{ tournament.id }}/confirm_s/{{ row.player.id }}/">
                                 <input type="button" class="btn btn-outline-success" value="Potvrdit">
                             </a>
                         </td>
                         <td>
-                            <a href="tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
+                            <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
                                 <input type="button" class="btn btn-outline-danger" value="Zamítnout">
                             </a>
                         </td>
