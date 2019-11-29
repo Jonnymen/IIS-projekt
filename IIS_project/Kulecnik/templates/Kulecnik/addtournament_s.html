@@ -9,11 +9,12 @@
     temp3 = temp2.substr(6, 4) + '-' + temp2.substr(3, 2) + '-' + temp2.substr(0,2);
     today = new Date(String(temp3));
 
-    if (givenDate.getTime() < today.getTime()){
+    if (givenDate.getTime() <= today.getTime()){
         alert("Chybné datum " + message + "!");
         return false;
     }else{
-        return true;
+        alert(givenDate.getTime() + " vyhovuje vzhledem k " + today.getTime() );
+        return false;
     }
   }
 
