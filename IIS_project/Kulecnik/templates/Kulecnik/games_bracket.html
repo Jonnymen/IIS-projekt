@@ -13,9 +13,9 @@
                 {% if game.stage == stage %}
                     <li class="spacer">&nbsp;</li>
             
-                    <li class="game game-top">{{game.team_1.name}} </li>
+                    <li class="game game-top winner">{{game.team_1.name}} </li>
                     <li class="game game-spacer">&nbsp;</li>
-                    <li class="game game-bottom ">{{game.team_2.name}} </li>
+                    <li class="game game-bottom">{{game.team_2.name}} </li>
                 {% endif %}
             {% endfor %}
         </ul>
