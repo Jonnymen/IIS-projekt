@@ -69,11 +69,6 @@
         return false;
       }
       
-      compareWithToday(a, "konce registrace");
-      compareWithToday(b, "začátku turnaje");
-      compareWithToday(c, "konce turnaje");
-      
-      
       if( !(a.getTime() < b.getTime()) ){
         alert("Ukončení registrací musí končit před začátkem turnaje!" + today_final + " " + todaysDate);
         return false;
