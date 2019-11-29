@@ -130,8 +130,7 @@ def tournament_detail_t(request, row_id):
     current_tournament = Tournament_T.objects.get(pk=row_id)
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
     pocet = Tournament_Teams.objects.filter(tournament=current_tournament, registered=True).count()
-    today = datetime.today()
-    today = timezone.today()
+    today = timezone.now()
     is_past = (today > current_tournament.reg_deadline)
     if request.user.is_authenticated:
         pass
