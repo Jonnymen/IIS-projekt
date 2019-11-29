@@ -48,7 +48,7 @@
 
       var today = new Date();
       var todaysDate = String(today.getDate()).padStart(2, '0') + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + today.getFullYear();
-      today_final = todaysDate.substr(3, 2) + '-' + todaysDate.substr(0, 2) + '-' + todaysDate.substr(6,4);
+      today_final = todaysDate.substr(6, 4) + '-' + todaysDate.substr(3, 2) + '-' + todaysDate.substr(0,2);
 
       var a = new Date(String(convertDateFormat(regEndDate)));
       var b = new Date(String(convertDateFormat(startDate)));
