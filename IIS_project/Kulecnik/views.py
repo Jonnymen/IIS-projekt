@@ -360,7 +360,7 @@ def game_generator_t(request, tournament_id):
             game_2.next_game_id = next_stage
             game_2.save()
 
-        game_list = tmp_list
+        game_list = tmp_list[:]
         tmp_list.clear()
         stages -= 1
         stage += 1

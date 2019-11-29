@@ -2,22 +2,26 @@
 {% block content %}
 <div class="row" style="margin-top: 5rem;">
     <div class="col-md-6 offset-md-3">
-        <p>
-            <h1 style="text-align: center;">{{tournament.title}}</h1><br>
-            <h3>{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
-        </p>
-        <p>
-            {{tournament.description}}
-        </p>
-        <p>
-            {{ucastnici}} (max.: {{tournament.capacity}})
-        </p>
-        <p>
-            Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
-        </p>
+        <div class="center" style="text-align: center;">
+            <p>
+                <h1 style="text-align: center;">{{tournament.title}}</h1><br>
+                <h3>{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
+            </p>
+                
+            <p>
+                {{tournament.description}}
+            </p>
+            <p>
+                {{ucastnici}} (max.: {{tournament.capacity}})
+            </p>
+            <p>
+                Obsazenost turnaje: {{ucast.count}}/{{tournament.capacity}}
+            </p>
+        </div>
         {% if user.is_authenticated %}
         {% if player_teams.count != 0 %}
         {% if registered %}
+        <div class="center" style="text-align: center;">
         <p>
             <form method="post">
                 {% csrf_token %}
@@ -25,28 +29,29 @@
                 <button type="submit" align="center" class="btn btn-outline-success">Odregistruj</button>
             </form>
         </p>
+        </div>
         {% else %}
         {% if ucast.count == tournament.capacity %}
         {% else %}
+        <div class="center" style="text-align: center;">
         <p>
             <form method="post">
                 {% csrf_token %}
-                <input type="hidden" id="registrovan" name="registrovan" value="no">     
+                <input type="hidden" id="registrovan" name="registrovan" value="no">  
+                <div style="margin: 0 auto; width:100px; text-align:left;"> 
         {% for row in player_teams %}
                 <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
         {% endfor %}
+                </div>  
             <button type="submit" align="center" class="btn btn-outline-success">Přihlásit tým</button>
             </form>
         </p>
+        </div>
         {% endif %}
         {% endif %}
         {% endif %}
         {% endif %}
-        {% for row in ucast %}
-            <p>
-            <a href="/team/{{ row.team.pk }}/">{{ row.team.name }}</a>
-            </p>
-        {% endfor %}
+        
         <div class="center" style="text-align: center;">
             <a href="/generate/{{ tournament.id }}/"><button style="text-align: center;" class="btn btn-outline-success">Generovat hry</button></a>
         </div>
