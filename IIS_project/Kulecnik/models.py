@@ -4,7 +4,6 @@ from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
 # Create your models here.
 class Table(models.Model):
     name = models.CharField(max_length=30)
@@ -61,6 +60,7 @@ class Game_T(models.Model):
 class Tournament_Players(models.Model):
     tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)
     player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tourney_player")
+    registered = models.NullBooleanField(default=None)
 
 class Tournament_Teams(models.Model):
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
