@@ -97,7 +97,10 @@ def tournament_detail_s(request, row_id):
     pocet = Tournament_Players.objects.filter(tournament=current_tournament, registered=True).count()
     zapasy = Game_S.objects.filter(tournament=current_tournament)
     rozhodci = Tournament_S_referees.objects.filter(tournament=current_tournament)
-    if_referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user).count()
+    if request.user.is_authenticated():
+        if_referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user).count()
+    else:
+        if_referee = 0
     today = timezone.now()
     is_past = (today > current_tournament.reg_deadline)
 
