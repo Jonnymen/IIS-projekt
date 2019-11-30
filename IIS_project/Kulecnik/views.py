@@ -194,21 +194,26 @@ def tournament_detail_t(request, row_id):
     current_tournament = Tournament_T.objects.get(pk=row_id)
     zaznamy = Tournament_Teams.objects.filter(tournament=current_tournament)
     pocet = Tournament_Teams.objects.filter(tournament=current_tournament, registered=True).count()
+    rozhodci = Tournament_T_referees.objects.filter(tournament=current_tournament)
+    if request.user.is_authenticated:
+        if_referee = Tournament_T_referees.objects.filter(tournament=current_tournament, referee=request.user).count()
+    else:
+        if_referee = 0
     today = timezone.now()
     is_past = (today > current_tournament.reg_deadline)
     if request.user.is_authenticated:
         pass
     else:
-        return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "pocet": pocet, "is_past":is_past})
+        return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "pocet": pocet, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
 
     if request.method == 'GET':
         player_teams = Team.objects.filter(captain=request.user)
         registered = Tournament_Teams.objects.filter(tournament=current_tournament, team__captain=request.user)
 
         if registered.count() == 0:
-            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams, "pocet": pocet, "is_past":is_past})
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams, "pocet": pocet, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
         else:
-            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams, "pocet": pocet, "is_past":is_past})
+            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams, "pocet": pocet, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
 
     else:
         player_teams = Team.objects.filter(captain=request.user)
@@ -222,9 +227,9 @@ def tournament_detail_t(request, row_id):
                 team = request.POST['team']
                 team = Team.objects.get(id=team)
                 Tournament_Teams(tournament=current_tournament, team=team).save()
-                return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams, "pocet": pocet, "is_past":is_past})
+                return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":True, "player_teams":player_teams, "pocet": pocet, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
             except:
-                return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams, "pocet": pocet, "is_past":is_past})
+                return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams, "pocet": pocet, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
 
 def team_detail(request, team_id):
     team = Team.objects.get(pk=team_id)
