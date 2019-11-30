@@ -26,9 +26,9 @@ class RegistrationForm(UserCreationForm):
             "email": "E-mail",
             "first_name": "Křestní jméno",
             "last_name": "Příjmení",
-            "password1": "Heslo",
-            "password2": "Potvrďte heslo",
-            "username": "Uživatelské jméno",
+            "password1": "Heslo*",
+            "password2": "Potvrďte heslo*",
+            "username": "Uživatelské jméno*",
         }
 
 class EditProfileForm(UserChangeForm):
