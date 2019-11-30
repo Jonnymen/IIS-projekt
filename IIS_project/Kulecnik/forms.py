@@ -2,6 +2,7 @@ from django.forms import ModelForm, Form
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 from .models import Tournament_S, Tournament_T, Profile, Team
 
 class NewTournament_S(forms.Form):
@@ -23,7 +24,7 @@ class RegistrationForm(UserCreationForm):
             'password2'
         )
         labels = {
-            "email": "E-mail",
+            "email": _("E-mail*"),
             "first_name": "Křestní jméno",
             "last_name": "Příjmení",
             "password1": "Heslo*",
