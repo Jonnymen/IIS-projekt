@@ -6,7 +6,7 @@
             <form method="post">
                 {% csrf_token %}
                 <b>{{ form.as_p }}</b>
-                <p>ahoj {{ form.name }} ahoj</p>
+                <p><b> {{ form.name.value }} </b> {{ form.name }} {{ form.name.label }}</p>
                 <button type="submit" class="btn btn-outline-success">Vytvořit</button>
             </form>
             {% if success %}
