@@ -17,11 +17,15 @@ class RegistrationForm(UserCreationForm):
         fields = (
             'username',
             'email',
+            'first_name',
+            'last_name',
             'password1',
             'password2'
         )
         labels = {
             "email": "E-mail",
+            "first_name": "Křestní jméno",
+            "last_name": "Příjmení",
             "password1": "Heslo",
             "password2": "Potvrďte heslo",
             "username": "Uživatelské jméno",
