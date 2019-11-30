@@ -56,7 +56,6 @@ class EditPicture(forms.ModelForm):
         fields = ('image',)
 
 class EditLogo(forms.ModelForm):
-    logo = forms.ImageField()
     class Meta:
         model = Team
         fields = ('logo',)
