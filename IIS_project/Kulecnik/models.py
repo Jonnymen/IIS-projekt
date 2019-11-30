@@ -71,11 +71,6 @@ class Tournament_S_referees(models.Model):
     referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     registered = models.NullBooleanField(default=None)
 
-class Tournament_T_referees(models.Model):
-    tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
-    referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    registered = models.NullBooleanField(default=None)
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.png', upload_to='avatars')
