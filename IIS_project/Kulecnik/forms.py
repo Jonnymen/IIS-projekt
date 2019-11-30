@@ -31,6 +31,9 @@ class RegistrationForm(UserCreationForm):
             "password2": "Potvrďte heslo*",
             "username": "Uživatelské jméno*",
         }
+        widgets = {
+            "email": forms.EmailInput(attrs={'placeholder': '2017-10-20', 'rows':1, 'cols':15}),
+        }
 
 class EditProfileForm(UserChangeForm):
 
