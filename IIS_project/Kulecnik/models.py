@@ -68,7 +68,12 @@ class Tournament_Teams(models.Model):
 
 class Tournament_S_referees(models.Model):
     tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)
-    referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="referee_s")
+    registered = models.NullBooleanField(default=None)
+
+class Tournament_T_referees(models.Model):
+    tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
+    referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="referee_t")
     registered = models.NullBooleanField(default=None)
 
 class Profile(models.Model):
