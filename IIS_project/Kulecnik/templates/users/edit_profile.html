@@ -33,8 +33,7 @@
          {% if field.label == 'Password' %}
          {% else %}
           <tr>
-              <td  align="left"> <b> {{ field.label }}</b></td>
-              
+              <td  align="left"> <b> {{ field.label }}</b></td>  
           </tr>
           <tr>
             <td align="center">{{field}}</td>
@@ -50,13 +49,13 @@
           {{picture}}
       </div>
       <div class="center" style="text-align: center;">
-          <button type="submit" align="center" style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-success">Uložit změny</button>
+          <button type="submit" align="center" style="text-align: center; min-width: 14rem; max-width: 14rem;" class="btn btn-outline-success">Uložit změny</button>
       </div>
        
 </form>
 <br>
 <div class="center" style="text-align: center;">
-    <a href="/profile/edit/password/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Změna hesla</button></a>
+    <a href="/profile/edit/password/"><button style="text-align: center; min-width: 14rem; max-width: 14rem;" class="btn btn-outline-primary">Změna hesla</button></a>
 </div>
 
 {% endblock %}
