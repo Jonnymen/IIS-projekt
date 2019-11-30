@@ -1,17 +1,17 @@
 <style>
-        div {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    div {
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+    }
 </style>
 
 {% extends 'base.html' %}
 {% block content %}
 
 <br>
-<p align="center" style="font-size:200%;margin-bottom:5cm"><b>Vytvoření  týmu</b></p>
+<p align="center" style="font-size:200%;margin-bottom:5cm"><b>Vytvořeníí  týmu</b></p>
 <br>
 <form method="post">
     {% csrf_token %}
@@ -22,9 +22,9 @@
     </div>
 </form>
 {% if success %}
-<p style="color: green;">{{ success }}</p>
+    <p style="color: green;">{{ success }}</p>
 {% endif %}
 {% if failure %}
-<p style="color: red;">{{ failure }}</p>
+    <p style="color: red;">{{ failure }}</p>
 {% endif %}
 {% endblock %}
