@@ -22,15 +22,15 @@
     <table style="width:40%" align="center" cellpadding = "5" cellspacing = "5">
         <tr>
             <td><b>Název turnaje</b></td>
-            <td align="center"><b>Konec Registrací</b></td>
-            <td align="center"><b>Obsazenost</b></td>
+            <td><b>Konec registrací</b></td>
+            <td><b>Začátek registrací</b></td>
         </tr>
 
         {% for row in data %}
         <tr>
             <td><a href="/tournament_s/{{ row.pk }}/">{{ row.title }}</a></td>
-            <td width="40%" align="center">{{row.reg_deadline|date:"j.n.Y"}}</td>
-            <td align="center">x/{{row.capacity}}</td>
+            <td>{{row.reg_deadline|date:"j.n.Y"}}</td>
+            <td>{{row.start_date|date:"j.n.Y"}}</td>
         </tr>
         {% endfor %}
     </table>
