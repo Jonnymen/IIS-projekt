@@ -107,7 +107,7 @@
             </table>
     </div>
 
-<div class="col-md-4">
+    <div class="col-md-4">
             <h3>Žádosti o registraci</h3>
             <br>
             <table>
@@ -135,5 +135,26 @@
                 {% endfor %}
             </table>
     </div>
+    <table align="center" cellpadding = "5" cellspacing = "5">
+        <tr>
+            <td align="center"><b>Vítěz</b></td>
+            <td align="center"><b>Tým č.1</b></td>
+            <td align="center"><b>Tým č.2</b></td>
+            <td align="center"><b>Stůl</b></td>
+        </tr>
+
+        {% for stage in stages %}
+            {% for game in games %}
+                {% if game.stage == stage %}
+                    <tr>
+                        <td align="center">{{ game.winner.name }}</td>
+                        <td align="center">{{ game.team_1.name }}</td>
+                        <td align="center">{{ game.team_2.name }}</td>
+                        <td align="center">{{ game.table.name }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+                </table>
+        {% endfor %}
 </div>
 {% endblock %}
