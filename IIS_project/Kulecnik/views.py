@@ -137,7 +137,7 @@ def reg_referee(request, row_id, ref_id):
     player_check = Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).count()
     if player_check != 0:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný jako hráč", "back":"/tournament_s/" + str(row_id) + "/"})
-    if ref_id == request.user.id:
+    if ref_id == request.user.id or request.user.is_superuser:
         Tournament_S_referees(tournament=current_tournament, referee=request.user).save()
         return redirect("/tournament_s/" + str(row_id) + "/")
     else:
@@ -300,7 +300,7 @@ def deny_team(request, tournament_id, team_id):
 def confirm_player(request, tournament_id, player_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
     pocet = Tournament_Players.objects.filter(tournament=tournament, registered=True).count()
-    if request.user.id is not tournament.host.id:
+    if request.user.id is not tournament.host.id and request.user.is_superuser is False:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_s/" + str(tournament_id) + "/"})
     if pocet == tournament.capacity:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj je zaplněn!", "back":"/tournament_s/" + str(tournament_id) + "/"})
@@ -312,7 +312,7 @@ def confirm_player(request, tournament_id, player_id):
 
 def deny_player(request, tournament_id, player_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
-    if request.user.id is not tournament.host.id:
+    if request.user.id is not tournament.host.id and request.user.is_superuser is False:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_s/" + str(tournament_id) + "/"})
     player = User.objects.get(id=player_id)
     link = Tournament_Players.objects.get(player=player, tournament=tournament)
