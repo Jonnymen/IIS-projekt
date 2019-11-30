@@ -17,12 +17,14 @@
             {% for stage in stages %}
                 {% for game in games %}
                     {% if game.stage == stage %}
+                        {% if game.team_1 %}
                         <tr>
                             <td align="center">{{ game.winner.name }}</td>
                             <td align="center">{{ game.team_1.name }}</td>
                             <td align="center">{{ game.team_2.name }}</td>
                             <td align="center">{{ game.table.name }}</td>
                         </tr>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
                     </table>
