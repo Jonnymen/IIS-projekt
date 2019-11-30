@@ -18,20 +18,20 @@
         </div>
     </div>
     <div class="col-md-3">
-            <div style="text-align: center;">
-                <table>
-                        <tr>
-                            <th><h3>Týmy, kde jsem přicmrndávač</h3></th>
-                        </tr>
-                        {% for team in teams_p %}
-                        <tr>
-                            <td>
-                                <a href="/team/{{ team.id }}/">{{ team.name }}</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-            </div>
+        <div style="text-align: center;">
+            <table>
+                    <tr>
+                        <th><h3>Týmy, kde jsem přicmrndávač</h3></th>
+                    </tr>
+                    {% for team in teams_p %}
+                    <tr>
+                        <td>
+                            <a href="/team/{{ team.id }}/">{{ team.name }}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+        </div>
     </div>
 </div>
 {% endblock %}
