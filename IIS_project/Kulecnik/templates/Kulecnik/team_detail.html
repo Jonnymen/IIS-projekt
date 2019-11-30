@@ -29,42 +29,20 @@
                         <td style="text-align: left;"><b>Druhý hráč:</b></td>
                         <td><a href="/profile_page/{{ team.player.id }}/">{{ team.player.username }}</a></td>
                 </tr>
-                {% if user.id == team.captain.id %}
-                <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            {% if team.player %}
-                            <a href="/team/{{ team.id }}/removeplayer/"><button type="submit" class="btn btn-outline-danger">Odebrat hráče</button></a>
-                            {% else %}
-                            <a href="/team/{{ team.id }}/addplayer/"><button type="submit" class="btn btn-outline-success">Přidat hráče</button></a>
-                            {% endif %}
-                        </td>
-                </tr>
-                
-                {% endif %}
-                {% if user.id == team.captain.id %}
-                <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            <a href="/team/{{ team.id }}/delete/"><button type="submit" class="btn btn-danger">Smazat tým</button></a>
-                        </td>
-                </tr>
-                {% endif %}
-                {% if user.id == team.player.id %}
-                <tr>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            <a href="/team/{{ team.id }}/leave/"><button type="submit" class="btn btn-outline-danger">Opustit tým</button></a>
-                        </td>
-                </tr>
-                {% endif %}
             </table>
+            {% if user.id == team.captain.id %}
+                {% if team.player %}
+                    <a href="/team/{{ team.id }}/removeplayer/"><button type="submit" class="btn btn-outline-danger">Odebrat hráče</button></a>
+                {% else %}
+                    <a href="/team/{{ team.id }}/addplayer/"><button type="submit" class="btn btn-outline-success">Přidat hráče</button></a>
+                {% endif %}
+            {% endif %}
+            {% if user.id == team.captain.id %}
+                <a href="/team/{{ team.id }}/delete/"><button type="submit" class="btn btn-danger">Smazat tým</button></a>
+            {% endif %}
+            {% if user.id == team.player.id %}
+                <a href="/team/{{ team.id }}/leave/"><button type="submit" class="btn btn-outline-danger">Opustit tým</button></a>
+            {% endif %}
         </div>
     </div>
     <div class="col">
