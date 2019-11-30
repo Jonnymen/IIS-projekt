@@ -191,7 +191,7 @@ def tournament_detail_t(request, row_id):
         if answer == "yes":
             #Odregistrace
             Tournament_Teams.objects.filter(tournament=current_tournament, team__captain=request.user).delete()
-            return render("/tournament_t/" + str(row_id) + "/")
+            return redirect("/tournament_t/" + str(row_id) + "/")
         else:
             try:
                 team = request.POST['team']
