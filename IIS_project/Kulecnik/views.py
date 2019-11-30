@@ -145,12 +145,21 @@ def reg_referee(request, row_id, ref_id):
 
 def unreg_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
-    if ref_id == request.user.id:
-        vazba = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user)
-        vazba.delete()
-        return redirect("/tournament_s/" + str(row_id) + "/")
-    else:
-        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš odregistrovat jiného uživatele jako rozhodčího", "back":"/tournament_s/" + str(row_id) + "/"})
+    referee = User.objects.get(id=ref_id)
+    vazba = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=referee)
+    vazba.delete()
+    return redirect("/tournament_s/" + str(row_id) + "/")
+    
+
+def confirm_referee(request, row_id, ref_id):
+    current_tournament = Tournament_S.objects.get(id=row_id)
+    referee = User.objects.get(id=ref_id)
+    ref = Tournament_S_referees.objects.get(tournament=current_tournament, referee=referee)
+    ref.registered = True
+    ref.save()
+    return redirect("/tournament_s/" + str(row_id) + "/")
+    
+
 
 def list_tournament_t(request):
     query = Tournament_T.objects.all()
