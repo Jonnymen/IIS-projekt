@@ -11,20 +11,19 @@ class Table(models.Model):
 class Team(models.Model):
     name = models.CharField(max_length=20)
     logo = models.FileField(blank=True, null=True)
-    captain = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="captain")
+    captain = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="captain")
     player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="player")
 
 class Tournament_S(models.Model):
     title = models.CharField(max_length=60)
-    start_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
     entry_fee = models.IntegerField(blank=True, null=True)
     place = models.CharField(max_length=60, blank=True, null=True)
-    capacity = models.IntegerField(blank=True, null=True)
+    capacity = models.IntegerField()
     description = models.TextField(blank=True, null=True)
-    reg_deadline = models.DateTimeField(blank=True, null=True)
-    host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    registered = models.IntegerField(default=0)
+    reg_deadline = models.DateTimeField()
+    host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class Tournament_T(models.Model):
     title = models.CharField(max_length=60)
@@ -36,7 +35,6 @@ class Tournament_T(models.Model):
     description = models.TextField(blank=True, null=True)
     reg_deadline = models.DateTimeField(blank=True, null=True)
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    registered = models.IntegerField(default=0)
 
 class Game_S(models.Model):
     player_1 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="player_1")
@@ -44,8 +42,9 @@ class Game_S(models.Model):
     referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="referee_s")
     winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="winner_s")
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
-    tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE, null=True)
+    tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)
     stage = models.IntegerField(blank=True, null=True)
+    next_game = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
 
 class Game_T(models.Model):
     team_1 = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name="team_1")
@@ -53,7 +52,7 @@ class Game_T(models.Model):
     referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="referee_t")
     winner = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name="winner_t")
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
-    tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE, null=True)
+    tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
     stage = models.IntegerField(blank=True, null=True)
     next_game = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
 
@@ -69,6 +68,11 @@ class Tournament_Teams(models.Model):
 
 class Tournament_S_referees(models.Model):
     tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)
+    referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    registered = models.NullBooleanField(default=None)
+
+class Tournament_T_referees(models.Model):
+    tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
     referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     registered = models.NullBooleanField(default=None)
 
