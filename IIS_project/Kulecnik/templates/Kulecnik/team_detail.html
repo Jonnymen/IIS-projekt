@@ -2,13 +2,13 @@
 {% block content %}
 <style>
     label[for="id_logo"] {
-        width: 90px;
+        width: 8rem;
         background-color:#5994ff;
-        border-radius: 6px;
+        border-radius: 5px;
         padding: 5px;
         text-align: center;
         color:white;
-        font-weight: bold;
+        font-size: larger;
         cursor: pointer;
     }
     input[type="file"] {
@@ -75,7 +75,9 @@
     <form method='post' enctype="multipart/form-data">
         {% csrf_token %}
         {{ logo.as_p }}
-
+        <div class="center" style="text-align: center;">
+                <button type="submit" align="center" style="text-align: center; min-width: 13.35rem; max-width: 13.35rem;" class="btn btn-outline-success">Uložit změny</button>
+        </div>
     </form>
 </div>
 {% endblock %}
