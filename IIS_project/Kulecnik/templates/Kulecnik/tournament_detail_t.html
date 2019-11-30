@@ -19,7 +19,8 @@
             </p>
         </div>
         {% if user.is_authenticated %}
-        {% if is_past == false %}
+        {% if is_past %}
+        {% else %}
         {% if player_teams.count != 0 %}
         {% if registered %}
         <div class="center" style="text-align: center;">
