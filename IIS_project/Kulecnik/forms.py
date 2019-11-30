@@ -57,12 +57,10 @@ class EditPicture(forms.ModelForm):
         fields = ('image',)
 
 class EditLogo(forms.ModelForm):
+    logo = forms.ImageField(label=_('Nahrát obrázek'), required=False, widget=forms.FileInput)
     class Meta:
         model = Team
         fields = ('logo',)
-        labels = {
-            'logo': 'Nahrát'
-        }
 
 class LoginForm(forms.Form):
 
