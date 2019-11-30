@@ -34,8 +34,6 @@
         <p>
             <b>Pořadatel:</b> <a href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
         </p>
-        {% if user.id == tournament.host.id %}
-        {% else %}
         {% if user.is_authenticated %}
         {% if registered %}
         <p>
@@ -53,7 +51,6 @@
                 <button type="submit" align="center" class="btn btn-outline-success">Registruj</button>
             </form>
         </p>
-        {% endif %}
         {% endif %}
         {% endif %}
         {% if user.is_authenticated %}
