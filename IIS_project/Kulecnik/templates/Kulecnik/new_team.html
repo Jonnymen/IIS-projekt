@@ -1,10 +1,10 @@
 <style>
-        div {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    div {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 </style>
 
 {% extends 'base.html' %}
@@ -22,9 +22,9 @@
     </div>
 </form>
 {% if success %}
-<p style="color: green;">{{ success }}</p>
+    <p style="color: green;">{{ success }}</p>
 {% endif %}
 {% if failure %}
-<p style="color: red;">{{ failure }}</p>
+    <p style="color: red;">{{ failure }}</p>
 {% endif %}
 {% endblock %}
