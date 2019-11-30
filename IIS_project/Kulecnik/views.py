@@ -502,8 +502,15 @@ def list_games_t(request, tournament_id):
     return render(request, template_name="Kulecnik/games_t.html", context={'games':games, 'stages':stages})
 
 def select_winner_t(request, game_id, team_id):
+    second_game = Game_T.objects.exclude(id=game_id).get(next_game=game.next_game)
     game = Game_T.objects.get(id=game_id)
     team = Team.objects.get(id=team_id)
+    next_game = game.next_game
     game.winner = team
+    if game.id < second_game.id:
+        next_game.team_1 = game.winner
+    else:
+        next_game.team_2 = game.winner
     game.save()
+    next_game.save()
     return redirect("/games_t/" + str(game.tournament.id) + "/")
