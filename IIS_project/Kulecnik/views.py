@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .forms import NewTournament_S
 from .models import Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams, Profile, Team, Game_T, Game_S, Tournament_S_referees
-from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm
+from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm, EditLogo
 
 # Create your views here.
 
