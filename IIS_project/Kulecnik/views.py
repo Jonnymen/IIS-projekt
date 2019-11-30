@@ -280,7 +280,19 @@ def show_profile(request):
     poradane = Tournament_S.objects.filter(host=request.user)
     ucastnene = Tournament_Players.objects.filter(player=request.user)
     tymy_poradane = Tournament_T.objects.filter(host=request.user)
-    return render(request, template_name='users/profile.html', context={"poradane":poradane, "ucastnene":ucastnene, "tymy_poradane":tymy_poradane})
+    won_tournaments_s = Tournament_S.objects.filter(winner=request.user).count()
+    all_tournaments_s = Tournament_S.objects.all().count()
+    won_games_s = Game_S.objects.filter(winner=request.user).count()
+    all_games_s = Game_S.objects.filter(player_1=request.user).count() + Game_S.objects.filter(player_2=request.user).count()
+    if all_tournaments_s == 0:
+        tournament_s_winrate = 0
+    else:
+        tournament_s_winrate = won_tournaments_s / all_tournaments_s
+    if all_games_s == 0:
+        game_s_winrate = 0
+    else:
+        game_s_winrate = won_games_s / all_games_s
+    return render(request, template_name='users/profile.html', context={"poradane":poradane, "ucastnene":ucastnene, "tymy_poradane":tymy_poradane, "won_tournaments":won_tournaments_s, "won_games":won_games_s, "tournament_winrate":tournament_s_winrate, "game_winrate":game_s_winrate})
 
 def confirm_team(request, tournament_id, team_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
