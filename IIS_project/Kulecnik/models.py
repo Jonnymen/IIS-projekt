@@ -26,7 +26,7 @@ class Tournament_S(models.Model):
     description = models.TextField(blank=True, null=True)
     reg_deadline = models.DateTimeField()
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='host_s')
-    winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='winner_s')
+    winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='winner_ss')
 
     @property
     def is_past_start(self):
@@ -50,7 +50,7 @@ class Tournament_T(models.Model):
     description = models.TextField(blank=True, null=True)
     reg_deadline = models.DateTimeField()
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='host_t')
-    winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='winner_t')
+    winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='winner_tt')
 
     @property
     def is_past_start(self):
