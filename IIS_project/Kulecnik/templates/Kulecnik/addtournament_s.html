@@ -112,7 +112,11 @@
         {% for field in form %}
         
           <tr>
+              {% if field.label == "description" || field.label == "entry_fee" %}
+              <td  align="right"> <b> {{ field.label }} </b></td>
+              {% else %}
               <td  align="right"> <b> {{ field.label }} <font color="red">*</font></b></td>
+              {% endif %}
               <td>&nbsp;&nbsp;</td>
               <td>{{ field }}</td>
           </tr>
