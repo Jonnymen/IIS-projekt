@@ -2,7 +2,7 @@
 {% block content %}
 <style>
     label[for="id_logo"] {
-        width: 8rem;
+        width: 13.35rem;
         background-color:#5994ff;
         border-radius: 5px;
         padding: 5px;
@@ -45,14 +45,15 @@
             {% endif %}
         </div>
     </div>
-    <div class="col">
-        <div class="img-container" style="text-align: center; padding-top: 10rem;">
+    <div class="col" style="text-align: center;">
+        <div class="img-container" style="text-align: center;">
             <img class = "rounded-circle account-img" src = "{{team.logo.url}}" width="100px">    
         </div>
+        <br>
         <form method='post' enctype="multipart/form-data">
             {% csrf_token %}
-            {{ logo.as_p }}
-            <button type="submit" align="center" style="text-align: center; min-width: 8rem; max-width: 8rem;" class="btn btn-outline-success">Uložit změny</button>
+            {{ logo }}
+            <button type="submit" align="center" style="text-align: center; min-width: 13.35rem; max-width: 13.35rem;" class="btn btn-outline-success">Uložit změny</button>
         </form>
     </div>
 </div>
