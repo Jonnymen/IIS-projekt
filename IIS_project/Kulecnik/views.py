@@ -89,7 +89,7 @@ def add_tournament_t(request):
         return render(request, template_name='Kulecnik/index.html', context=None)
 
 def list_tournament_s(request):
-    query = Tournament_S.objects.all().order_by('start_date')
+    query = Tournament_S.objects.all().order_by('start_date','reg_deadline')
     return render(request, template_name="Kulecnik/tournament_s.html", context={'data':query})
 
 def tournament_detail_s(request, row_id):
@@ -187,7 +187,7 @@ def confirm_referee_t(request, row_id, ref_id):
     return redirect("/tournament_t/" + str(row_id) + "/")
 
 def list_tournament_t(request):
-    query = Tournament_T.objects.all().order_by('start_date')
+    query = Tournament_T.objects.all().order_by('start_date','reg_deadline')
     return render(request, template_name="Kulecnik/tournament_t.html", context={'data':query})
 
 def tournament_detail_t(request, row_id):
