@@ -26,7 +26,7 @@
             <td><b>Obsazenost</b></td>
         </tr>
 
-        {% for row in data reversed %}
+        {% for row in data %}
         <tr>
             <td><a href="/tournament_t/{{ row.pk }}/">{{ row.title }}</a></td>
             <td>{{row.reg_deadline|date:"j.n.Y"}}</td>
