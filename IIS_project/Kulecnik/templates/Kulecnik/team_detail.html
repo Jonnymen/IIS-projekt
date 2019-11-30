@@ -59,8 +59,36 @@
     </div>
     <form method='post' enctype="multipart/form-data">
         {% csrf_token %}
-        {{logo.as_p}}
-
-    </form>
+        <br>
+        <p align="center" style="font-size:200%;"><b>Změna uživatelských údajů</b></p>
+        <br>
+    <table align="center">
+        {% for field in form %}
+         {% if field.label == 'Password' %}
+         {% else %}
+          <tr>
+              <td  align="right"> <b> {{ field.label }}</b></td>
+              <td>&nbsp;&nbsp;</td>
+              <td>{{ field }}</td>
+          </tr>
+          <tr>
+            <td>&nbsp</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        {{picture.as_p}}
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button type="submit" align="center" class="btn btn-outline-success">Uložit změny</button></td>
+            <td></td>
+            <td></td>
+            <td><a href="/profile/edit/password/" class="btn btn-outline-success">Změna Hesla</a></td>
+        </tr>   
+      </table>
+      <br>
+      
+      
+</form>
 </div>
 {% endblock %}
