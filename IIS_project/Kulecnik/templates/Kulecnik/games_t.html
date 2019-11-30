@@ -8,10 +8,10 @@
         <h1 align="center">Hry turnaje</h1><br>
         <table align="center" border="1" style="table-layout: fixed; width: 40rem; border-collapse: collapse;">
             <tr>
-                <td align="center"><b>Vítěz</b></td>
                 <td align="center"><b>Tým č.1</b></td>
                 <td align="center"><b>Tým č.2</b></td>
                 <td align="center"><b>Stůl</b></td>
+                <td align="center"><b>Vítěz</b></td>
             </tr>
 
             {% for stage in stages %}
@@ -19,10 +19,21 @@
                     {% if game.stage == stage %}
                         {% if game.team_1 %}
                         <tr>
-                            <td align="center">{{ game.winner.name }}</td>
                             <td align="center">{{ game.team_1.name }}</td>
                             <td align="center">{{ game.team_2.name }}</td>
                             <td align="center">{{ game.table.name }}</td>
+                            <td align="center">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Dropdown button
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="#">Action</a>
+                                      <a class="dropdown-item" href="#">Another action</a>
+                                      <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                  </div>
+                            </td>
                         </tr>
                         {% endif %}
                     {% endif %}
