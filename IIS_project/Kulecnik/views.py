@@ -187,7 +187,7 @@ def confirm_referee_t(request, row_id, ref_id):
     return redirect("/tournament_t/" + str(row_id) + "/")
 
 def list_tournament_t(request):
-    query = Tournament_T.objects.all()
+    query = Tournament_T.objects.all().order_by('start_date')
     return render(request, template_name="Kulecnik/tournament_t.html", context={'data':query})
 
 def tournament_detail_t(request, row_id):
