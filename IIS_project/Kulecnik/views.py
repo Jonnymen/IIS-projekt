@@ -10,7 +10,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .forms import NewTournament_S
-from .models import Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams, Profile, Team, Game_T, Game_S, Tournament_S_referees
+from .models import (Tournament_S, Tournament_T, Tournament_Players, Tournament_Teams,
+                     Profile, Team, Game_T, Game_S, Tournament_S_referees, Tournament_T_referees)
 from .forms import RegistrationForm, LoginForm, AddTournamentFormS, AddTournamentFormT, EditProfileForm, EditPicture, NewTeamForm, EditLogo
 
 # Create your views here.
@@ -149,7 +150,6 @@ def unreg_referee(request, row_id, ref_id):
     vazba = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=referee)
     vazba.delete()
     return redirect("/tournament_s/" + str(row_id) + "/")
-    
 
 def confirm_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
@@ -158,8 +158,33 @@ def confirm_referee(request, row_id, ref_id):
     ref.registered = True
     ref.save()
     return redirect("/tournament_s/" + str(row_id) + "/")
-    
 
+def reg_referee_t(request, row_id, ref_id):
+    current_tournament = Tournament_T.objects.get(id=row_id)
+    teams = Tournament_Teams.object.filter(tournament=current_tournament)
+    for row in teams:
+        if row.team.captain is request.user or row.team.player is request.user:
+            return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný jako hráč", "back":"/tournament_t/" + str(row_id) + "/"})
+    if ref_id == request.user.id or request.user.is_superuser:
+        Tournament_T_referees(tournament=current_tournament, referee=request.user).save()
+        return redirect("/tournament_t/" + str(row_id) + "/")
+    else:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš přihlásit jiného uživatele jako rozhodčího", "back":"/tournament_t/" + str(row_id) + "/"})
+
+def unreg_referee_t(request, row_id, ref_id):
+    current_tournament = Tournament_T.objects.get(id=row_id)
+    referee = User.objects.get(id=ref_id)
+    vazba = Tournament_T_referees.objects.filter(tournament=current_tournament, referee=referee)
+    vazba.delete()
+    return redirect("/tournament_t/" + str(row_id) + "/")
+
+def confirm_referee_t(request, row_id, ref_id):
+    current_tournament = Tournament_T.objects.get(id=row_id)
+    referee = User.objects.get(id=ref_id)
+    ref = Tournament_T_referees.objects.get(tournament=current_tournament, referee=referee)
+    ref.registered = True
+    ref.save()
+    return redirect("/tournament_t/" + str(row_id) + "/")
 
 def list_tournament_t(request):
     query = Tournament_T.objects.all()
