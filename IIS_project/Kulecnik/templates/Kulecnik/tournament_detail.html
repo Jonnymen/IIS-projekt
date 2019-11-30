@@ -75,7 +75,7 @@
         {% endif %}
         {% endif %}
         {% endif %}
-        {% if tournament.host.id == user.id %}
+        {% if tournament.host.id == user.id or user.is_superuser%}
         {% if is_past %}
         <div class="center" style="text-align: center;">
             <a href="/generate_s/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Generovat hry</button></a>
@@ -102,7 +102,7 @@
         </div>
         {% endif %}
     </div>
-    {% if user.id == tournament.host.id %}
+    {% if user.id == tournament.host.id or user.is_superuser %}
     <div class="col-md-3">
         <h3>Žádosti rozhodčích</h3>
         <table>
@@ -150,7 +150,7 @@
                     <td>
                         <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
                     </td>
-                    {% if tournament.host.id == user.id %}
+                    {% if tournament.host.id == user.id or user.is_superuser%}
                     <td>
                         <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
                             <input type="button" class="btn btn-outline-danger" value="Odebrat">
@@ -173,7 +173,7 @@
                         <td>
                             <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
                         </td>
-                        {% if tournament.host.id == user.id %}
+                        {% if tournament.host.id == user.id or user.is_superuser%}
                         <td>
                             <a href="/tournament_s/{{ tournament.id }}/confirm_s/{{ row.player.id }}/">
                                 <input type="button" class="btn btn-outline-success" value="Potvrdit">
