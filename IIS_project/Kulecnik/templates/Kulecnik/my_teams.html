@@ -6,7 +6,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         overflow: hidden;
-        width: 50%;
+        width: 30%;
     }
     .placeLeft { float: left; }
     .placeRight { float: right; }
@@ -16,9 +16,9 @@
       border-radius: 1em;
     }
     th, td {
-      background: #B00020;
+      background: #008b00;
       text-align: center;
-      padding: 10px; 
+      padding: 10px;
     }
 </style>
 
@@ -28,12 +28,12 @@
     <div class="placeLeft">
         <table>
             <tr>
-                <th><h3><b><font color="#FFFFFF">Týmy, kde jsem kapitán</font></b></h3></th>
+                <th><h3><b><font color="#90ee02">Týmy, kde jsem <br> kapitán</font></b></h3></th>
             </tr>
             {% for team in teams_c %}
             <tr>
                 <td>
-                <a style="color:#FFFFFF" href="/team/{{ team.id }}/">{{ team.name }}</a>
+                <a style="color:#90ee02" href="/team/{{ team.id }}/">{{ team.name }}</a>
                 </td>
             </tr>
             {% endfor %}
@@ -42,7 +42,7 @@
     <div class="placeRight">
         <table>
             <tr>
-                <th><h3><b><font color="#FFFFFF">Týmy, kde jsem řadový hráč</font></b></h3></th>
+                <th><h3><b><font color="#FFFFFF">Týmy, kde jsem <br> řadový hráč</font></b></h3></th>
             </tr>
             {% for team in teams_p %}
             <tr>
