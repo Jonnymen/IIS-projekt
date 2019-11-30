@@ -19,15 +19,8 @@
     <div class="col"></div>
     <div class="col">
         <div style="text-align: center;">
+            <h1 align="center">Tým: {{ team.name }}</h1><br>
             <table align="center" border="1" style="table-layout: fixed; width: 40rem; border-collapse: collapse;">
-                <tr>
-                    <td>
-                        &nbsp;
-                    </td>
-                    <td>
-                        <h2>Tým: {{ team.name }}</h2>
-                    </td>
-                </tr>
                 <tr>
                     <td style="text-align: right;"><b>Kapitán:</b></td>
                     <td><a href="/profile_page/{{ team.captain.id }}/">{{ team.captain.username }}</a></td>
