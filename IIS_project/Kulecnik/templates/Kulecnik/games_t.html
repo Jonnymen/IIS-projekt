@@ -28,8 +28,8 @@
                                       {% if game.winner %} {{ game.winner }} {% else %} Zadejte vítěze {% endif %}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">{{ game.team_1.name }}</a>
-                                        <a class="dropdown-item" href="#">{{ game.team_2.name }}</a>
+                                        <a class="dropdown-item" href="/games_t/{{game.id}}/select_winner/{{game.team_1.id}}/">{{ game.team_1.name }}</a>
+                                        <a class="dropdown-item" href="/games_t/{{game.id}}/select_winner/{{game.team_2.id}}/">{{ game.team_2.name }}</a>
                                     </div>
                                   </div>
                             </td>
