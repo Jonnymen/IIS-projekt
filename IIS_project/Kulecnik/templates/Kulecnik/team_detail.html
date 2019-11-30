@@ -74,7 +74,7 @@
     </div>
     <form method='post' enctype="multipart/form-data">
         {% csrf_token %}
-        {{ logo.as_p }}
+        {{ logo }}
         <div class="center" style="text-align: center;">
                 <button type="submit" align="center" style="text-align: center; min-width: 8rem; max-width: 8rem;" class="btn btn-outline-success">Uložit změny</button>
         </div>
