@@ -12,7 +12,7 @@ class Table(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=20)
-    logo = models.FileField(blank=True, null=True)
+    logo = models.ImageField(default='default.png', upload_to='avatars/teams')
     captain = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="captain")
     player = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="player")
 
