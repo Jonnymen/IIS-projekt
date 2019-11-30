@@ -502,7 +502,7 @@ def list_games_t(request, tournament_id):
     return render(request, template_name="Kulecnik/games_t.html", context={'games':games, 'stages':stages})
 
 def list_games_s(request, tournament_id):
-    tournament = Tournament_T.objects.get(id=tournament_id)
+    tournament = Tournament_S.objects.get(id=tournament_id)
     stages_no = math.log2(tournament.capacity)
     stages = []
     i = 1
