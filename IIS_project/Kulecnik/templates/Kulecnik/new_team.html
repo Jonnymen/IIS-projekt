@@ -1,20 +1,19 @@
 <style>
     .center {
+        align-items: center;
         position: fixed;
         top: 50%;
         left: 50%;
-        align-items: center;
-        margin-top: -50px;
-        margin-left: -100px;
+        transform: translate(-50%, -50%);
     }
 </style>
 
 {% extends 'base.html' %}
 {% block content %}
-
+<!--
 <br>
-<p align="center" style="font-size:200%;margin-bottom:5cm"><b>Vytvoření  týmu</b></p>
-<br>
+<p align="center" style="font-size:1000%;margin-bottom:5cm"><b>Vytvoření  týmu</b></p>
+<br>-->
 <form method="post">
     {% csrf_token %}
     <div class="center">

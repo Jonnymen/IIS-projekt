@@ -49,7 +49,7 @@
                     <th>Konec:</th>
                 </tr>
                 {% for row in poradane %}
-                {% if row.is_past_start %}
+                {% if row.is_past_end %}
                 <tr>
                     <td>
                         <a href="/tournament_s/{{ row.id }}/">{{ row.title }}</a>
@@ -72,7 +72,7 @@
                     <th>Začátek:</th>
                 </tr>
                 {% for row in poradane %}
-                {% if row.is_past_start %}
+                {% if row.is_past_end %}
                 {% else %}
                 <tr>
                     <td>
@@ -98,7 +98,7 @@
                             <th>Konec:</th>
                         </tr>
                         {% for row in ucastnene %}
-                        {% if row.tournament.is_past_start %}
+                        {% if row.tournament.is_past_end %}
                         <tr>
                             <td>
                                 <a href="/tournament_s/{{ row.tournament.id }}/">{{ row.tournament.title }}</a>
@@ -121,14 +121,14 @@
                             <th>Začátek:</th>
                         </tr>
                         {% for row in ucastnene %}
-                        {% if row.tournament.is_past_start %}
+                        {% if row.tournament.is_past_end %}
                         {% else %}
                         <tr>
                             <td>
                                 <a href="/tournament_s/{{ row.tournament.id }}/">{{ row.tournament.title }}</a>
                             </td>
                             <td>
-                                {{ row.start_date|date:"j.n.Y" }}
+                                {{ row.tournament.start_date|date:"j.n.Y" }}
                             </td>
                         </tr>
                         {% endif %}
@@ -136,6 +136,60 @@
                     </table>
                 </div>
             </div>
+</div>
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2 style="text-align: center;">Turnaje týmů</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div style="text-align: center;">
+            <h3>Odpořádané turnaje</h3>
+            <table align="center" border="1" style="table-layout: fixed; width: 25rem; border-collapse: collapse;">
+                <tr>
+                    <th>Turnaj</th>
+                    <th>Konec:</th>
+                </tr>
+                {% for row in tymy_poradane %}
+                {% if row.is_past_end %}
+                <tr>
+                    <td>
+                        <a href="/tournament_t/{{ row.id }}/">{{ row.title }}</a>
+                    </td>
+                    <td>
+                        {{ row.end_date|date:"j.n.Y" }}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div style="text-align: center;">
+            <h3>Aktuálně pořádané turnaje</h3>
+            <table align="center" border="1" style="table-layout: fixed; width: 25rem; border-collapse: collapse;">
+                <tr>
+                    <th>Turnaj</th>
+                    <th>Začátek:</th>
+                </tr>
+                {% for row in tymy_poradane %}
+                {% if row.is_past_end %}
+                {% else %}
+                <tr>
+                    <td>
+                        <a href="/tournament_t/{{ row.id }}/">{{ row.title }}</a>
+                    </td>
+                    <td>
+                        {{ row.start_date|date:"j.n.Y" }}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </div>
 
 
