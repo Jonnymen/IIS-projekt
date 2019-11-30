@@ -3,6 +3,8 @@ from django.conf import settings
 from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import date
+from django.utils import timezone
 
 # Create your models here.
 class Table(models.Model):
@@ -25,6 +27,10 @@ class Tournament_S(models.Model):
     reg_deadline = models.DateTimeField()
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    @property
+    def is_past_start(self):
+        return timezone.now() > self.start_date
+
 class Tournament_T(models.Model):
     title = models.CharField(max_length=60)
     start_date = models.DateField(blank=True, null=True)
@@ -35,6 +41,14 @@ class Tournament_T(models.Model):
     description = models.TextField(blank=True, null=True)
     reg_deadline = models.DateTimeField(blank=True, null=True)
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+
+    @property
+    def is_past_start(self):
+        return timezone.now() > self.start_date
+
+    @property
+    def is_past_reg(self):
+        return timezone.now() > self.reg_deadline
 
 class Game_S(models.Model):
     player_1 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="player_1")
