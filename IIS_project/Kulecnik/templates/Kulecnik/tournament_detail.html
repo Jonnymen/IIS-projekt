@@ -56,6 +56,7 @@
         {% endif %}
         {% endif %}
         {% endif %}
+        {% if user.is_authenticated %}
         {% if if_referee %}
         <p>
             <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ user.id }}/">
@@ -69,6 +70,7 @@
                 <input type="button" class="btn btn-outline-success" value="Registrovat jako rozhodčí">
             </a>
         </p>
+        {% endif %}
         {% endif %}
         {% if tournament.host.id == user.id %}
         {% if is_past %}
