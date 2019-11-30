@@ -112,9 +112,7 @@
         {% for field in form %}
         
           <tr>
-              {% if field.label == "Popis" %}
-              <td  align="right"> <b> {{ field.label }} </b></td>
-              {% elif field.label == "Startovné" %}
+              {% if field.label == "Popis" or field.label == "Startovné"%}
               <td  align="right"> <b> {{ field.label }} </b></td>
               {% else %}
               <td  align="right"> <b> {{ field.label }} <font color="red">*</font></b></td>
