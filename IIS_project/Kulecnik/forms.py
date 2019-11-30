@@ -23,7 +23,7 @@ class RegistrationForm(UserCreationForm):
             'password2'
         )
         labels = {
-            "email": "E-mail",
+            "email": _("E-mail*"),
             "first_name": "Křestní jméno",
             "last_name": "Příjmení",
             "password1": "Heslo*",
