@@ -43,18 +43,17 @@
                         </td>
                 </tr>
             </table>
-                {% endif %}
-                {% if user.id == team.captain.id %}
-                <div class="center" style="text-align: center;">
-                    <a href="/team/{{ team.id }}/delete/"><button type="submit" style="text-align: center; min-width: 13.35rem; max-width: 13.35rem;" class="btn btn-danger">Smazat tým</button></a>
-                </div>
-                {% endif %}
-                {% if user.id == team.player.id %}
-                <div class="center" style="text-align: center;">
-                    <a href="/team/{{ team.id }}/leave/"><button type="submit" style="text-align: center; min-width: 13.35rem; max-width: 13.35rem;" class="btn btn-danger">Opustit tým</button></a>
-                </div>
-                    <a href="/team/{{ team.id }}/leave/"><button type="submit" class="btn btn-outline-danger">Opustit tým</button></a>
-                {% endif %}
+            {% endif %}
+            {% if user.id == team.captain.id %}
+            <div class="center" style="text-align: center;">
+                <a href="/team/{{ team.id }}/delete/"><button type="submit" style="text-align: center; min-width: 13.35rem; max-width: 13.35rem;" class="btn btn-danger">Smazat tým</button></a>
+            </div>
+            {% endif %}
+            {% if user.id == team.player.id %}
+            <div class="center" style="text-align: center;">
+                <a href="/team/{{ team.id }}/leave/"><button type="submit" style="text-align: center; min-width: 13.35rem; max-width: 13.35rem;" class="btn-outline-danger">Opustit tým</button></a>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="col">
