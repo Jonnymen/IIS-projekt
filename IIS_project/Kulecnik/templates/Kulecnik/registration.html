@@ -20,7 +20,11 @@
             {% csrf_token %}
             {% for field in form %}
                 <p>
+                {{ if field.label == "first_name"}}
+                {{ field.label }} <b><font color="red">*</font></b>
+                {{ else }}
                 {{ field.label }}
+                {{ endif }}
                 <br>
                 {{ field }}
                 </p>
