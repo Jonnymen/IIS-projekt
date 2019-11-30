@@ -32,90 +32,90 @@
                 <a href="/profile/edit/"><button style="text-align: center;" class="btn btn-outline-success">Upravit</button></a>
         </div>
         <br>
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                <h2>Turnaje jednotlivců</h2>
-            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Turnaje jednotlivců</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div style="text-align: center;">
+            <h3>Odpořádané turnaje</h3>
+            <table align="center">
+                {% for row in poradane %}
+                {% if row.is_past_start %}
+                <tr>
+                    <td>
+                        <a href="/tournament_s/{{ row.id }}/">{{ row.title }}</a>
+                    </td>
+                    <td>
+                        Konec: {{ row.end_date|date:"j.n.Y" }}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div style="text-align: center;">
-                    <h3>Odpořádané turnaje</h3>
-                    <table align="center">
-                        {% for row in poradane %}
-                        {% if row.is_past_start %}
-                        <tr>
-                            <td>
-                                <a href="/tournament_s/{{ row.id }}/">{{ row.title }}</a>
-                            </td>
-                            <td>
-                                Konec: {{ row.end_date|date:"j.n.Y" }}
-                            </td>
-                        </tr>
-                        {% endif %}
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div style="text-align: center;">
-                    <h3>Aktuálně pořádané turnaje</h3>
-                    <table align="center">
-                        {% for row in poradane %}
-                        {% if row.is_past_start %}
-                        {% else %}
-                        <tr>
-                            <td>
-                                <a href="/tournament_s/{{ row.id }}/">{{ row.title }}</a>
-                            </td>
-                            <td>
-                                Konec: {{ row.end_date|date:"j.n.Y" }}
-                            </td>
-                        </tr>
-                        {% endif %}
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div style="text-align: center;">
-                    <h3>Uběhlé turnaje, kde jsem se účastnil</h3>
-                    <table align="center">
-                        {% for row in ucastnene %}
-                        {% if row.tournament.is_past_start %}
-                        <tr>
-                            <td>
-                                <a href="/tournament_s/{{ row.tournament.id }}/">{{ row.tournament.title }}</a>
-                            </td>
-                            <td>
-                                Konec: {{ row.tournament.end_date|date:"j.n.Y" }}
-                            </td>
-                        </tr>
-                        {% endif %}
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div style="text-align: center;">
-                    <h3>Turnaje, kterých se účastním</h3>
-                    <table align="center">
-                        {% for row in ucastnene %}
-                        {% if row.tournament.is_past_start %}
-                        {% else %}
-                        <tr>
-                            <td>
-                                <a href="/tournament_s/{{ row.tournament.id }}/">{{ row.tournament.title }}</a>
-                            </td>
-                            <td>
-                                Konec: {{ row.end_date|date:"j.n.Y" }}
-                            </td>
-                        </tr>
-                        {% endif %}
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
+    </div>
+    <div class="col-md-3">
+        <div style="text-align: center;">
+            <h3>Aktuálně pořádané turnaje</h3>
+            <table align="center">
+                {% for row in poradane %}
+                {% if row.is_past_start %}
+                {% else %}
+                <tr>
+                    <td>
+                        <a href="/tournament_s/{{ row.id }}/">{{ row.title }}</a>
+                    </td>
+                    <td>
+                        Konec: {{ row.end_date|date:"j.n.Y" }}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div style="text-align: center;">
+            <h3>Uběhlé turnaje, kde jsem se účastnil</h3>
+            <table align="center">
+                {% for row in ucastnene %}
+                {% if row.tournament.is_past_start %}
+                <tr>
+                    <td>
+                        <a href="/tournament_s/{{ row.tournament.id }}/">{{ row.tournament.title }}</a>
+                    </td>
+                    <td>
+                        Konec: {{ row.tournament.end_date|date:"j.n.Y" }}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div style="text-align: center;">
+            <h3>Turnaje, kterých se účastním</h3>
+            <table align="center">
+                {% for row in ucastnene %}
+                {% if row.tournament.is_past_start %}
+                {% else %}
+                <tr>
+                    <td>
+                        <a href="/tournament_s/{{ row.tournament.id }}/">{{ row.tournament.title }}</a>
+                    </td>
+                    <td>
+                        Konec: {{ row.end_date|date:"j.n.Y" }}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
         </div>
     </div>
 </div>
