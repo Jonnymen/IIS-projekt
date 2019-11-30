@@ -29,7 +29,7 @@ class Tournament_S(models.Model):
 
     @property
     def is_past_start(self):
-        return timezone.now() > self.start_date
+        return date.today() > self.start_date
 
 class Tournament_T(models.Model):
     title = models.CharField(max_length=60)
