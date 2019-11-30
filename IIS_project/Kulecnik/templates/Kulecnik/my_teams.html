@@ -16,10 +16,9 @@
       border-radius: 1em;
     }
     th, td {
-      background: #B00020;
+      background: #008b00;
       text-align: center;
       padding: 10px;
-      text-align: center;  
     }
 </style>
 
@@ -29,12 +28,12 @@
     <div class="placeLeft">
         <table>
             <tr>
-                <th><h3><b><font color="#FFFFFF">Týmy, kde jsem <br> kapitán</font></b></h3></th>
+                <th><h3><b><font color="#90ee02">Týmy, kde jsem <br> kapitán</font></b></h3></th>
             </tr>
             {% for team in teams_c %}
             <tr>
                 <td>
-                <a style="color:#FFFFFF" href="/team/{{ team.id }}/">{{ team.name }}</a>
+                <a style="color:#90ee02" href="/team/{{ team.id }}/">{{ team.name }}</a>
                 </td>
             </tr>
             {% endfor %}
