@@ -18,17 +18,18 @@
 <div class="row" style="padding-top: 5rem;">
     <div class="col"></div>
     <div class="col">
-        <div class="img-container" style="text-align: center;">
-            <img class = "rounded-circle account-img" src = "{{team.logo.url}}" width="100px">    
-            <br>
-            <form method='post' enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ logo }}
-                <button type="submit" align="center" style="text-align: center; min-width: 13.35rem; max-width: 13.35rem;" class="btn btn-outline-success">Uložit změny</button>
-            </form>
-        </div>
+
         <div style="text-align: center;">
             <h1 align="center">Tým: {{ team.name }}</h1><br>
+            <div class="img-container" style="text-align: center;">
+                    <img class = "rounded-circle account-img" src = "{{team.logo.url}}" width="100px">    
+                    <br>
+                    <form method='post' enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ logo.as_p }}
+                        <p><button type="submit" align="center" style="text-align: center; min-width: 13.35rem; max-width: 13.35rem;" class="btn btn-outline-success">Uložit změny</button></p>
+                    </form>
+                </div>
             <table align="center" border="1" style="table-layout: fixed; width: 20rem; border-collapse: collapse;">
                 <tr>
                     <td style="text-align: left;"><b>Kapitán:</b></td>
