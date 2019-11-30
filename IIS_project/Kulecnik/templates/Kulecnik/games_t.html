@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-    
+    <div class="col-md-4 offset-md-4">
         <br>
         <br>
         <h1 align="center">Hry turnaje</h1><br>
@@ -28,9 +28,8 @@
                                       {% if game.winner %} {{ game.winner }} {% else %} Zadejte vítěze {% endif %}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="#">Action</a>
-                                      <a class="dropdown-item" href="#">Another action</a>
-                                      <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" href="#">{{ game.team_1.name }}</a>
+                                        <a class="dropdown-item" href="#">{{ game.team_2.name }}</a>
                                     </div>
                                   </div>
                             </td>
@@ -42,6 +41,6 @@
             {% endfor %}
        
 
-    
+    </div>
 </div>
 {% endblock %}
