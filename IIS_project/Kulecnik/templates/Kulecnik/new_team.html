@@ -3,6 +3,7 @@
         position: fixed;
         top: 50%;
         left: 50%;
+        align-items: center;
         margin-top: -50px;
         margin-left: -100px;
     }
@@ -17,9 +18,9 @@
 <form method="post">
     {% csrf_token %}
     <div class="center">
-        <p><b>{{ form.name.label }}</b></p>
-        <p>{{ form.name }}</p> 
-        <button type="submit" class="btn btn-outline-success">Vytvořit</button>
+        <p align="center"><b>{{ form.name.label }}</b></p>
+        <p align="center">{{ form.name }}</p> 
+        <button align="middle" type="submit" class="btn btn-outline-success">Vytvořit</button>
     </div>
 </form>
 {% if success %}
