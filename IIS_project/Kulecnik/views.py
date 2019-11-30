@@ -260,11 +260,9 @@ def leave_team(request, team_id):
     team.save()
     return redirect("/my_teams/")
 
+@login_required
 def show_profile(request):
-    my_tournaments_s = Tournament_S.objects.filter(host=request.user)
-    my_tournaments_t = Tournament_T.objects.filter(host=request.user)
-    my_tournaments_s_link = Tournament_Players.objects.filter(tournament__host=request.user)
-    my_tournaments_t_link = Tournament_Teams.objects.filter(tournament__host=request.user)
+    ubehle_poradane = list(Tournament_S.objects.filter(host=user.request))
     return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t, "my_tournaments_s_link":my_tournaments_s_link, "my_tournaments_t_link":my_tournaments_t_link})
 
 def confirm_team(request, tournament_id, team_id):
