@@ -208,12 +208,12 @@ def team_detail(request, team_id):
         if team is None:
             return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
         else:
-            return render(request, template_name='Kulecnik/team_detail.html', context={'team':team})
+            return render(request, template_name='Kulecnik/team_detail.html', context={'team':team, "logo":logo})
     else:
         logo = EditLogo(request.POST, request.FILES, instance=team)
         if logo.is_valid():
             logo.save()
-            return redirect('/profile/')
+            return redirect('/team/' + str(team_id) + '/')
 
 def add_player_to_team(request, team_id):
     team = Team.objects.get(id=team_id)
