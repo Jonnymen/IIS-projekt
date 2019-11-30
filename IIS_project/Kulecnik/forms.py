@@ -81,14 +81,14 @@ class AddTournamentFormS(forms.ModelForm):
             'description'
         )
         widgets = {
-            'start_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'start_date': forms.TextInput(attrs={'placeholder': '2017-10-20', 'rows':1, 'cols':15}),
             'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...', 'rows':4, 'cols':28}),
             'title': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'end_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'end_date': forms.TextInput(attrs={'placeholder': '2017-10-21', 'rows':1, 'cols':15}),
             'entry_fee': forms.TextInput(attrs={'placeholder': 'Kč', 'rows':1, 'cols':15}),
             'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'capacity': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'reg_deadline': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'capacity': forms.TextInput(attrs={'placeholder': '4/8/16/32', 'rows':1, 'cols':15}),
+            'reg_deadline': forms.TextInput(attrs={'placeholder': '2017-10-15', 'rows':1, 'cols':15}),
         }
         labels = {
             "title": "Název",
@@ -116,14 +116,14 @@ class AddTournamentFormT(forms.ModelForm):
             'description'
         )
         widgets = {
-            'start_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'start_date': forms.TextInput(attrs={'placeholder': '2017-10-20', 'rows':1, 'cols':15}),
             'description': forms.Textarea(attrs={'placeholder': 'Zde přidejte popis...', 'rows':4, 'cols':28}),
             'title': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'end_date': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'entry_fee': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'end_date': forms.TextInput(attrs={'placeholder': '2017-10-21', 'rows':1, 'cols':15}),
+            'entry_fee': forms.TextInput(attrs={'placeholder': 'Kč', 'rows':1, 'cols':15}),
             'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'capacity': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'reg_deadline': forms.TextInput(attrs={'rows':1, 'cols':15}),
+            'capacity': forms.TextInput(attrs={'placeholder': '4/8/16/32', 'rows':1, 'cols':15}),
+            'reg_deadline': forms.TextInput(attrs={'placeholder': '2017-10-15', 'rows':1, 'cols':15}),
         }
         labels = {
             "title": "Název",
