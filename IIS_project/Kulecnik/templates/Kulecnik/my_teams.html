@@ -1,37 +1,47 @@
+<style>
+    .center {
+        align-items: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+    }
+    .placeLeft { width: 50%; float: left; }
+    .placeRight {width: 50%; float: right; }
+</style>
+
 {% extends 'base.html' %}
 {% block content %}
-<div class="row" style="padding-top: 7rem;">
-    <div class="col-md-3 offset-md-3">
-        <div style="text-align: center;">
-            <table>
-                <tr>
-                    <th><h3>Týmy, kde jsem kapitán</h3></th>
-                </tr>
-                {% for team in teams_c %}
-                <tr>
-                    <td>
-                    <a href="/team/{{ team.id }}/">{{ team.name }}</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
+<div class="center">
+    <div class="placeLeft">
+        <table>
+            <tr>
+                <th><h3>Týmy, kde jsem kapitán</h3></th>
+            </tr>
+            {% for team in teams_c %}
+            <tr>
+                <td>
+                <a href="/team/{{ team.id }}/">{{ team.name }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
-    <div class="col-md-3">
-        <div style="text-align: center;">
-            <table>
-                    <tr>
-                        <th><h3>Týmy, kde jsem přicmrndávač</h3></th>
-                    </tr>
-                    {% for team in teams_p %}
-                    <tr>
-                        <td>
-                            <a href="/team/{{ team.id }}/">{{ team.name }}</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-        </div>
+    <div class="placeRight">
+        <table>
+            <tr>
+                <th><h3>Týmy, kde jsem řadový hráč</h3></th>
+            </tr>
+            {% for team in teams_p %}
+            <tr>
+                <td>
+                    <a href="/team/{{ team.id }}/">{{ team.name }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
+
 {% endblock %}
