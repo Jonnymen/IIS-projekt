@@ -6,10 +6,19 @@
         left: 50%;
         transform: translate(-50%, -50%);
         overflow: hidden;
-        width: 80%;
+        width: 50%;
     }
     .placeLeft { float: left; }
     .placeRight { float: right; }
+    table {
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 1em;
+    }
+    th, td {
+      background: #dcefdd;
+      text-align: center; 
+    }
 </style>
 
 {% extends 'base.html' %}
@@ -18,7 +27,7 @@
     <div class="placeLeft">
         <table>
             <tr>
-                <th><h3>Týmy, kde jsem kapitán</h3></th>
+                <th><h3><b>Týmy, kde jsem <font color="#F50057">kapitán</font></b></h3></th>
             </tr>
             {% for team in teams_c %}
             <tr>
@@ -32,7 +41,7 @@
     <div class="placeRight">
         <table>
             <tr>
-                <th><h3>Týmy, kde jsem řadový hráč</h3></th>
+                <th><h3><b>Týmy, kde jsem <font color="#F50057">řadový hráč</font></b></h3></th>
             </tr>
             {% for team in teams_p %}
             <tr>
