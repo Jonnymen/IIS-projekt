@@ -507,10 +507,11 @@ def select_winner_t(request, game_id, team_id):
     team = Team.objects.get(id=team_id)
     next_game = game.next_game
     game.winner = team
-    if game.id < second_game.id:
-        next_game.team_1 = game.winner
-    else:
-        next_game.team_2 = game.winner
+    if next_game is not None:
+        if game.id < second_game.id:
+            next_game.team_1 = game.winner
+        else:
+            next_game.team_2 = game.winner
     game.save()
     next_game.save()
     return redirect("/games_t/" + str(game.tournament.id) + "/")
