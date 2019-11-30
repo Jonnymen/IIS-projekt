@@ -1,5 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+    label[for="file"] {
+        width: 90px;
+        background-color:#5994ff;
+        border-radius: 6px;
+        padding: 5px;
+        text-align: center;
+        color:white;
+        font-weight: bold;
+        cursor: pointer;
+}
+    input[type="file"] {
+            display: none;
+    }
+</style>
 <div class="row" style="padding-top: 7rem;">
     <div class="col-md-4 offset-md-4">
         <div style="text-align: center;">

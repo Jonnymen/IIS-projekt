@@ -59,6 +59,9 @@ class EditLogo(forms.ModelForm):
     class Meta:
         model = Team
         fields = ('logo',)
+        labels = {
+            'logo': 'Nahrát'
+        }
 
 class LoginForm(forms.Form):
 
