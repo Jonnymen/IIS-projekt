@@ -51,6 +51,7 @@ class EditProfileForm(UserChangeForm):
         }
 
 class EditPicture(forms.ModelForm):
+    image = forms.ImageField(label=_('Profilovka', required=False, widget=forms.FileInput))
     class Meta:
         model = Profile
         fields = ('image',)
