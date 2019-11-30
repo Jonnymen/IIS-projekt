@@ -9,7 +9,7 @@
     label[for="id_image"] {
         width: 90px;
         background-color:#5994ff;
-        border-radius: 6px;
+        border-radius: 5px;
         padding: 5px;
         text-align: center;
         color:white;
@@ -41,22 +41,25 @@
             <td>&nbsp</td>
           </tr>
           {% endif %}
-        {% endfor %}
-        <tr>
-          <td></td>
-          <td></td>
-          <td>{{picture}}</td>
-        </tr>
-        <tr>
+        {% endfor %} 
             <td></td>
             <td></td>
             <td><button type="submit" align="center" class="btn btn-outline-success">Uložit změny</button></td>
             <td></td>
             <td></td>
-            <td><a href="/profile/edit/password/" class="btn btn-outline-success">Změna Hesla</a></td>
+            <td><a href="" class="btn btn-outline-success">Změna Hesla</a></td>
         </tr>   
       </table>
+      <div class="center" style="text-align: center;">
+          {{picture}}
+      </div>
+      <div class="center" style="text-align: center;">
+          <button type="submit" align="center" style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-success">Uložit změny</button>
+      </div>
       <br>
+      <div class="center" style="text-align: center;">
+          <a href="/profile/edit/password/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Změna hesla</button></a>
+      </div>
       
       
 </form>
