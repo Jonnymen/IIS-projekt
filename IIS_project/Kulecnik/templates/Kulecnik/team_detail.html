@@ -18,7 +18,7 @@
 <div class="row" style="padding-top: 5rem;">
     <div class="col"></div>
     <div class="col">
-        <div style="text-align: center;">
+        
             <table align="center">
                 <tr>
                     <td>
@@ -71,12 +71,12 @@
                 </tr>
                 {% endif %}
             </table>
-        </div>
+        
     </div>
     <div class="col">
         <form method='post' enctype="multipart/form-data">
             {% csrf_token %}
-            {{ logo }}
+            {{ logo.as_p }}
             <button type="submit" align="center" style="text-align: center; min-width: 8rem; max-width: 8rem;" class="btn btn-outline-success">Uložit změny</button>
     </form>
     </div>
