@@ -1,27 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="row">
-    <div class="col-md-4 offset-md-4">
-        <br>
-        <br>
-        <h1 align="center"><b>Turnaje jednotlivců</b></h1><br>
-        <table align="center" cellpadding = "5" cellspacing = "5">
-            <tr>
-                <td><b>Název turnaje</b></td>
-                <td align="center"><b>Konec Registrací</b></td>
-                <td align="center"><b>Obsazenost</b></td>
-            </tr>
+<style type="text/css">
+    td {
+        padding:0 20px 0 20px;
+        text-align: center; 
+        vertical-align: middle;
+    }
+    tr:nth-child(odd) {
+    	background: #dcefdd;
+    }
+    tr:first-child {
+    	background-color: #388E3C;
+        color: white;
+	}
+</style>
 
-            {% for row in data %}
-            <tr>
-                <td><a href="/tournament_s/{{ row.pk }}/">{{ row.title }}</a></td>
-                <td width="40%" align="center">{{row.reg_deadline|date:"j.n.Y"}}</td>
-                <td align="center">x/{{row.capacity}}</td>
-            </tr>
-            {% endfor %}
-        </table>
+    <br>
+    <br>
+    <h1 align="center"><b>Turnaje jednotlivců</b></h1><br>
+    <table style="width:40%" align="center" cellpadding = "5" cellspacing = "5">
+        <tr>
+            <td><b>Název turnaje</b></td>
+            <td align="center"><b>Konec Registrací</b></td>
+            <td align="center"><b>Obsazenost</b></td>
+        </tr>
 
-    </div>
-</div>
+        {% for row in data %}
+        <tr>
+            <td><a href="/tournament_s/{{ row.pk }}/">{{ row.title }}</a></td>
+            <td width="40%" align="center">{{row.reg_deadline|date:"j.n.Y"}}</td>
+            <td align="center">x/{{row.capacity}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
