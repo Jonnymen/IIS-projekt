@@ -161,7 +161,7 @@ def confirm_referee(request, row_id, ref_id):
 
 def reg_referee_t(request, row_id, ref_id):
     current_tournament = Tournament_T.objects.get(id=row_id)
-    teams = Tournament_Teams.object.filter(tournament=current_tournament)
+    teams = Tournament_Teams.objects.filter(tournament=current_tournament)
     for row in teams:
         if row.team.captain is request.user or row.team.player is request.user:
             return render(request, template_name='Kulecnik/message.html', context={"message":"Na tento turnaj už jsi zaregistrovaný jako hráč", "back":"/tournament_t/" + str(row_id) + "/"})
