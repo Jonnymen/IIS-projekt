@@ -16,7 +16,8 @@
     }
 </style>
 <div class="row" style="padding-top: 5rem;">
-    <div class="col-md-6 offset-md-3">
+    <div class="col"></div>
+    <div class="col">
         <div style="text-align: center;">
             <table>
                 <tr>
@@ -72,12 +73,12 @@
             </table>
         </div>
     </div>
-    <form method='post' enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ logo }}
-        <div class="center" style="text-align: center;">
-                <button type="submit" align="center" style="text-align: center; min-width: 8rem; max-width: 8rem;" class="btn btn-outline-success">Uložit změny</button>
-        </div>
+    <div class="col">
+        <form method='post' enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ logo }}
+            <button type="submit" align="center" style="text-align: center; min-width: 8rem; max-width: 8rem;" class="btn btn-outline-success">Uložit změny</button>
     </form>
+    </div>
 </div>
 {% endblock %}
