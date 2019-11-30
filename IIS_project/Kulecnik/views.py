@@ -441,13 +441,13 @@ def game_generator_s(request, tournament_id):
     while capacity > 0:
         try:
             team_1 = all_teams.pop(0)
-            team_1 = team_1.team
+            team_1 = team_1.player
         except:
             team_1 = None
 
         try:
             team_2 = all_teams.pop(0)
-            team_2 = team_2.team
+            team_2 = team_2.player
         except:
             team_2 = None
 
@@ -510,16 +510,43 @@ def list_games_t(request, tournament_id):
     games = Game_T.objects.filter(tournament=tournament)
     return render(request, template_name="Kulecnik/games_t.html", context={'games':games, 'stages':stages})
 
+def list_games_s(request, tournament_id):
+    tournament = Tournament_S.objects.get(id=tournament_id)
+    stages_no = math.log2(tournament.capacity)
+    stages = []
+    i = 1
+    while i <= stages_no:
+        stages.append(i)
+        i += 1
+    games = Game_S.objects.filter(tournament=tournament)
+    return render(request, template_name="Kulecnik/games_s.html", context={'games':games, 'stages':stages})
+
 def select_winner_t(request, game_id, team_id):
     game = Game_T.objects.get(id=game_id)
-    second_game = Game_T.objects.exclude(id=game_id).get(next_game=game.next_game)
     team = Team.objects.get(id=team_id)
     next_game = game.next_game
     game.winner = team
-    if game.id < second_game.id:
-        next_game.team_1 = game.winner
-    else:
-        next_game.team_2 = game.winner
+    if next_game is not None:
+        second_game = Game_T.objects.exclude(id=game_id).get(next_game=game.next_game)
+        if game.id < second_game.id:
+            next_game.team_1 = game.winner
+        else:
+            next_game.team_2 = game.winner
+        next_game.save()
     game.save()
-    next_game.save()
     return redirect("/games_t/" + str(game.tournament.id) + "/")
+
+def select_winner_s(request, game_id, player_id):
+    game = Game_S.objects.get(id=game_id)
+    player = User.objects.get(id=player_id)
+    next_game = game.next_game
+    game.winner = player
+    if next_game is not None:
+        second_game = Game_T.objects.exclude(id=game_id).get(next_game=game.next_game)
+        if game.id < second_game.id:
+            next_game.player_1 = game.winner
+        else:
+            next_game.player_2 = game.winner
+        next_game.save()
+    game.save()
+    return redirect("/games_s/" + str(game.tournament.id) + "/")

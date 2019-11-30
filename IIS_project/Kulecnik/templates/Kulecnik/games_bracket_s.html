@@ -13,10 +13,10 @@
                 {% if game.stage == stage %}
                     <li class="spacer">&nbsp;</li>
                     <li class="game game-top {% if game.winner is not None %} {% if game.winner == game.team_1 %}winner{% endif %}{% endif %}">{% if game.player_1 %} 
-                        {{game.player_1.name}} {%else%} N/A {% endif %}</li>
+                        {{game.player_1.username}} {%else%} N/A {% endif %}</li>
                     <li class="game game-spacer">&nbsp;</li>
                     <li class="game game-bottom {% if game.winner is not None %} {% if game.winner == game.team_2 %}winner{% endif %}{% endif %}">{% if game.player_2 %} 
-                        {{game.player_2.name}} {%else%} N/A {% endif %}</li>
+                        {{game.player_2.username}} {%else%} N/A {% endif %}</li>
                 {% endif %}
             {% endfor %}
                     <li class="spacer">&nbsp;</li>

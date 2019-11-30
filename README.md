@@ -1,8 +1,5 @@
 # IIS-projekt
 
-MAIN:
-Výsledky a seznam her, nějak rozumně
-
 1) Hvězdička u povinných údajů ve formulářích
 4) Kontrola nekonzistentnosti
 5) Admin musí umět všechno
