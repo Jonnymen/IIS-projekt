@@ -262,7 +262,8 @@ def leave_team(request, team_id):
 
 @login_required
 def show_profile(request):
-    ubehle_poradane = list(Tournament_S.objects.filter(host=user.request))
+    poradane = Tournament_S.objects.filter(host=user.request)
+    ucastnene = Tournament_Players.objects.filter(player=request.user)
     return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t, "my_tournaments_s_link":my_tournaments_s_link, "my_tournaments_t_link":my_tournaments_t_link})
 
 def confirm_team(request, tournament_id, team_id):
