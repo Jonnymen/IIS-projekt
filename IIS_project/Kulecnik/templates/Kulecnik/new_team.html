@@ -6,6 +6,7 @@
         align-items: center;
         margin-top: -50px;
         margin-left: -100px;
+        transform: scale(3);
     }
 </style>
 
@@ -13,14 +14,14 @@
 {% block content %}
 
 <br>
-<p align="center" style="font-size:200%;margin-bottom:5cm"><b>Vytvoření  týmu</b></p>
+<p align="center" style="font-size:1000%;margin-bottom:5cm"><b>Vytvoření  týmu</b></p>
 <br>
 <form method="post">
     {% csrf_token %}
     <div class="center">
         <p align="center"><b>{{ form.name.label }}</b></p>
         <p align="center">{{ form.name }}</p> 
-        <button align="middle" type="submit" class="btn btn-outline-success">Vytvořit</button>
+        <p align="center"><button align="middle" type="submit" class="btn btn-outline-success">Vytvořit</button></p> 
     </div>
 </form>
 {% if success %}
