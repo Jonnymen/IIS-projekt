@@ -89,7 +89,7 @@ def add_tournament_t(request):
         return render(request, template_name='Kulecnik/index.html', context=None)
 
 def list_tournament_s(request):
-    query = Tournament_S.objects.all()
+    query = Tournament_S.objects.all().order_by('start_date')
     return render(request, template_name="Kulecnik/tournament_s.html", context={'data':query})
 
 def tournament_detail_s(request, row_id):
