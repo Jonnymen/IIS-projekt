@@ -59,7 +59,7 @@ class EditLogo(forms.ModelForm):
     logo = forms.ImageField()
     class Meta:
         model = Team
-        fields = ('logo')
+        fields = ('logo',)
 
 class LoginForm(forms.Form):
 
