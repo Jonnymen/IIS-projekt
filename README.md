@@ -1,8 +1,5 @@
 # IIS-projekt
 
-2) Statistiky k userům - Jonny
-3) Dodělat profilovou stránku
-4) Pořadatel potvrzuje registraci rozhodčích
-
-Bonus:
-1) Odhlašování je broken
+1) Přidělování rozhodčích
+2) Statistiky k týmům
+3) Dodělat profile_page
