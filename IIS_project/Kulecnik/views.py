@@ -505,4 +505,4 @@ def select_winner_t(request, game_id, team_id):
     team = Team.objects.get(id=team_id)
     game.winner = team
     game.save()
-    return redirect("/games_t/" + str(game_id) + "/")
+    return redirect("/games_t/" + str(game.tournament.id) + "/")
