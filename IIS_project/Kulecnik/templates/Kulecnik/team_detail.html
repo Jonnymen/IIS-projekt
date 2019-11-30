@@ -57,5 +57,9 @@
             </table>
         </div>
     </div>
+    <form method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{picture.as_p}}
+    </form>
 </div>
 {% endblock %}

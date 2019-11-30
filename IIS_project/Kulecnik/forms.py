@@ -55,6 +55,11 @@ class EditPicture(forms.ModelForm):
         model = Profile
         fields = ('image',)
 
+class EditLogo(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ('logo',)
+
 class LoginForm(forms.Form):
 
     username = forms.CharField(max_length=40)
