@@ -34,6 +34,8 @@
         <p>
             <b>Pořadatel:</b> <a href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
         </p>
+        {% if tournament.is_past_reg %}
+        {% else %}
         {% if user.is_authenticated %}
         {% if registered %}
         <p>
@@ -67,6 +69,7 @@
                 <input type="button" class="btn btn-outline-success" value="Registrovat jako rozhodčí">
             </a>
         </p>
+        {% endif %}
         {% endif %}
         {% endif %}
         {% if tournament.host.id == user.id %}
