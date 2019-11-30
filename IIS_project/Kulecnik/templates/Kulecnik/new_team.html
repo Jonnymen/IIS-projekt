@@ -5,8 +5,8 @@
         <div style="text-align: center;">
             <form method="post">
                 {% csrf_token %}
-                <b>{{ form.as_p }}</b>
-                <p><b> {{ form.name.value }} </b> {{ form.name }} {{ form.name.label }}</p>
+                <p><b>{{ form.name.label }}</b></p>
+                <p>{{ form.name }}</p> 
                 <button type="submit" class="btn btn-outline-success">Vytvořit</button>
             </form>
             {% if success %}
