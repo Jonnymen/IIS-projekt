@@ -19,16 +19,16 @@
             <h1>Registrace</h1><br>
             {% csrf_token %}
             {% for field in form %}
-                <p>
-                {{ if field.label == "first_name" }}
-                {{ field.label }} <b><font color="red">*</font></b>
-                {{ else }}
+                {% if field.label == "Křestní jméno" or field.label == "Příjmení" %}
                 {{ field.label }}
-                {{ endif }}
+                {% else %}
+                {{ field.label }}<b><font color="red">*</font></b>
+                {% endif %}
                 <br>
                 {{ field }}
                 </p>
             {% endfor %}
+            <p align="left"><font color="red" size="-1"><b>Pole označená * jsou povinná.</b></font></p>
             <input type="submit" class="btn btn-outline-success" value="Registruj" />
         </form>
     </div>

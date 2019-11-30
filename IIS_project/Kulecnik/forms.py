@@ -24,12 +24,12 @@ class RegistrationForm(UserCreationForm):
             'password2'
         )
         labels = {
-            "email": _("E-mail*"),
+            "email": _("E-mail"),
             "first_name": "Křestní jméno",
             "last_name": "Příjmení",
-            "password1": "Heslo*",
-            "password2": "Potvrďte heslo*",
-            "username": "Uživatelské jméno*",
+            "password1": "Heslo",
+            "password2": "Potvrďte heslo",
+            "username": "Uživatelské jméno",
         }
         widgets = {
             "email": forms.EmailInput(attrs={'placeholder': '2017-10-20', 'rows':1, 'cols':15}),

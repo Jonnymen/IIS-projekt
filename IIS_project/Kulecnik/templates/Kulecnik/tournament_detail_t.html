@@ -1,11 +1,26 @@
+<style>
+    table {
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 1em;
+    }
+    
+    th, td {
+        background: #FFDFDF;
+        padding: 12px;
+        border-bottom: 2px solid white; 
+    }
+</style>
+
+
 {% extends 'base.html' %}
 {% block content %}
 <div class="row" style="margin-top: 5rem;">
     <div class="col-md-6 offset-md-3">
         <div class="center" style="text-align: center;">
             <p>
-                <h1 style="text-align: center;">{{tournament.title}}</h1><br>
-                <h3>{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
+                <h1 style="text-align: center;font-weight: bold;">{{tournament.title}}</h1><br>
+                <h4 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
             </p>
                 
             <p>

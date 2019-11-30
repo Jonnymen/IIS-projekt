@@ -29,7 +29,11 @@
         {% for field in form %}
         
           <tr>
-              <td  align="right"> <b> {{ field.label }}</b></td>
+              {% if field.label == "Popis" or field.label == "Startovné" %}
+              <td  align="right"> <b> {{ field.label }} </b></td>
+              {% else %}
+              <td  align="right"> <b> {{ field.label }} <font color="red">*</font></b></td>
+              {% endif %}
               <td>&nbsp;&nbsp;</td>
               <td>{{ field }}</td>
           </tr>
@@ -38,13 +42,17 @@
           </tr>
 
         {% endfor %}
-        
+        <tr>
+            <td></td>
+            <td></td>
+            <td><p align="left"><font color="red" size="-1"><b>Pole označená * jsou povinná.</b></font></p></td>
+        </tr>           
         <tr>
             <td></td>
             <td></td>
             <td><button type="submit" align="center" class="btn btn-outline-success">Vytvořit</button></td>
-        </tr>   
-      </table>
+        </tr>
+      </table>   
       
     </form>
 
