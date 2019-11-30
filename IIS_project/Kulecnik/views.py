@@ -284,6 +284,11 @@ def show_profile(request):
 
 def confirm_team(request, tournament_id, team_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
+    pocet = Tournament_Teams.objects.filter(tournament=tournament, registered=True).count()
+    if request.user.id is not tournament.host.id and request.user.is_superuser is False:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_t/" + str(tournament_id) + "/"})
+    if pocet >= tournament.capacity:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj je zaplněn!", "back":"/tournament_t/" + str(tournament_id) + "/"})
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
     link.registered = True
@@ -292,6 +297,8 @@ def confirm_team(request, tournament_id, team_id):
 
 def deny_team(request, tournament_id, team_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
+    if request.user.id is not tournament.host.id and request.user.is_superuser is False:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_t/" + str(tournament_id) + "/"})
     team = Team.objects.get(id=team_id)
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
     link.delete()
@@ -302,7 +309,7 @@ def confirm_player(request, tournament_id, player_id):
     pocet = Tournament_Players.objects.filter(tournament=tournament, registered=True).count()
     if request.user.id is not tournament.host.id and request.user.is_superuser is False:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_s/" + str(tournament_id) + "/"})
-    if pocet == tournament.capacity:
+    if pocet >= tournament.capacity:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj je zaplněn!", "back":"/tournament_s/" + str(tournament_id) + "/"})
     player = User.objects.get(id=player_id)
     link = Tournament_Players.objects.get(player=player, tournament=tournament)
