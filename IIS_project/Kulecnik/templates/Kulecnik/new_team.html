@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="row" style="padding-top: 7rem;">
-    <div class="col-md-4 offset-md-4">
-        <div style="text-align: center;">
-            <form method="post">
-                {% csrf_token %}
-                <p><b>{{ form.name.label }}</b></p>
-                <p>{{ form.name }}</p> 
-                <button type="submit" class="btn btn-outline-success">Vytvořit</button>
-            </form>
-            {% if success %}
-            <p style="color: green;">{{ success }}</p>
-            {% endif %}
-            {% if failure %}
-            <p style="color: red;">{{ failure }}</p>
-            {% endif %}
-        </div>
-    </div>
-</div>
+<br>
+<p align="center" style="font-size:200%;"><b>Vytvoření  týmu</b></p>
+<br>
+<form method="post">
+    {% csrf_token %}
+    <p><b>{{ form.name.label }}</b></p>
+    <p>{{ form.name }}</p> 
+    <button type="submit" class="btn btn-outline-success">Vytvořit</button>
+</form>
+{% if success %}
+<p style="color: green;">{{ success }}</p>
+{% endif %}
+{% if failure %}
+<p style="color: red;">{{ failure }}</p>
+{% endif %}
 {% endblock %}

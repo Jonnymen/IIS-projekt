@@ -157,5 +157,5 @@ class NewTeamForm(forms.ModelForm):
             'name',
         )
         labels = {
-            "name": "Jméno týmu:",
+            "name": "Zadejte jméno týmu:",
         }
