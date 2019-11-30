@@ -501,6 +501,17 @@ def list_games_t(request, tournament_id):
     games = Game_T.objects.filter(tournament=tournament)
     return render(request, template_name="Kulecnik/games_t.html", context={'games':games, 'stages':stages})
 
+def list_games_s(request, tournament_id):
+    tournament = Tournament_T.objects.get(id=tournament_id)
+    stages_no = math.log2(tournament.capacity)
+    stages = []
+    i = 1
+    while i <= stages_no:
+        stages.append(i)
+        i += 1
+    games = Game_S.objects.filter(tournament=tournament)
+    return render(request, template_name="Kulecnik/games_s.html", context={'games':games, 'stages':stages})
+
 def select_winner_t(request, game_id, team_id):
     game = Game_T.objects.get(id=game_id)
     team = Team.objects.get(id=team_id)
