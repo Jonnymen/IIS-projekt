@@ -40,7 +40,7 @@
                         <td><a href="/profile_page/{{ team.player.id }}/">{{ team.player.username }}</a></td>
                 </tr>
             </table>
-            {% if user.id == team.captain.id %}
+            {% if user.id == team.captain.id or user.is_superuser %}
                 {% if team.player %}
                     <a href="/team/{{ team.id }}/removeplayer/"><button type="submit" style="min-width: 9.8rem; max-width: 9.8rem;" class="btn btn-outline-danger">Odebrat hráče</button></a>
                 {% else %}
