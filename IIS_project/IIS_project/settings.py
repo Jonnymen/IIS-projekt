@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'IIS_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_kulecniky',
+        'NAME': 'django_kulecnik',
         'USER': 'xmensi13',
         'PASSWORD': 'hesloheslo',
         'HOST': 'localhost',
