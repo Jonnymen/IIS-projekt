@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <br>
+        <br>
+        <h1 align="center">Hry turnaje</h1><br>
+        <table align="center" border="1" style="table-layout: fixed; width: 40rem; border-collapse: collapse;">
+            <tr>
+                <td align="center"><b>Hráč č.1</b></td>
+                <td align="center"><b>Hráč č.2</b></td>
+                <td align="center"><b>Stůl</b></td>
+                <td align="center"><b>Vítěz</b></td>
+            </tr>
+
+            {% for stage in stages %}
+                {% for game in games %}
+                    {% if game.stage == stage %}
+                        {% if game.team_1 %}
+                        <tr>
+                            <td align="center">{{ game.player_1.username }}</td>
+                            <td align="center">{{ game.player_2.username }}</td>
+                            <td align="center">{{ game.table.name }}</td>
+                            <td align="center">
+                                <div class="dropdown">
+                                    <button class="btn bg-transparent" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {% if game.winner %} {{ game.winner.username }} {% else %} Zadejte vítěze {% endif %}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="/games_s/{{game.id}}/select_winner/{{game.player_1.id}}/">{{ game.player_1.username }}</a>
+                                        {% if game.team_2 %}
+                                        <a class="dropdown-item" href="/games_t/{{game.id}}/select_winner/{{game.player_2.id}}/">{{ game.player_2.username }}</a>
+                                        {% endif %}
+                                    </div>
+                                  </div>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}     
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
+{% endblock %}

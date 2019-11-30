@@ -515,3 +515,18 @@ def select_winner_t(request, game_id, team_id):
         next_game.save()
     game.save()
     return redirect("/games_t/" + str(game.tournament.id) + "/")
+
+def select_winner_s(request, game_id, player_id):
+    game = Game_S.objects.get(id=game_id)
+    player = User.objects.get(id=player_id)
+    next_game = game.next_game
+    game.winner = player
+    if next_game is not None:
+        second_game = Game_T.objects.exclude(id=game_id).get(next_game=game.next_game)
+        if game.id < second_game.id:
+            next_game.player_1 = game.winner
+        else:
+            next_game.player_2 = game.winner
+        next_game.save()
+    game.save()
+    return redirect("/games_s/" + str(game.tournament.id) + "/")
