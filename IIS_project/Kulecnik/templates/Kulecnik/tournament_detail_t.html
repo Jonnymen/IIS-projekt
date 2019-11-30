@@ -69,7 +69,7 @@
         {% endif %}
         {% endif %}
         {% endif %}
-        {% if tournament.host.id == user.id %}
+        {% if tournament.host.id == user.id or user.is_superuser%}
         {% if is_past %}
         <div class="center" style="text-align: center;">
             <a href="/generate/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Generovat hry</button></a>
@@ -109,7 +109,7 @@
                     <td>
                         <a href="/team/{{ row.team.pk }}/">{{ row.team.name }}</a>
                     </td>
-                    {% if tournament.host.id == user.id %}
+                    {% if tournament.host.id == user.id or user.is_superuser%}
                     <td>
                         <a href="/{{ tournament.id }}/deny_t/{{ row.team.id }}/">
                             <input type="button" class="btn btn-outline-danger" value="Odebrat">
@@ -133,7 +133,7 @@
                         <td>
                             <a href="/team/{{ row.team.pk }}/">{{ row.team.name }}</a>
                         </td>
-                        {% if tournament.host.id == user.id %}
+                        {% if tournament.host.id == user.id or user.is_superuser%}
                         <td>
                             <a href="/{{ tournament.id }}/confirm_t/{{ row.team.id }}/">
                                 <input type="button" class="btn btn-outline-success" value="Potvrdit">
