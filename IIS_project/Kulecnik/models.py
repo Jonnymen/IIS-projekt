@@ -50,7 +50,7 @@ class Tournament_T(models.Model):
     description = models.TextField(blank=True, null=True)
     reg_deadline = models.DateTimeField()
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='host_t')
-    winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='winner_tt')
+    winner = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name='team_tt')
 
     @property
     def is_past_start(self):
