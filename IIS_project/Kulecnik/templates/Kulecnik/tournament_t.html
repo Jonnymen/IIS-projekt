@@ -16,27 +16,23 @@
     }
 </style>
 
-<div class="row">
-    <div class="col-md-4 offset-md-4">
-        <br>
-        <br>
-        <h1 align="center"><b>Turnaje týmů</b></h1><br>
-        <table style="width:50%" align="center" cellpadding = "5" cellspacing = "5">
-            <tr>
-                <td><b>Název turnaje</b></td>
-                <td><b>Konec Registrací</b></td>
-                <td><b>Obsazenost</b></td>
-            </tr>
+    <br>
+    <br>
+    <h1 align="center"><b>Turnaje týmů</b></h1><br>
+    <table style="width:50%" align="center" cellpadding = "5" cellspacing = "5">
+        <tr>
+            <td><b>Název turnaje</b></td>
+            <td><b>Konec Registrací</b></td>
+            <td><b>Obsazenost</b></td>
+        </tr>
 
-            {% for row in data reversed %}
-            <tr>
-                <td><a href="/tournament_t/{{ row.pk }}/">{{ row.title }}</a></td>
-                <td>{{row.reg_deadline|date:"j.n.Y"}}</td>
-                <td>x/{{row.capacity}}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        {% for row in data reversed %}
+        <tr>
+            <td><a href="/tournament_t/{{ row.pk }}/">{{ row.title }}</a></td>
+            <td>{{row.reg_deadline|date:"j.n.Y"}}</td>
+            <td>x/{{row.capacity}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
-    </div>
-</div>
 {% endblock %}
