@@ -264,7 +264,7 @@ def leave_team(request, team_id):
 def show_profile(request):
     poradane = Tournament_S.objects.filter(host=request.user)
     ucastnene = Tournament_Players.objects.filter(player=request.user)
-    return render(request, template_name='users/profile.html', context={"user":request.user, "my_tournaments_s":my_tournaments_s, "my_tournaments_t":my_tournaments_t, "my_tournaments_s_link":my_tournaments_s_link, "my_tournaments_t_link":my_tournaments_t_link})
+    return render(request, template_name='users/profile.html', context={"poradane":poradane, "ucastnene":ucastnene})
 
 def confirm_team(request, tournament_id, team_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
