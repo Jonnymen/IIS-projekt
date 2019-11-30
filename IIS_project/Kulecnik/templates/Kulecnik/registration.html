@@ -19,11 +19,11 @@
             <h1>Registrace</h1><br>
             {% csrf_token %}
             {% for field in form %}
-                {{ if field.label == "first_name" }}
+                {% if field.label == "first_name" %}
                 <p>{{ field.label }}</p>
-                {{ else }}
+                {% else %}
                 <p>{{ field.label }}<b><font color="red">*</font></b></p>
-                {{ endif }}
+                {% endif %}
                 <br>
                 {{ field }}
                 </p>
