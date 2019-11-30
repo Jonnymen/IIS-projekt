@@ -540,6 +540,10 @@ def select_winner_t(request, game_id, team_id):
         else:
             next_game.team_2 = game.winner
         next_game.save()
+    else:
+        tournament = game.tournament
+        tournament.winner = game.winner
+        tournament.save()
     game.save()
     return redirect("/games_t/" + str(game.tournament.id) + "/")
 
@@ -555,5 +559,9 @@ def select_winner_s(request, game_id, player_id):
         else:
             next_game.player_2 = game.winner
         next_game.save()
+    else:
+        tournament = game.tournament
+        tournament.winner = game.winner
+        tournament.save()
     game.save()
     return redirect("/games_s/" + str(game.tournament.id) + "/")
