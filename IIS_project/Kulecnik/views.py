@@ -202,8 +202,8 @@ def tournament_detail_t(request, row_id):
                 return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams, "pocet": pocet, "is_past":is_past})
 
 def team_detail(request, team_id):
+    team = Team.objects.get(pk=team_id)
     if request.method == 'GET':
-        team = Team.objects.get(pk=team_id)
         logo = EditLogo(instance=team)
         if team is None:
             return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
