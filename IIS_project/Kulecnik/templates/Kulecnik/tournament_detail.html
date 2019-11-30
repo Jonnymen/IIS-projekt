@@ -45,7 +45,7 @@
             <form method="post">
                 {% csrf_token %}
                 <input type="hidden" id="registrovan" name="registrovan" value="yes">
-                <button type="submit" align="center" class="btn btn-outline-success">Odregistruj</button>
+                <button type="submit" align="center" class="btn btn-outline-danger">Odregistruj</button>
             </form>
         </p>
         {% else %}
@@ -117,7 +117,7 @@
                     <a href="/tournament_s/{{ tournament.id }}/refcofirm/{{ row.referee.id }}"><input type="button" class="btn btn-success" value="Potvrdit"></a>
                 </td>
                 <td>
-                    <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ row.referee.id }}"><input type="button" class="btn btn-success" value="Potvrdit"></a>
+                    <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ row.referee.id }}"><input type="button" class="btn btn-danger" value="Zamítnout"></a>
                 </td>
             </tr>
             {% endif %}
