@@ -31,6 +31,10 @@ class Tournament_S(models.Model):
     def is_past_start(self):
         return date.today() > self.start_date
 
+    @property
+    def is_past_reg(self):
+        return date.today() > self.reg_deadline
+
 class Tournament_T(models.Model):
     title = models.CharField(max_length=60)
     start_date = models.DateField(blank=True, null=True)
@@ -44,11 +48,11 @@ class Tournament_T(models.Model):
 
     @property
     def is_past_start(self):
-        return timezone.now() > self.start_date
+        return date.today() > self.start_date
 
     @property
     def is_past_reg(self):
-        return timezone.now() > self.reg_deadline
+        return date.today() > self.reg_deadline
 
 class Game_S(models.Model):
     player_1 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="player_1")
