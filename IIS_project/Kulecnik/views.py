@@ -120,7 +120,7 @@ def tournament_detail_s(request, row_id):
         if answer == "yes":
             #Odregistrace
             Tournament_Players.objects.filter(tournament=current_tournament, player=request.user).delete()
-            return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":False, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
+            return redirect("/tournament_s/" + str(row_id) + "/")
         else:
             referee = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=request.user)
             if referee.count() == 1:
@@ -191,7 +191,7 @@ def tournament_detail_t(request, row_id):
         if answer == "yes":
             #Odregistrace
             Tournament_Teams.objects.filter(tournament=current_tournament, team__captain=request.user).delete()
-            return render(request, template_name='Kulecnik/tournament_detail_t.html', context={"tournament":current_tournament, "ucast":zaznamy, "registered":False, "player_teams":player_teams, "pocet": pocet, "is_past":is_past})
+            return render("/tournament_t/" + str(row_id) + "/")
         else:
             try:
                 team = request.POST['team']
