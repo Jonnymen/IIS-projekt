@@ -25,7 +25,7 @@
                             <td align="center">
                                 <div class="dropdown">
                                     <button class="btn bg-transparent" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      {% if game.winner %} {{ game.winner }} {% else %} Zadejte vítěze {% endif %}
+                                      {% if game.winner %} {{ game.winner.name }} {% else %} Zadejte vítěze {% endif %}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="/games_t/{{game.id}}/select_winner/{{game.team_1.id}}/">{{ game.team_1.name }}</a>
