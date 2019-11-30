@@ -1,11 +1,21 @@
+<style>
+        div {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+</style>
+
 {% extends 'base.html' %}
 {% block content %}
+
 <br>
 <p align="center" style="font-size:200%;margin-bottom:5cm"><b>Vytvoření  týmu</b></p>
 <br>
 <form method="post">
     {% csrf_token %}
-    <div align="center">
+    <div>
         <p><b>{{ form.name.label }}</b></p>
         <p>{{ form.name }}</p> 
         <button type="submit" class="btn btn-outline-success">Vytvořit</button>
