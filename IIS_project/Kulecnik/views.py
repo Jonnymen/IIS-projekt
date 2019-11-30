@@ -432,13 +432,13 @@ def game_generator_s(request, tournament_id):
     while capacity > 0:
         try:
             team_1 = all_teams.pop(0)
-            team_1 = team_1.team
+            team_1 = team_1.player
         except:
             team_1 = None
 
         try:
             team_2 = all_teams.pop(0)
-            team_2 = team_2.team
+            team_2 = team_2.player
         except:
             team_2 = None
 
