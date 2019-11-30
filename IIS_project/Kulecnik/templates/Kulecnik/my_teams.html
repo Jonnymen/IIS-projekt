@@ -16,7 +16,7 @@
       border-radius: 1em;
     }
     th, td {
-      background: #dcefdd;
+      background: #B00020;
       text-align: center; 
     }
 </style>
@@ -27,12 +27,12 @@
     <div class="placeLeft">
         <table>
             <tr>
-                <th><h3><b>Týmy, kde jsem <font color="#F50057">kapitán</font></b></h3></th>
+                <th><h3><b><font color="#FFFFFF">Týmy, kde jsem kapitán</font></b></h3></th>
             </tr>
             {% for team in teams_c %}
             <tr>
                 <td>
-                <a href="/team/{{ team.id }}/">{{ team.name }}</a>
+                <a style="color:#FFFFFF" href="/team/{{ team.id }}/">{{ team.name }}</a>
                 </td>
             </tr>
             {% endfor %}
@@ -41,12 +41,12 @@
     <div class="placeRight">
         <table>
             <tr>
-                <th><h3><b>Týmy, kde jsem <font color="#F50057">řadový hráč</font></b></h3></th>
+                <th><h3><b>Týmy, kde jsem <font color="#FFFFFF">řadový hráč</font></b></h3></th>
             </tr>
             {% for team in teams_p %}
             <tr>
                 <td>
-                    <a href="/team/{{ team.id }}/">{{ team.name }}</a>
+                    <a style="color:#FFFFFF" href="/team/{{ team.id }}/">{{ team.name }}</a>
                 </td>
             </tr>
             {% endfor %}

@@ -33,6 +33,35 @@
         </div>
         <br>
     </div>
+    <div class="col">
+        <h4 style="padding-top: 5rem;">Statistiky</h3>
+        <table>
+            <col width="20rem">
+            <col width="20rem">
+            <tr>
+                <td colspan="2" style="text-align: center;"><b>Turnaje</b></td>
+            </tr>
+            <tr>
+                <td style="text-align: left; width: ;">Počet vyhraných:</td>
+                <td>{{ won_tournaments }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Procento vyhraných:</td>
+                <td>{{ tournament_winrate }}%</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;"><b>Zápasy</b></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Počet vyhraných:</td>
+                <td>{{ won_games }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Procento vyhraných:</td>
+                <td>{{ game_winrate }}%</td>
+            </tr>
+        </table>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-4 offset-md-4">
