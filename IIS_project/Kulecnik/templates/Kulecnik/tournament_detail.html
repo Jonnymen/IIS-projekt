@@ -1,4 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <style>
+
         table {
             border-collapse: collapse;
             overflow: hidden;
@@ -28,78 +33,90 @@
         button {
             margin-bottom: 2px;
         }
-    
-    </style>
+ 
+</style>
 
-{% extends 'base.html' %}
-{% block content %}
 <div class="row" style="margin-top: 5rem;">
 
     <div class="col">
 
-        <h3>Registrovaní hráči</h3>
-        <br>
-        <table>
-        {% for row in ucast %}
-        {% if row.registered %}
-            <tr>
-                <td>
-                    <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
-                </td>
-                {% if tournament.host.id == user.id or user.is_superuser%}
-                <td>
-                    <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
-                        <input type="button" class="btn btn-outline-danger" value="Odebrat">
-                    </a>
-                </td>
-                {% endif %}
-            </tr>
-        {% endif %}
-        {% endfor %}
-        </table>
+        <div class="center" style="text-align: center; margin-top: 2rem;">
 
-        <h3>Potvrzení rozhodčí</h3>
-        <table>
-            {% for row in rozhodci %}
-            {% if row.registered %}
-            <tr>
-                <td>
-                    <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
-                </td>
-                <td>
-                    <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ row.referee.id }}">
-                        <input type="button" class="btn btn-danger" value="Odebrat">
-                    </a>
-                </td>
-            </tr>
+            <table align="center">
+                <caption>Potvrzení hráči</caption>
+                {% for row in ucast %}
+                {% if row.registered %}
+                <tr>
+                    <td>
+                        <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
+                    </td>
+                    {% if tournament.host.id == user.id or user.is_superuser%}
+                    <td>
+                        <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
+                            <input type="button" class="btn btn-outline-danger" value="Odebrat">
+                        </a>
+                    </td>
+                    {% endif %}
+                </tr>
             {% endif %}
             {% endfor %}
-        </table>
+            </table>
 
-    </div>
+            <br>
+            <br>
+
+            <table align="center">
+                <caption>Potvrzení rozhodčí</caption>
+                {% for row in rozhodci %}
+                {% if row.registered %}
+                <tr>
+                    <td>
+                        <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
+                    </td>
+                    <td>
+                        <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ row.referee.id }}">
+                            <input type="button" class="btn btn-danger" value="Odebrat">
+                        </a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+
+        </div>
+
+    </div> <!--Ending left column-->
 
     <div class="col-md-5">
 
         <div class="center" style="text-align: center;">
-        <p>
-            <h1 style="text-align: center;font-weight: bold;">{{tournament.title}}</h1><br>
-            <h4 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h4>
-        </p>
-        <p>
-            <b>Popis: </b>{{tournament.description}}
-        </p>
-        <p>
-            <b>Kapacita:</b> {{tournament.capacity}} hráčů
-        </p>
-        <p>
-            <b>Obsazenost turnaje:</b> {{pocet}}/{{tournament.capacity}}
-        </p>
-        <p>
-            <b>Pořadatel:</b> <a href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
-        </p>
-        <p>
-            <b>Konec registrací:</b> {{tournament.reg_deadline |date:"j.n.Y"}}
-        </p>
+            
+            <div style="display: inline-block; text-align: left;">
+                <p>
+                    <h1 style="text-align: center;font-weight: bold;">{{tournament.title}}</h1><br>
+                    <h4 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h4>
+                </p>
+
+                <p>
+                    <b>Popis: </b>{{tournament.description}}
+                </p>
+
+                <p>
+                    <b>Kapacita:</b> {{tournament.capacity}} hráčů
+                </p>
+
+                <p>
+                    <b>Obsazenost turnaje:</b> {{pocet}}/{{tournament.capacity}}
+                </p>
+
+                <p>
+                    <b>Pořadatel:</b> <a href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
+                </p>
+
+                <p>
+                    <b>Konec registrací:</b> {{tournament.reg_deadline |date:"j.n.Y"}}
+                </p>
+            </div>
         {% if tournament.is_past_reg %}
         {% else %}
         {% if user.is_authenticated %}
