@@ -116,7 +116,7 @@
                 <form method="post">
                     {% csrf_token %}
                     <input type="hidden" id="registrovan" name="registrovan" value="yes">
-                    <button type="submit" style="min-width: 12rem; max-width: 12rem;" align="center" class="btn btn-outline-success">Odregistruj</button>
+                    <button type="submit" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-danger">Odregistruj</button>
                 </form>
             </p>
 
@@ -133,7 +133,7 @@
                         <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
                         {% endfor %}
                     </div>  
-                    <button type="submit" style="min-width: 12rem; max-width: 12rem;" align="center" class="btn btn-outline-success">Přihlásit tým</button>
+                    <button type="submit" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-primary">Přihlásit tým</button>
                 </form>
             </p>
             
@@ -145,7 +145,7 @@
 
             <p>
                 <a href="/tournament_t/{{ tournament.id }}/refunreg/{{ user.id }}/">
-                    <input type="button" class="btn btn-outline-danger" value="Odregistrovat jako rozhodčí">
+                    <input type="button" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-danger" value="Odregistrovat jako rozhodčí">
                 </a>
                 Jsi registrován jako rozhodčí
             </p>
@@ -154,7 +154,7 @@
 
             <p>
                 <a href="/tournament_t/{{ tournament.id }}/refreg/{{ user.id }}/">
-                    <input type="button" class="btn btn-outline-success" value="Registrovat jako rozhodčí">
+                    <input type="button" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-success" value="Registrovat jako rozhodčí">
                 </a>
             </p>
 

@@ -12,12 +12,15 @@
     }
 </style>
 
-
-
 {% extends 'base.html' %}
 {% block content %}
 <div class="row" style="margin-top: 5rem;">
-    <div class="col-md-6 offset-md-3">
+
+    <div class="col"></div>
+
+    <div class="col-md-5">
+
+        <div class="center" style="text-align: center;">
         <p>
             <h1 style="text-align: center;font-weight: bold;">{{tournament.title}}</h1><br>
             <h4 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h4>
@@ -101,7 +104,9 @@
                 <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Zobrazit hry</button></a>
         </div>
         {% endif %}
+        </div>
     </div>
+    
     {% if user.id == tournament.host.id or user.is_superuser %}
     <div class="col-md-3">
         <h3>Žádosti rozhodčích</h3>
@@ -196,4 +201,5 @@
             </table>
     </div>
 </div>
+
 {% endblock %}
