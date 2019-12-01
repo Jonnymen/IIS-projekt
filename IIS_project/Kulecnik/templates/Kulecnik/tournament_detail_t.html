@@ -128,12 +128,14 @@
                 <form method="post">
                     {% csrf_token %}
                     <input type="hidden" id="registrovan" name="registrovan" value="no">  
-                    <div style="margin: 0 auto; width:1000px; text-align:left;"> <!--TODO-->
-                        {% for row in player_teams %}
-                        <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
-                        {% endfor %}
+                    <div style="text-align:center;"> <!--TODO-->
+                        <div style="margin: 0 auto; width: auto; text-align: left;">
+                            {% for row in player_teams %}
+                            <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
+                            {% endfor %}
+                        </div>
                     </div>  
-                    <button type="submit" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-primary">Přihlásit tým</button>
+                    <button type="submit" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-primary">Registrovat tým</button>
                 </form>
             </p>
             
