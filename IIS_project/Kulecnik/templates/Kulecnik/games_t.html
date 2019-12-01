@@ -23,7 +23,7 @@
                             <td align="center">{{ game.team_2.name }}</td>
                             <td align="center">{{ game.table.name }}</td>
                             <td align="center">
-                                {% if game.tournament.host == user or or is_referee or user.is_superuser %}
+                                {% if game.tournament.host == user or is_referee or user.is_superuser %}
                                 <div class="dropdown">
                                     <button class="btn bg-transparent" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       {% if game.winner %} {{ game.winner.name }} {% else %} Zadejte vítěze {% endif %}

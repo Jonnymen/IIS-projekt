@@ -561,7 +561,7 @@ def list_games_t(request, tournament_id):
         link = Tournament_T_referees.objects.get(tournament=tournament, referee=request.user)
     except:
         link = None
-        
+
     if link is None:
         is_referee = False
     else:
