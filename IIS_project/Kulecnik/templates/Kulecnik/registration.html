@@ -1,27 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<style>
-    .paperStyle {
-      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+ 
+<script>
+    function comparePasswords(form) {
+        password1 = form.password1.value;
+        password2 = form.password2.value;
+             
+        if (password1 != password2) {
+            alert ("\nZadaná hesla se liší!")
+            return false;
+        }
     }
-</style>
-
-<script> 
-    function comparePasswords(form) { 
-        password1 = form.password1.value; 
-        password2 = form.password2.value; 
-              
-        if (password1 != password2) { 
-            alert ("\nZadaná hesla se liší!") 
-            return false; 
-        } 
-    } 
-</script> 
-
-<div class="card paperStyle" style="margin-top: 5rem;">
+</script>
+ 
+<div class="row" style="margin-top: 5rem;">
     <div class="col-md-4 offset-md-4">
-        <form onSubmit = "return comparePasswords(this)" method="post">
+        <form onSubmit = "return comparePasswords(this)" method="post" style="display: table; margin: auto; border: 1px solid grey; border-radius: 5px; padding: 75px;">
             <h1>Registrace</h1><br>
             {% csrf_token %}
             {% for field in form %}
@@ -39,5 +33,5 @@
         </form>
     </div>
 </div>
-
+ 
 {% endblock %}
