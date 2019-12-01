@@ -11,9 +11,12 @@
         border-bottom: 2px solid white; 
     }
 
-    a {
-        color: white;
+    caption {
+        display: table-caption;
+        text-align: center;
+        caption-side: top;
     }
+
 </style>
 
 {% extends 'base.html' %}
@@ -30,6 +33,7 @@
             <br>
 
             <table align="center">
+                <caption>Potvrzení rozhodčí</caption>
                 {% for row in rozhodci %}
                 {% if row.registered %}
                 <tr>
