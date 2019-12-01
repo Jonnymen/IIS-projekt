@@ -89,7 +89,7 @@ def add_tournament_t(request):
         return render(request, template_name='Kulecnik/index.html', context=None)
 
 def list_tournament_s(request):
-    query = Tournament_S.objects.all().order_by('start_date','reg_deadline')
+    query = Tournament_S.objects.all().order_by('start_date', 'reg_deadline')
     return render(request, template_name="Kulecnik/tournament_s.html", context={'data':query})
 
 def tournament_detail_s(request, row_id):
@@ -187,7 +187,7 @@ def confirm_referee_t(request, row_id, ref_id):
     return redirect("/tournament_t/" + str(row_id) + "/")
 
 def list_tournament_t(request):
-    query = Tournament_T.objects.all().order_by('start_date','reg_deadline')
+    query = Tournament_T.objects.all().order_by('start_date', 'reg_deadline')
     return render(request, template_name="Kulecnik/tournament_t.html", context={'data':query})
 
 def tournament_detail_t(request, row_id):
@@ -557,6 +557,11 @@ def game_bracket_s(request, tournament_id):
 
 def list_games_t(request, tournament_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
+    link = Tournament_T_referees.objects.get(tournament=tournament, referee = request.user)
+    if link is None:
+        is_referee = False
+    else:
+        is_referee = True
     stages_no = math.log2(tournament.capacity)
     stages = []
     i = 1
@@ -564,7 +569,7 @@ def list_games_t(request, tournament_id):
         stages.append(i)
         i += 1
     games = Game_T.objects.filter(tournament=tournament)
-    return render(request, template_name="Kulecnik/games_t.html", context={'games':games, 'stages':stages})
+    return render(request, template_name="Kulecnik/games_t.html", context={'games':games, 'stages':stages, 'is_referee':is_referee})
 
 def list_games_s(request, tournament_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
