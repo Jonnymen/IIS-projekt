@@ -35,12 +35,12 @@
                 </div>
             <table align="center" style="table-layout: fixed; width: 20rem; border-collapse: collapse;">
                 <tr>
-                    <td style="text-align: center;"><b>Kapitán:</b></td>
-                    <td style="text-align: center;"><a href="/profile_page/{{ team.captain.id }}/">{{ team.captain.username }}</a></td>
+                    <td style="text-align: right;"><b>Kapitán:</b></td>
+                    <td style="text-align: left;"><a href="/profile_page/{{ team.captain.id }}/">{{ team.captain.username }}</a></td>
                 </tr>
                 <tr>
-                        <td style="text-align: center;"><b>Druhý hráč:</b></td>
-                        <td style="text-align: center;"><a href="/profile_page/{{ team.player.id }}/">{{ team.player.username }}</a></td>
+                        <td style="text-align: right;"><b>Druhý hráč:</b></td>
+                        <td style="text-align: left;"><a href="/profile_page/{{ team.player.id }}/">{{ team.player.username }}</a></td>
                 </tr>
             </table>
             {% if user.id == team.captain.id or user.is_superuser %}
