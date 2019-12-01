@@ -1,12 +1,13 @@
 <style>
     table {
         border-collapse: collapse;
-        overflow: hidden;
-        border-radius: 1em;
+        
+        border-radius: 5px;
+        border-color: #007bff;
     }
     
     th, td {
-        background: #FFDFDF;
+        background: white;
         padding: 12px;
         border-bottom: 2px solid white; 
     }
@@ -24,7 +25,7 @@
 
         <br>
 
-        <table class="table">
+        <table>
             {% for row in rozhodci %}
             {% if row.registered %}
             <tr>
@@ -188,7 +189,7 @@
     <div class="col">
 
         {% if user.id == tournament.host.id or user.is_superuser %}
-
+        
         <h3>Žádosti o registraci</h3>
         <br>
         <table>
