@@ -21,7 +21,8 @@
 
 {% extends 'base.html' %}
 {% block content %}
-  <table class="center">
+<div class="center">
+  <table>
     <tr>
       <td>
       <div class="card paperStyle">
@@ -43,7 +44,7 @@
       <div class="card paperStyle">
        <table>
             <tr>
-                <th><h3 style="text-align:center"><b><font color="#000000">Řadový hráč v týmech:</font></b></h3></th>
+                <th><h3 style="text-align:center"><b><font color="#000000">Řadovýý hráč v týmech:</font></b></h3></th>
             </tr>
             {% for team in teams_p %}
             <tr>
@@ -57,5 +58,6 @@
       </td>
     </tr>
   </table>
+</div>
 
 {% endblock %}
