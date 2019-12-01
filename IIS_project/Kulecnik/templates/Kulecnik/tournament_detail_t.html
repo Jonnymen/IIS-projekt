@@ -116,7 +116,7 @@
                 <form method="post">
                     {% csrf_token %}
                     <input type="hidden" id="registrovan" name="registrovan" value="yes">
-                    <button type="submit" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-danger">Odregistruj</button>
+                    <button type="submit" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-danger">Odregistrovat tým</button>
                 </form>
             </p>
 
@@ -128,7 +128,7 @@
                 <form method="post">
                     {% csrf_token %}
                     <input type="hidden" id="registrovan" name="registrovan" value="no">  
-                    <div style="margin: 0 auto; width:100px; text-align:left;"> <!--TODO-->
+                    <div style="margin: 0 auto; text-align:left;"> <!--TODO-->
                         {% for row in player_teams %}
                         <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
                         {% endfor %}
