@@ -128,8 +128,8 @@
                 <form method="post">
                     {% csrf_token %}
                     <input type="hidden" id="registrovan" name="registrovan" value="no">  
-                    <div style="text-align:center;"> <!--TODO-->
-                        <div style="margin: 0 auto; width: auto; text-align: left;">
+                    <div style="margin: 0 auto; text-align:center;"> <!--TODO-->
+                        <div style="margin: 0 auto; width: auto; text-align: left; display: table;">
                             {% for row in player_teams %}
                             <input type="radio" id="team" name="team" value={{row.id}}> {{row.name}}<br>
                             {% endfor %}
