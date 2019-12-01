@@ -7,7 +7,7 @@
             border-collapse: collapse;
             overflow: hidden;
             border-radius: 5px;
-            width: 20rem;
+            width: 25rem;
         }
         
         th, td {
@@ -54,6 +54,7 @@
             <br>
             <br>
 
+            {% if ucast.count != 0 %}
             <table align="center">
                 <caption>Potvrzené týmy</caption>
                 {% for row in ucast %}
@@ -73,12 +74,13 @@
             {% endif %}
             {% endfor %}
             </table>
+            {% endif %}
 
         </div>
 
     </div> <!--Ending left column-->
 
-    <div class="col-6">
+    <div class="col-5">
 
         <div class="center" style="text-align: center;">
 
