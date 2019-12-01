@@ -557,7 +557,11 @@ def game_bracket_s(request, tournament_id):
 
 def list_games_t(request, tournament_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
-    link = Tournament_T_referees.objects.get(tournament=tournament, referee = request.user)
+    try:
+        link = Tournament_T_referees.objects.get(tournament=tournament, referee=request.user)
+    except:
+        link = None
+        
     if link is None:
         is_referee = False
     else:
