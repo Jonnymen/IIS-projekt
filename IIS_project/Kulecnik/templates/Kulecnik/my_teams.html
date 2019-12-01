@@ -1,32 +1,23 @@
 <style>
-    .center {
-        align-items: center;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        overflow: hidden;
-        width: 30%;
-    }
-    .placeLeft { float: left; }
-    .placeRight { float: right; }
     table {
-      border-collapse: collapse;
       overflow: hidden;
-      border-radius: 1em;
     }
     th, td {
-      background: #28a745;
       text-align: center;
       padding: 18px;
+    }
+    .paperStyle {
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     }
 </style>
 
 {% extends 'base.html' %}
 {% block content %}
-<div class="center">
-    <div class="placeLeft">
-        <table>
+  <table>
+    <tr>
+      <td>
+      <div class="card paperStyle">
+<table>
             <tr>
                 <th><h3 style="text-align:center"><b><font color="#FFFFFF">Týmy, kde jsem <br> kapitán</font></b></h3></th>
             </tr>
@@ -38,9 +29,11 @@
             </tr>
             {% endfor %}
         </table>
-    </div>
-    <div class="placeRight">
-        <table>
+        </div>
+      </td>
+      <td>
+      <div class="card paperStyle">
+       <table>
             <tr>
                 <th><h3 style="text-align:center"><b><font color="#FFFFFF">Týmy, kde jsem <br> řadový hráč</font></b></h3></th>
             </tr>
@@ -52,7 +45,9 @@
             </tr>
             {% endfor %}
         </table>
-    </div>
-</div>
+                </div>
+      </td>
+    </tr>
+  </table>
 
 {% endblock %}
