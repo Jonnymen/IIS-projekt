@@ -53,7 +53,7 @@
             <br>
             <br>
 
-            <table>
+            <table align="center">
                 <caption>Potvrzené týmy</caption>
                 {% for row in ucast %}
                 {% if row.registered %}
@@ -201,7 +201,7 @@
         <div class="center" style="text-align: center; margin-top: 2rem;">
             {% if user.id == tournament.host.id or user.is_superuser %}
             
-            <table>
+            <table align="center">
                 <caption>Žádosti týmů</caption>
                 {% for row in ucast %}
                 {% if row.registered %}
@@ -230,7 +230,7 @@
             <br>
             <br>
         
-            <table>
+            <table align="center">
                 <caption>Žádosti rozhodčích</caption>
                 {% for row in rozhodci %}
                 {% if row.registered %}
