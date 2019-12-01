@@ -24,7 +24,7 @@
 
         <br>
 
-        <table>
+        <table class="table table-dark">
             {% for row in rozhodci %}
             {% if row.registered %}
             <tr>
@@ -148,13 +148,13 @@
 
         <div class="center" style="text-align: center;">
             <a href="/generate/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Generovat hry</button></a>
-        </div> <!--Ending div-center-->
+        </div>
 
         {% else %}
 
         <div class="center" style="text-align: center;">
             <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Generovat hry</button></a>
-        </div> <!--Ending div-center-->
+        </div>
 
         {% endif %}
         {% endif %}
@@ -180,11 +180,15 @@
         </div>
 
         {% endif %}
-        </div> <!--Ending div-center-->
-    </div>
+
+        </div> 
+
+    </div> <!--Ending center-column-->
 
     <div class="col">
+
         {% if user.id == tournament.host.id or user.is_superuser %}
+
         <h3>Žádosti o registraci</h3>
         <br>
         <table>
