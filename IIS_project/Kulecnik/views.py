@@ -146,6 +146,8 @@ def reg_referee(request, row_id, ref_id):
 
 def unreg_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
+    if request.user.id is not current_tournament.host.id and request.user.is_superuser is False:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_s/" + str(row_id) + "/"})
     referee = User.objects.get(id=ref_id)
     vazba = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=referee)
     vazba.delete()
@@ -153,6 +155,8 @@ def unreg_referee(request, row_id, ref_id):
 
 def confirm_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
+    if request.user.id is not current_tournament.host.id and request.user.is_superuser is False:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_s/" + str(row_id) + "/"})
     referee = User.objects.get(id=ref_id)
     ref = Tournament_S_referees.objects.get(tournament=current_tournament, referee=referee)
     ref.registered = True
@@ -173,6 +177,8 @@ def reg_referee_t(request, row_id, ref_id):
 
 def unreg_referee_t(request, row_id, ref_id):
     current_tournament = Tournament_T.objects.get(id=row_id)
+    if request.user.id is not current_tournament.host.id and request.user.is_superuser is False:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_t/" + str(row_id) + "/"})
     referee = User.objects.get(id=ref_id)
     vazba = Tournament_T_referees.objects.filter(tournament=current_tournament, referee=referee)
     vazba.delete()
@@ -180,6 +186,8 @@ def unreg_referee_t(request, row_id, ref_id):
 
 def confirm_referee_t(request, row_id, ref_id):
     current_tournament = Tournament_T.objects.get(id=row_id)
+    if request.user.id is not current_tournament.host.id and request.user.is_superuser is False:
+        return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš spravovat žádosti, nejsi pořadatelem turnaje!", "back":"/tournament_t/" + str(row_id) + "/"})
     referee = User.objects.get(id=ref_id)
     ref = Tournament_T_referees.objects.get(tournament=current_tournament, referee=referee)
     ref.registered = True
