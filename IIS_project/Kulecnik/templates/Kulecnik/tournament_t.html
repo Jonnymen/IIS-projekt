@@ -7,32 +7,43 @@
         text-align: center; 
         vertical-align: middle;
     }
-    tr:nth-child(odd) {
-    	background: #93a1ad;
+    table {
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 1em;
     }
-    tr:first-child {
-    	background-color: #343a40;
-        color: white;
+    table tr {
+    border-bottom: 1px solid;
+    border-color: #e0e0e0;
 	}
+    table tr:last-child { 
+        border-bottom: none; 
+    }
+    .paperStyle {
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
 </style>
 
     <br>
     <br>
-    <h1 align="center"><b>Turnaje týmů</b></h1><br>
-    <table style="width:40% " align="center" cellpadding = "5" cellspacing = "5">
-        <tr>
-            <td><b>Název turnaje</b></td>
-            <td><b>Začátek turnaje</b></td>
-            <td><b>Konec registrací</b></td>
-        </tr>
+    <div style="display: table; margin: auto;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);width:40%;padding-top: 75px;padding-bottom: 75px;">
+        <h1 align="center"><b>Turnaje týmů</b></h1><br>
+        <br><br>
+        <table width="90%" align="center" cellpadding = "5" cellspacing = "5">
+            <tr>
+                <td><b>Název turnaje</b></td>
+                <td><b>Začátek turnaje</b></td>
+                <td><b>Konec registrací</b></td>
+            </tr>
 
-        {% for row in data %}
-        <tr>
-            <td><a href="/tournament_t/{{ row.pk }}/">{{ row.title }}</a></td>
-            <td>{{row.start_date|date:"j.n.Y"}}</td>
-            <td>{{row.reg_deadline|date:"j.n.Y"}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+            {% for row in data %}
+            <tr>
+                <td><a href="/tournament_t/{{ row.pk }}/">{{ row.title }}</a></td>
+                <td>{{row.start_date|date:"j.n.Y"}}</td>
+                <td>{{row.reg_deadline|date:"j.n.Y"}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 {% endblock %}

@@ -2,6 +2,89 @@
 
 {% block content %}
 
+<script>
+  function compareWithToday(givenDate, message){
+    var a = new Date(String(convertDateFormat(givenDate)));
+
+    var temp = new Date();
+    var temp2 = String(temp.getDate()).padStart(2, '0') + '-' + String(temp.getMonth() + 1).padStart(2, '0') + '-' + temp.getFullYear();
+    temp3 = temp2.substr(6, 4) + '-' + temp2.substr(3, 2) + '-' + temp2.substr(0,2);
+    today = new Date(String(temp3));
+    //alert("a:" + a + "," + "a.getTime():" + a.getTime() + "," + "today:" + today + "," + "today.getTime():" + today.getTime());
+
+    if (a.getTime() <= today.getTime()){
+        alert("Chybné datum " + message + "!");
+        return false;
+    }else{
+        //alert(a.getTime() + " vyhovuje vzhledem k " + today.getTime() );
+        return true;
+    }
+  }
+
+  function convertDateFormat(oldDate){
+    // from 2019-11-13 (yyyy-mm-dd) to 11-13-2019 (mm-dd-yyyy)
+    var newDate = oldDate.substr(5, 6) + '-' + oldDate.substr(0, 4); 
+    return newDate;
+  }
+
+  function checkDateSyntax(date, field) {
+    var re = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
+    if (!date.match(re)) {
+      alert ("\nPole " + field + " musí být ve formátu rrrr-mm-dd!");
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  function checkValues(form) { 
+      capacity = form.capacity.value;
+      entryFee = form.entry_fee.value;
+      startDate = form.start_date.value;
+      endDate = form.end_date.value;
+      regEndDate = form.reg_deadline.value;
+
+      if (entryFee < 0) {
+        alert ("\nRegistrační poplatek nemůže být záporný!!"); 
+        return false;   
+      }
+
+      if( !(Number.isInteger(parseInt(capacity))) || !(capacity >= 4) || !(capacity <= 32) ){
+        alert("Přípustná kapacita je 4, 8, 16 nebo 32 účastníků.");
+        return false;
+      }
+
+      var ret = Math.log(capacity) / Math.log(2); // log_e x
+      if(!(Number.isInteger(ret)) ){
+        alert("Přípustná kapacita je 4, 8, 16 nebo 32 účastníků.");
+        return false;
+      }
+
+      if ( !checkDateSyntax(startDate, "Začátek") || !checkDateSyntax(endDate, "Konec") || !checkDateSyntax(regEndDate, "Konec registrací")){
+        return false;
+      }
+
+      var a = new Date(String(convertDateFormat(regEndDate)));
+      var b = new Date(String(convertDateFormat(startDate)));
+      var c = new Date(String(convertDateFormat(endDate)));
+
+      if( !compareWithToday(regEndDate, "konce registrace") || !compareWithToday(startDate, "začátku turnaje") ||  !compareWithToday(endDate, "konce turnaje") ){
+        return false;
+      }
+      
+      if( !(a.getTime() < b.getTime()) ){
+        alert("Ukončení registrací musí končit před začátkem turnaje!" + today_final + " " + todaysDate);
+        return false;
+      }else if( !(b.getTime() <= c.getTime()) ){
+        alert("Turnaj nemůže skončit dříve než začne!");
+        return false;
+      }else{
+        //alert("Turnaj vytvořen!");
+        return true;
+      }
+  }
+</script> 
+
 <ul class="nav nav-tabs justify-content-center">
   <li class="nav-item">
     <a class="nav-link" href="/add_tournament_s/">Jednotlivci</a>
@@ -14,7 +97,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
 
-    <form method='post'>
+    <form onSubmit = "return checkValues(this)" method='post'>
         {% csrf_token %}
         <br>
         <p align="center" style="font-size:200%;"><b>Vytvoření  turnaje</b></p>

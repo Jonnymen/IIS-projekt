@@ -12,13 +12,13 @@
         overflow: hidden;
         border-radius: 1em;
     }
-    tr:nth-child(odd) {
-    	background: #dcefdd;
-    }
-    tr:first-child {
-    	background-color: #388E3C;
-        color: white;
+    table tr {
+    border-bottom: 1px solid;
+    border-color: #e0e0e0;
 	}
+    table tr:last-child { 
+        border-bottom: none; 
+    }
     .paperStyle {
       box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     }
@@ -26,10 +26,10 @@
 
     <br>
     <br>
-        <div style="display: table; margin: auto; padding: 25px;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);width:40%;padding: 75px;">
+        <div style="display: table; margin: auto;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);width:40%;padding-top: 75px;padding-bottom: 75px;">
             <h1 align="center"><b>Turnaje jednotlivců</b></h1><br>
             <br><br>
-            <table align="center" width="100%" cellpadding = "5" cellspacing = "5">
+            <table align="center" width="90%" cellpadding = "5" cellspacing = "5">
                 <tr>
                     <td><b>Název turnaje</b></td>
                     <td><b>Začátek turnaje</b></td>
