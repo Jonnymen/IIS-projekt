@@ -16,7 +16,7 @@
  
 <div class="row" style="margin-top: 5rem;">
     <div class="col-md-4 offset-md-4">
-        <form onSubmit = "return comparePasswords(this)" method="post" style="display: table; margin: auto; border: 1px solid grey; border-radius: 5px; padding: 75px;">
+        <form onSubmit = "return comparePasswords(this)" method="post" style="display: table; margin: auto; border: 1px solid grey; border-radius: 5px; padding: 75px;box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);">
             <h1>Registrace</h1><br>
             {% csrf_token %}
             {% for field in form %}
