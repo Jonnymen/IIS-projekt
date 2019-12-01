@@ -577,6 +577,15 @@ def list_games_t(request, tournament_id):
 
 def list_games_s(request, tournament_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
+    try:
+        link = Tournament_S_referees.objects.get(tournament=tournament, referee=request.user)
+    except:
+        link = None
+
+    if link is None:
+        is_referee = False
+    else:
+        is_referee = True
     stages_no = math.log2(tournament.capacity)
     stages = []
     i = 1
@@ -584,7 +593,7 @@ def list_games_s(request, tournament_id):
         stages.append(i)
         i += 1
     games = Game_S.objects.filter(tournament=tournament)
-    return render(request, template_name="Kulecnik/games_s.html", context={'games':games, 'stages':stages})
+    return render(request, template_name="Kulecnik/games_s.html", context={'games':games, 'stages':stages, 'is_referee':is_referee})
 
 def select_winner_t(request, game_id, team_id):
     game = Game_T.objects.get(id=game_id)

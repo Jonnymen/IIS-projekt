@@ -1,5 +1,8 @@
 # IIS-projekt
 
-1) Statistiky k týmům
-2) Dodělat profile_page
-3) Potvrzování výsledků můžou jenom rozhodčí, admin, pořadatel (asi)
+Dodělat profile_page
+
+1) Statistiky k týmům - Jonny
+2) Design - Martin
+3) Dokumentace - v pondělí asi nějak dohromady, nebo Honza
+4) Zakázat konec registrací po začátku turnaje a podle mě jde aji nastavit konec turnaje před začátkem - otestovat a spravit
