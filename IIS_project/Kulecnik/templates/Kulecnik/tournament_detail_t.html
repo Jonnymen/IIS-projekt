@@ -37,7 +37,6 @@
 
         <div class="center" style="text-align: center; margin-top: 2rem;">
 
-            {% if ucast.count != 0 %}
             <table align="center">
                 <caption>Potvrzené týmy</caption>
                 {% for row in ucast %}
@@ -59,9 +58,7 @@
             </table>
             <br>
             <br>
-            {% endif %}
 
-            {% if rozhodci.count != 0 %}
             <table align="center">
                 <caption>Potvrzení rozhodčí</caption>
                 {% for row in rozhodci %}
@@ -79,7 +76,6 @@
                 {% endif %}
                 {% endfor %}
             </table>
-            {% endif %}
 
         </div>
 
@@ -208,7 +204,6 @@
         <div class="center" style="text-align: center; margin-top: 2rem;">
             {% if user.id == tournament.host.id or user.is_superuser %}
             
-            {% if ucast.count != 0 %}
             <table align="center">
                 <caption>Žádosti týmů</caption>
                 {% for row in ucast %}
@@ -237,9 +232,7 @@
         
             <br>
             <br>
-            {% endif %}
         
-            {% if rozhodci.count != 0 %}
             <table align="center">
                 <caption>Žádosti rozhodčích</caption>
                 {% for row in rozhodci %}
@@ -259,7 +252,6 @@
                 {% endif %}
                 {% endfor %}
             </table>
-            {% endif %}
             {% endif %}
         
         </div>
