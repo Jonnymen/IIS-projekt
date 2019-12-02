@@ -77,7 +77,6 @@ def add_tournament_s(request):
         else:
             return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj nešel vytvořit. ", "back":"/add_tournament_s/"})
 
-
 @login_required
 def add_tournament_t(request):
 
