@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0067)https://www.fit.vutbr.cz/study/courses/IIS/private/projekt/doc.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+    
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<h1>Sport: správa turnajů, registrace hráčů a zadávání výsledků (varianta 3.)</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+  <dd>Jan Menšík <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xmensi13@stud.fit.vutbr.cz">xmensi13@stud.fit.vutbr.cz</a> - vnitřní logika aplikace, navigační menu, šablony webových stránek
+	</dd>
+	<dd>Martin Trejtnar <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xtrejt00@stud.fit.vutbr.cz">xtrejt00@stud.fit.vutbr.cz</a> - kontrola vstupních údajů, design webových stránek
+	</dd>
+	<dd>Jan Vaculík <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xvacul30@stud.fit.vutbr.cz">xvacul30@stud.fit.vutbr.cz</a> -  vnitřní logika aplikace, nahrávání obrázků, šablony webových stránek
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="http://pcbobak2.fit.vutbr.cz:8000/">http://pcbobak2.fit.vutbr.cz:8000/</a></dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<table>
+
+<tbody><strong><tr><th>Login</th><th>Heslo</th><th>Role</th></tr></strong>
+<tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
+<tr><td>test1</td><td>hesloheslo</td><td>Registrovaný uživatel</td></tr>
+<tr><td>-</td><td>-</td><td>Neregistrovaný uživatel</td></tr>
+</tbody></table>
+
+<p>Registrovaný uživatel může být hráčem, rozhodčím, či pořadatelem turnajů.</p>
+
+<h2>Implementace</h2>
+
+<p>Projekt je implementován ve webovém aplikačním frameworku Django. Jedná se o informační systém pro správu turnajů kulečníkové hry Pool s herním stylem pavouk. </p>
+
+<p>Implementace probíhala na třech úrovních dle standardu frameworku Django, který reflektuje návrhový vzor MTV: 
+	<ul>
+		<li><b>Models</b> - ztvárňují databázi</li>
+		<li><b>Views</b> - obslužné metody pro vykreslování stránek (backend systému)</li>
+		<li><b>Templates</b> - HTML šablony</li>
+	</ul>
+</p>
+
+<h4>Models</h4>
+<p>
+	Byly vytvořeny modely pro práci s turnaji.  Implementujeme dva typy turnajů (turnaje pro jednotlivce a turnaje pro týmy), které jsou odděleny jak na prezentační, tak na logické vrstvě.
+	Jednotlivé modely jsou viditelné v relačním modelu databáze. Pro práci s uživateli byly použity modely poskytnuté frameworkem.
+</p>
+
+<h4>Views</h4>
+<p>
+	Úroveň views zaštiťuje většinu vnitřní logiky aplikace. Nacházejí se zde metody, které komunikují s databází a zároveň zprostředkovávají správné vykreslení HTML stránek (zasílání korektních proměnných, výpočty, atd.).
+	Dále se zde zpracovávají data od uživatele (zpracování formulářů). Formuláře jsou dvojího typu - modelové a standardní - deklarují se ve speciálním souboru. Modelové formuláře vycházejí z některého z modelů. 
+	U standardních formulářů musí být jednotlivá pole definována. Django nabízí velkou řadu předem definovaných formulářů, ze kterých mohou programátorem definované formuláře dědit.
+
+</p>
+
+<h4>Templates</h4>
+<p>
+	HTML stránky s podporou skripů v jazyce Python.
+</p>
+
+<h3>Databáze</h3>
+
+<img src="rmd.png" alt="" style="max-width:55%; height:auto;">
+
+<h2>Instalace</h2>
+
+<h3>Minimální softwarové požadavky</h3>
+<ul>
+	<li>Python 3</li>
+	<li>Django 2.2</li>
+	<li>MySQL 14.14</li>
+</ul>
+<h3>Inicializace serveru</h3>
+<ul>
+	<li>Připrava databáze - vytvoření prázdné databáze s libovolným názvem</li>
+	<li>Stažení projektových souborů</li>
+	<li>Úprava souboru <i>setting.py</i> - nastavení připojení k databázi</li>
+	<li>Vytvoření migračních souborů - souborů k inicializaci databáze ( <code>python3 manage.py makemigrations</code> )</li>
+	<li>Provedení vytvořených skriptů - samotná Inicializace databáze ( <code>python3 manage.py migrate</code> )</li>
+	<li>Spuštění serveru - </li>
+</ul>
+
+<h2>Známé problémy</h2>
+<p>Zde popište, které body zadání nejsou implementovány a z jakého důvodu. Např. &#8222;Z časových důvodů nebyla implementována správa uživatelů.&#8221; Pomůžete tím zrychlit hodnocení, když neimplementované funkce nebudeme muset dlouze hledat.</p>
+
+
+
+</body></html>
