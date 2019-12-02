@@ -89,6 +89,7 @@ class AddTournamentFormS(forms.ModelForm):
             'place',
             'capacity',
             'reg_deadline',
+            'tables',
             'description'
         )
         widgets = {
@@ -109,6 +110,7 @@ class AddTournamentFormS(forms.ModelForm):
             "place": "Místo",
             "capacity": "Kapacita",
             "description": "Popis",
+            "tables":"Počet stolů",
             "reg_deadline": "Konec registrací",
         }
 
@@ -133,6 +135,7 @@ class AddTournamentFormT(forms.ModelForm):
             'place',
             'capacity',
             'reg_deadline',
+            'tables',
             'description'
         )
         widgets = {
@@ -153,6 +156,7 @@ class AddTournamentFormT(forms.ModelForm):
             "place": "Místo",
             "capacity": "Kapacita",
             "description": "Popis",
+            "tables":"Počet stolů",
             "reg_deadline": "Konec registrací",
         }
 
