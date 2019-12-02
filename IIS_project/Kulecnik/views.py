@@ -548,6 +548,7 @@ def game_generator_s(request, tournament_id):
     all_teams = list(zaznamy)
     random.shuffle(all_teams)
     next_stage = None
+    table = 1
     game_list = []
     tmp_list = []
     stage = 1
@@ -566,16 +567,25 @@ def game_generator_s(request, tournament_id):
             team_2 = None
 
         if team_2 is None:
-            game = Game_S(player_1=team_1, player_2=team_2, tournament=current_tournament, stage=stage, winner=team_1)
+            game = Game_S(player_1=team_1, player_2=team_2, tournament=current_tournament, stage=stage, winner=team_1, table=table)
+            table +=1
+            if table == current_tournament.tables:
+                table = 1
         else:
-            game = Game_S(player_1=team_1, player_2=team_2, tournament=current_tournament, stage=stage)
+            game = Game_S(player_1=team_1, player_2=team_2, tournament=current_tournament, stage=stage, table=table)
+            table +=1
+            if table == current_tournament.tables:
+                table = 1
         game.save()
         game_list.append(game)
         capacity -= 1
 
     while stages > 1:
         while len(game_list) > 1:
-            next_stage = Game_S(tournament=current_tournament, stage=stage + 1)
+            next_stage = Game_S(tournament=current_tournament, stage=stage + 1, table=table)
+            table +=1
+            if table == current_tournament.tables:
+                table = 1
             next_stage.save()
             tmp_list.append(next_stage)
             game_1 = game_list.pop(0)
