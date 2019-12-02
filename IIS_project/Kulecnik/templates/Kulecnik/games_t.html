@@ -21,7 +21,7 @@
                         <tr>
                             <td align="center">{{ game.team_1.name }}</td>
                             <td align="center">{{ game.team_2.name }}</td>
-                            <td align="center">{{ game.table.name }}</td>
+                            <td align="center">{{ game.table }}</td>
                             <td align="center">
                                 {% if game.tournament.host == user or is_referee or user.is_superuser %}
                                 {% if game.tournament.is_past_end %}
