@@ -232,6 +232,8 @@
         
         <div class="center" style="text-align: center; margin-top: 2rem;">
             {% if user.id == tournament.host.id or user.is_superuser %}
+            {% if tournament.is_past_start %}
+            {% else %}
             
             <table align="center">
                 <caption>Žádosti týmů</caption>
@@ -262,11 +264,17 @@
             <br>
             <br>
         
+            {% endif %}
+            {% if tournament.is_past_end %}
+            {% else %}
+
             <table align="center">
                 <caption>Žádosti rozhodčích</caption>
+                
                 {% for row in rozhodci %}
                 {% if row.registered %}
                 {% else %}
+
                 <tr>
                     <td>
                         <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
@@ -278,9 +286,13 @@
                         <a href="/tournament_t/{{ tournament.id }}/refunreg/{{ row.referee.id }}"><input type="button" class="btn btn-danger" value="Zamítnout"></a>
                     </td>
                 </tr>
+
                 {% endif %}
                 {% endfor %}
+
             </table>
+
+            {% endif %}
             {% endif %}
         
         </div>
