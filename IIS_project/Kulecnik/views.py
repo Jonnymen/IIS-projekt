@@ -624,6 +624,9 @@ def select_winner_t(request, game_id, team_id):
 
 def select_winner_s(request, game_id, player_id):
     game = Game_S.objects.get(id=game_id)
+    if game.tournament.is_past_end:
+        return redirect("/games_s/" + str(game.tournament.id) + "/")
+
     player = User.objects.get(id=player_id)
     next_game = game.next_game
     game.winner = player

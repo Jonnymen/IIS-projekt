@@ -25,6 +25,7 @@
                             <td align="center">
                                 {% if game.tournament.host == user or is_referee or user.is_superuser %}
                                 {% if game.tournament.is_past_end %}
+                                {{ game.winner.username }}
                                 {% else %}
                                 <div class="dropdown">
                                     <button class="btn bg-transparent" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
