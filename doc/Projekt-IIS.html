@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!-- saved from url=(0067)https://www.fit.vutbr.cz/study/courses/IIS/private/projekt/doc.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-    
+
     <title>Projekt IIS</title>
     <style type="text/css">
     	table { border-collapse: collapse; }
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu
      podle použitého editoru -->
 
 <h1>Sport: správa turnajů, registrace hráčů a zadávání výsledků (varianta 3.)</h1> <!-- Nahradte názvem svého zadání -->
@@ -46,7 +46,7 @@
 
 <p>Projekt je implementován ve webovém aplikačním frameworku Django. Jedná se o informační systém pro správu turnajů kulečníkové hry Pool s herním stylem pavouk. </p>
 
-<p>Implementace probíhala na třech úrovních dle standardu frameworku Django, který reflektuje návrhový vzor MTV: 
+<p>Implementace probíhala na třech úrovních dle standardu frameworku Django, který reflektuje návrhový vzor MTV:
 	<ul>
 		<li><b>Models</b> - ztvárňují databázi</li>
 		<li><b>Views</b> - obslužné metody pro vykreslování stránek (backend systému)</li>
@@ -63,7 +63,7 @@
 <h4>Views</h4>
 <p>
 	Úroveň views zaštiťuje většinu vnitřní logiky aplikace. Nacházejí se zde metody, které komunikují s databází a zároveň zprostředkovávají správné vykreslení HTML stránek (zasílání korektních proměnných, výpočty, atd.).
-	Dále se zde zpracovávají data od uživatele (zpracování formulářů). Formuláře jsou dvojího typu - modelové a standardní - deklarují se ve speciálním souboru. Modelové formuláře vycházejí z některého z modelů. 
+	Dále se zde zpracovávají data od uživatele (zpracování formulářů). Formuláře jsou dvojího typu - modelové a standardní - deklarují se ve speciálním souboru. Modelové formuláře vycházejí z některého z modelů.
 	U standardních formulářů musí být jednotlivá pole definována. Django nabízí velkou řadu předem definovaných formulářů, ze kterých mohou programátorem definované formuláře dědit.
 
 </p>
@@ -74,9 +74,10 @@
 </p>
 
 <h3>Databáze</h3>
-
+<h2>Relační mode databáze</h2>
 <img src="rmd.png" alt="" style="max-width:55%; height:auto;">
-
+<h2>Use case diagram</h2>
+<img src="ucd.png" alt="" style="max-width:55%; height:auto;">
 <h2>Instalace</h2>
 
 <h3>Minimální softwarové požadavky</h3>
@@ -89,10 +90,10 @@
 <ul>
 	<li>Připrava databáze - vytvoření prázdné databáze s libovolným názvem</li>
 	<li>Stažení projektových souborů</li>
-	<li>Úprava souboru <i>setting.py</i> - nastavení připojení k databázi</li>
-	<li>Vytvoření migračních souborů - souborů k inicializaci databáze ( <code>python3 manage.py makemigrations</code> )</li>
-	<li>Provedení vytvořených skriptů - samotná Inicializace databáze ( <code>python3 manage.py migrate</code> )</li>
-	<li>Spuštění serveru - </li>
+	<li>Úprava souboru <i>setting.py</i> - nastavení připojení k dříve vytvořené databázi</li>
+	<li>Vytvoření migračních souborů - souborů k inicializaci databáze (<code>python3 manage.py makemigrations</code>)</li>
+	<li>Provedení vytvořených skriptů - samotná Inicializace databáze (<code>python3 manage.py migrate</code>)</li>
+	<li>Spuštění serveru - (<code>python3 manage.py runserver 0.0.0.0:8000</code>)</li>
 </ul>
 
 <h2>Známé problémy</h2>
