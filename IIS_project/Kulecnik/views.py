@@ -423,7 +423,22 @@ def edit_profile(request):
 
 def player_detail(request, row_id):
     current_user = User.objects.get(pk=row_id)
-    return render(request, template_name='users/profile_view.html', context={"user":current_user})
+    poradane = Tournament_S.objects.filter(host=current_user)
+    ucastnene = Tournament_Players.objects.filter(player=current_user)
+    tymy_poradane = Tournament_T.objects.filter(host=current_user)
+    won_tournaments_s = Tournament_S.objects.filter(winner=current_user).count()
+    all_tournaments_s = ucastnene.count()
+    won_games_s = Game_S.objects.filter(winner=current_user).count()
+    all_games_s = Game_S.objects.filter(player_1=current_user).count() + Game_S.objects.filter(player_2=current_user).count()
+    if all_tournaments_s == 0:
+        tournament_s_winrate = 0
+    else:
+        tournament_s_winrate = round(won_tournaments_s / all_tournaments_s * 100)
+    if all_games_s == 0:
+        game_s_winrate = 0
+    else:
+        game_s_winrate = round(won_games_s / all_games_s * 100)
+    return render(request, template_name='users/profile_view.html', context={"current_user":current_user, "poradane":poradane, "ucastnene":ucastnene, "tymy_poradane":tymy_poradane, "won_tournaments":won_tournaments_s, "won_games":won_games_s, "tournament_winrate":tournament_s_winrate, "game_winrate":game_s_winrate})
 
 @login_required
 def edit_password(request):
