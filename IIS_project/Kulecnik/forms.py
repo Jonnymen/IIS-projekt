@@ -119,7 +119,7 @@ class AddTournamentFormS(forms.ModelForm):
         end_date = self.cleaned_data['end_date']
         reg_deadline = self.cleaned_data['reg_deadline']
 
-        if end_date <= start_date or start_date <= reg_deadline.date():
+        if end_date < start_date or start_date < reg_deadline.date():
             raise forms.ValidationError("Turnaj nemůže skončit dřív než začne.")
         return super(AddTournamentFormS, self).clean()
 
@@ -165,7 +165,7 @@ class AddTournamentFormT(forms.ModelForm):
         end_date = self.cleaned_data['end_date']
         reg_deadline = self.cleaned_data['reg_deadline']
 
-        if end_date <= start_date or start_date <= reg_deadline.date():
+        if end_date < start_date or start_date < reg_deadline.date():
             raise forms.ValidationError("Turnaj nemůže skončit dřív než začne.")
         return super(AddTournamentFormT, self).clean()
 
