@@ -21,7 +21,7 @@
             display: table-caption;
             font-size: larger;
             color: #343a40;
-            text-align: center;
+            text-align: left;
             caption-side: top;
             padding-bottom: 0.33rem;
         }
@@ -168,6 +168,8 @@
             {% endif %}
             {% endif %}
 
+            {% if tournament.is_past_start %}
+            {% else %}
             {% if tournament.host.id == user.id or user.is_superuser%}
             {% if is_past %}
 
@@ -181,6 +183,7 @@
                     <a href="#"><button style="text-align: center; min-width: 15rem; max-width: 15rem;" class="btn btn-outline-light">Generovat hry</button></a>
             </div>
 
+            {% endif %}
             {% endif %}
             {% endif %}
 
