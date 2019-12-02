@@ -31,6 +31,8 @@
 	<dd><a href="http://pcbobak2.fit.vutbr.cz:8000/">http://pcbobak2.fit.vutbr.cz:8000/</a></dd>
 </dl>
 
+<p>Na <a href="http://pcbobak2.fit.vutbr.cz:8000/admin/">admin stránce</a> je výpis v¹ech u¾ivatelù, heslo k úètu ka¾dého u¾ivatele je "hesloheslo". </p>
+
 <h2>U¾ivatelé systému pro testování</h2>
 <table>
 
@@ -70,7 +72,7 @@
 
 <h4>Templates</h4>
 <p>
-	HTML stránky s podporou skripù v jazyce Python.
+	HTML stránky s podporou skriptù v jazyce Python.
 </p>
 
 <h3>Databáze</h3>
@@ -96,9 +98,12 @@
 	<li>Spu¹tìní serveru - (<code>python3 manage.py runserver 0.0.0.0:8000</code>)</li>
 </ul>
 
-<h2>Známé problémy</h2>
-Zprvu jsme váhali, zda v na¹em IS uva¾ovat i èas 
+<h2>Citace</h2>
+<p>Po tvorbu pavouka jsem pou¾ili vzor"Tournament Bracket with Flexbox" by Aron Duby, který naleznete na tomto odkazu - <a href="https://blog.codepen.io/2018/02/16/need-make-tournament-bracket/">https://blog.codepen.io/2018/02/16/need-make-tournament-bracket/</a></p>
 
+<h2>Známé problémy</h2>
+<p>Zprvu jsme se rozhodli v na¹em IS modelovat èas v jednotkách dní, pøi¹lo nám zbyteèné uva¾ovat èas. V pozdìj¹í fázi jsme si uvìdomili, ¾e by nejspí¹e bylo vhodné tuto mo¾nost u¾ivatelùm nabídnout. Na funkcionalitu serveru to nemá vliv, nicménì se jedná o zjevný u¾ivatelský nedostatek.
+Ve finální testování jsme zjistili, ¾e v intervalu po ukonèení registrací a pøed zaèátkem turnaje je mo¾né zadávat výsledky jednotlivých utkání. Po konci turnaje ji¾ zadávat nejdou, co¾ je ¾ádané chování.</p> 
 
 
 </body></html>
