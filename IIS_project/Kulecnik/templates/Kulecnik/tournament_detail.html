@@ -51,11 +51,14 @@
                         <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
                     </td>
                     {% if tournament.host.id == user.id or user.is_superuser%}
+                    {% if tournament.is_past_end %}
+                    {% else %}
                     <td>
                         <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
                             <input type="button" class="btn btn-outline-danger" value="Odebrat">
                         </a>
                     </td>
+                    {% endif %}
                     {% endif %}
                 </tr>
             {% endif %}
@@ -73,11 +76,16 @@
                     <td>
                         <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
                     </td>
+                    {% if tournament.host.id == user.id or user.is_superuser%}
+                    {% if tournament.is_past_end %}
+                    {% else %}
                     <td>
                         <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ row.referee.id }}">
                             <input type="button" class="btn btn-danger" value="Odebrat">
                         </a>
                     </td>
+                    {% endif %}
+                    {% endif %}
                 </tr>
                 {% endif %}
                 {% endfor %}
@@ -217,6 +225,8 @@
 
         <div class="center" style="text-align: center; margin-top: 2rem;">
             {% if user.id == tournament.host.id or user.is_superuser %}
+            {% if tournament.is_past_start %}
+            {% else %}
 
             <table align="center">
                 <caption>Žádosti hráčů</caption>
@@ -243,15 +253,21 @@
                 {% endif %}
                 {% endfor %}
             </table>
+            
+            <br>
+            <br>
+            {% endif %}
 
-            <br>
-            <br>
+            {% if tournament.is_past_end %}
+            {% else %}
 
             <table align="center">
                 <caption>Žádosti rozhodčích</caption>
+                
                 {% for row in rozhodci %}
                 {% if row.registered %}
                 {% else %}
+
                 <tr>
                     <td>
                         <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
@@ -263,9 +279,13 @@
                         <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ row.referee.id }}"><input type="button" class="btn btn-danger" value="Zamítnout"></a>
                     </td>
                 </tr>
+
                 {% endif %}
                 {% endfor %}
+
             </table>
+
+            {% endif %}
             {% endif %}
 
         </div>
