@@ -6,10 +6,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 
-# Create your models here.
-class Table(models.Model):
-    name = models.CharField(max_length=30)
-
 class Team(models.Model):
     name = models.CharField(max_length=20)
     logo = models.ImageField(default='default.png', upload_to='avatars/teams')
@@ -69,7 +65,7 @@ class Game_S(models.Model):
     player_2 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="player_2")
     referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="referee_s")
     winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="winner_s")
-    table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
+    table = models.IntegerField(blank =True, null=True)
     tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)
     stage = models.IntegerField(blank=True, null=True)
     next_game = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
@@ -79,7 +75,7 @@ class Game_T(models.Model):
     team_2 = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name="team_2")
     referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="referee_t")
     winner = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name="winner_t")
-    table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
+    table = models.IntegerField(blank =True, null=True)
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
     stage = models.IntegerField(blank=True, null=True)
     next_game = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
