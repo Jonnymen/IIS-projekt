@@ -73,7 +73,10 @@ def add_tournament_s(request):
             turnaj = form.save(commit=False)
             turnaj.host = request.user
             turnaj.save()
-        return render(request, template_name='Kulecnik/index.html', context=None)
+            return redirect("/tournament_s/" + str(tournament_id) + "/")
+        else:
+            return render(request, template_name='Kulecnik/index.html', context=None)
+
 
 @login_required
 def add_tournament_t(request):
