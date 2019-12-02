@@ -75,7 +75,7 @@
       if( !(a.getTime() < b.getTime()) ){
         alert("Ukončení registrací musí končit před začátkem turnaje!" + today_final + " " + todaysDate);
         return false;
-      }else if( !(b.getTime() <= c.getTime()) ){
+      }else if( !(+b.getTime() <= +c.getTime()) ){
         alert("Turnaj nemůže skončit dříve než začne!");
         return false;
       }else{
