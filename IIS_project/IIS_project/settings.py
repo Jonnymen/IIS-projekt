@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'my9698b)q3q0u8oru5egyre!sn&rm&xkx2ui4j$41b-zfm)56x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['pcbobak2.fit.vutbr.cz',
                  'localhost']
