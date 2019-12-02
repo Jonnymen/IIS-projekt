@@ -74,6 +74,7 @@ def add_tournament_s(request):
             turnaj.host = request.user
             turnaj.save()
         return render(request, template_name='Kulecnik/index.html', context=None)
+
 @login_required
 def add_tournament_t(request):
 
@@ -132,6 +133,7 @@ def tournament_detail_s(request, row_id):
             vazba = Tournament_Players(tournament=current_tournament, player=request.user)
             vazba.save()
             return render(request, template_name='Kulecnik/tournament_detail.html', context={"tournament":current_tournament, "ucastnici":"Turnaj pro jednotlivce", "ucast":zaznamy, "registered":True, "pocet":pocet, "zapasy":zapasy, "rozhodci":rozhodci, "if_referee":if_referee, "is_past":is_past})
+
 @login_required
 def reg_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
@@ -143,6 +145,7 @@ def reg_referee(request, row_id, ref_id):
         return redirect("/tournament_s/" + str(row_id) + "/")
     else:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš přihlásit jiného uživatele jako rozhodčího", "back":"/tournament_s/" + str(row_id) + "/"})
+
 @login_required
 def unreg_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
@@ -152,6 +155,7 @@ def unreg_referee(request, row_id, ref_id):
     vazba = Tournament_S_referees.objects.filter(tournament=current_tournament, referee=referee)
     vazba.delete()
     return redirect("/tournament_s/" + str(row_id) + "/")
+
 @login_required
 def confirm_referee(request, row_id, ref_id):
     current_tournament = Tournament_S.objects.get(id=row_id)
@@ -162,6 +166,7 @@ def confirm_referee(request, row_id, ref_id):
     ref.registered = True
     ref.save()
     return redirect("/tournament_s/" + str(row_id) + "/")
+
 @login_required
 def reg_referee_t(request, row_id, ref_id):
     current_tournament = Tournament_T.objects.get(id=row_id)
@@ -174,6 +179,7 @@ def reg_referee_t(request, row_id, ref_id):
         return redirect("/tournament_t/" + str(row_id) + "/")
     else:
         return render(request, template_name='Kulecnik/message.html', context={"message":"Nemůžeš přihlásit jiného uživatele jako rozhodčího", "back":"/tournament_t/" + str(row_id) + "/"})
+
 @login_required
 def unreg_referee_t(request, row_id, ref_id):
     current_tournament = Tournament_T.objects.get(id=row_id)
@@ -183,6 +189,7 @@ def unreg_referee_t(request, row_id, ref_id):
     vazba = Tournament_T_referees.objects.filter(tournament=current_tournament, referee=referee)
     vazba.delete()
     return redirect("/tournament_t/" + str(row_id) + "/")
+
 @login_required
 def confirm_referee_t(request, row_id, ref_id):
     current_tournament = Tournament_T.objects.get(id=row_id)
@@ -252,6 +259,7 @@ def team_detail(request, team_id):
         if logo.is_valid():
             logo.save()
             return redirect('/team/' + str(team_id) + '/')
+
 @login_required
 def add_player_to_team(request, team_id):
     team = Team.objects.get(id=team_id)
@@ -279,6 +287,7 @@ def add_player_to_team(request, team_id):
                 team.player = spec_user
                 team.save()
                 return redirect("/team/" + str(team_id) + "/")
+
 @login_required
 def remove_player_from_team(request, team_id):
     team = Team.objects.get(id=team_id)
@@ -289,6 +298,7 @@ def remove_player_from_team(request, team_id):
     team.player = None
     team.save()
     return redirect("/team/" + str(team_id) + "/")
+
 @login_required
 def delete_team(request, team_id):
     team = Team.objects.get(id=team_id)
@@ -302,6 +312,7 @@ def delete_team(request, team_id):
         # request POST if user chooses 'yes' in confirmation
         team.delete()
         return redirect("/my_teams/")
+
 @login_required
 def leave_team(request, team_id):
     team = Team.objects.get(id=team_id)
@@ -331,6 +342,7 @@ def show_profile(request):
     else:
         game_s_winrate = won_games_s / all_games_s
     return render(request, template_name='users/profile.html', context={"poradane":poradane, "ucastnene":ucastnene, "tymy_poradane":tymy_poradane, "won_tournaments":won_tournaments_s, "won_games":won_games_s, "tournament_winrate":tournament_s_winrate, "game_winrate":game_s_winrate})
+
 @login_required
 def confirm_team(request, tournament_id, team_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
@@ -344,6 +356,7 @@ def confirm_team(request, tournament_id, team_id):
     link.registered = True
     link.save()
     return redirect("/tournament_t/" + str(tournament_id) + "/")
+
 @login_required
 def deny_team(request, tournament_id, team_id):
     tournament = Tournament_T.objects.get(id=tournament_id)
@@ -353,6 +366,7 @@ def deny_team(request, tournament_id, team_id):
     link = Tournament_Teams.objects.get(team=team, tournament=tournament)
     link.delete()
     return redirect("/tournament_t/" + str(tournament_id) + "/")
+
 @login_required
 def confirm_player(request, tournament_id, player_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
@@ -366,6 +380,7 @@ def confirm_player(request, tournament_id, player_id):
     link.registered = True
     link.save()
     return redirect("/tournament_s/" + str(tournament_id) + "/")
+
 @login_required
 def deny_player(request, tournament_id, player_id):
     tournament = Tournament_S.objects.get(id=tournament_id)
@@ -375,6 +390,7 @@ def deny_player(request, tournament_id, player_id):
     link = Tournament_Players.objects.get(player=player, tournament=tournament)
     link.delete()
     return redirect("/tournament_s/" + str(tournament_id) + "/")
+
 @login_required
 def edit_profile(request):
     if request.method == 'GET':
@@ -392,6 +408,7 @@ def edit_profile(request):
 def player_detail(request, row_id):
     current_user = User.objects.get(pk=row_id)
     return render(request, template_name='users/profile_view.html', context={"user":current_user})
+
 @login_required
 def edit_password(request):
     if request.method == 'GET':
@@ -405,6 +422,7 @@ def edit_password(request):
             return redirect('/profile/')
         else:
             return render(request, template_name='users/edit_password.html', context={"form":form, "string":"error"})
+
 @login_required
 def new_team(request):
     if request.method == 'GET':
@@ -423,10 +441,12 @@ def new_team(request):
         else:
             return render(request, template_name='Kulecnik/new_team.html', context={'form':form, 'failure':"Tým nebylo možné vytvořit (název je moc dlouhý nebo obsahuje nepovolené znaky!"})
 
+@login_required
 def my_teams(request):
     teams_as_captain = Team.objects.filter(captain=request.user)
     teams_as_player = Team.objects.filter(player=request.user)
     return render(request, template_name="Kulecnik/my_teams.html", context={'teams_c':teams_as_captain, 'teams_p':teams_as_player})
+
 @login_required
 def game_generator_t(request, tournament_id):
     current_tournament = Tournament_T.objects.get(id=tournament_id)
@@ -485,6 +505,7 @@ def game_generator_t(request, tournament_id):
         stages -= 1
         stage += 1
     return redirect("/bracket/" + str(tournament_id) + "/")
+
 @login_required
 def game_generator_s(request, tournament_id):
     current_tournament = Tournament_S.objects.get(id=tournament_id)
@@ -605,6 +626,7 @@ def list_games_s(request, tournament_id):
         i += 1
     games = Game_S.objects.filter(tournament=tournament)
     return render(request, template_name="Kulecnik/games_s.html", context={'games':games, 'stages':stages, 'is_referee':is_referee})
+
 @login_required
 def select_winner_t(request, game_id, team_id):
     game = Game_T.objects.get(id=game_id)
@@ -626,6 +648,7 @@ def select_winner_t(request, game_id, team_id):
         tournament.save()
     game.save()
     return redirect("/games_t/" + str(game.tournament.id) + "/")
+
 @login_required
 def select_winner_s(request, game_id, player_id):
     game = Game_S.objects.get(id=game_id)
