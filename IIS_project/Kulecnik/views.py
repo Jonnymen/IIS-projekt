@@ -269,7 +269,7 @@ def team_detail(request, team_id):
                 game_winrate = 0
             else:
                 game_winrate = round(won_games_t / all_games_t * 100)
-            return render(request, template_name='Kulecnik/team_detail.html', context={'team':team, "logo":logo, "won_tournamets":won_tournaments_t, "tournament_winrate":tournament_winrate, "won_games":won_games_t, "game_winrate":game_winrate})
+            return render(request, template_name='Kulecnik/team_detail.html', context={'team':team, "logo":logo, "won_tournaments":won_tournaments_t, "tournament_winrate":tournament_winrate, "won_games":won_games_t, "game_winrate":game_winrate})
     else:
         logo = EditLogo(request.POST, request.FILES, instance=team)
         if logo.is_valid():
