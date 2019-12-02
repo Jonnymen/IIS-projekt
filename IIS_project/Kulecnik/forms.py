@@ -145,7 +145,7 @@ class AddTournamentFormT(forms.ModelForm):
             'end_date': forms.TextInput(attrs={'placeholder': '2017-10-21', 'rows':1, 'cols':15}),
             'entry_fee': forms.TextInput(attrs={'placeholder': 'Kč', 'rows':1, 'cols':15}),
             'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'capacity': forms.TextInput(attrs={'placeholder': '4/8/16/32', 'rows':1, 'cols':15}),
+            'capacity': forms.NumberInput(attrs={'placeholder': '4/8/16/32', 'rows':1, 'cols':15}),
             'reg_deadline': forms.TextInput(attrs={'placeholder': '2017-10-15', 'rows':1, 'cols':15}),
         }
         labels = {
