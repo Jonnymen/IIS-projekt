@@ -431,7 +431,7 @@ def my_teams(request):
 def game_generator_t(request, tournament_id):
     current_tournament = Tournament_T.objects.get(id=tournament_id)
     if current_tournament.is_past_start:
-        return redirect("/tournament_s" + str(tournament_id) + "/")
+        return redirect("/tournament_t/" + str(tournament_id) + "/")
     games = Game_T.objects.filter(tournament=current_tournament)
 
     if games.count() > 0:
@@ -489,7 +489,7 @@ def game_generator_t(request, tournament_id):
 def game_generator_s(request, tournament_id):
     current_tournament = Tournament_S.objects.get(id=tournament_id)
     if current_tournament.is_past_start:
-        return redirect("/tournament_s" + str(tournament_id) + "/")
+        return redirect("/tournament_s/" + str(tournament_id) + "/")
     games = Game_S.objects.filter(tournament=current_tournament)
 
     if games.count() > 0:
