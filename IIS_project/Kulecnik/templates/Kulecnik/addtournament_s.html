@@ -71,7 +71,7 @@
       if( !compareWithToday(regEndDate, "konce registrace") || !compareWithToday(startDate, "začátku turnaje") ||  !compareWithToday(endDate, "konce turnaje") ){
         return false;
       }
-      
+        alert(a.getTime() + b.getTime() + c.getTime() );
       if( !(a.getTime() < b.getTime()) ){
         alert("Ukončení registrací musí končit před začátkem turnaje!" + today_final + " " + todaysDate);
         return false;
