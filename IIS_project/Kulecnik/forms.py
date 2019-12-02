@@ -89,6 +89,7 @@ class AddTournamentFormS(forms.ModelForm):
             'place',
             'capacity',
             'reg_deadline',
+            'tables',
             'description'
         )
         widgets = {
@@ -98,7 +99,7 @@ class AddTournamentFormS(forms.ModelForm):
             'end_date': forms.TextInput(attrs={'placeholder': '2017-10-21', 'rows':1, 'cols':15}),
             'entry_fee': forms.TextInput(attrs={'placeholder': 'Kč', 'rows':1, 'cols':15}),
             'place': forms.TextInput(attrs={'rows':1, 'cols':15}),
-            'capacity': forms.TextInput(attrs={'placeholder': '4/8/16/32', 'rows':1, 'cols':15}),
+            'capacity': forms.NumberInput(attrs={'placeholder': '4/8/16/32', 'rows':1, 'cols':15}),
             'reg_deadline': forms.TextInput(attrs={'placeholder': '2017-10-15', 'rows':1, 'cols':15}),
         }
         labels = {
@@ -109,6 +110,7 @@ class AddTournamentFormS(forms.ModelForm):
             "place": "Místo",
             "capacity": "Kapacita",
             "description": "Popis",
+            "tables":"Počet stolů",
             "reg_deadline": "Konec registrací",
         }
 
@@ -133,6 +135,7 @@ class AddTournamentFormT(forms.ModelForm):
             'place',
             'capacity',
             'reg_deadline',
+            'tables',
             'description'
         )
         widgets = {
@@ -153,6 +156,7 @@ class AddTournamentFormT(forms.ModelForm):
             "place": "Místo",
             "capacity": "Kapacita",
             "description": "Popis",
+            "tables":"Počet stolů",
             "reg_deadline": "Konec registrací",
         }
 
