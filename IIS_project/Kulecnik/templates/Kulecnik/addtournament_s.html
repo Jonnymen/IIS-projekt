@@ -43,9 +43,15 @@
       startDate = form.start_date.value;
       endDate = form.end_date.value;
       regEndDate = form.reg_deadline.value;
+      tablesNo = form.tables.value;
 
       if (entryFee < 0) {
-        alert ("\nRegistrační poplatek nemůže být záporný!!"); 
+        alert ("\nRegistrační poplatek nemůže být záporný."); 
+        return false;   
+      }
+
+      if ( !(tablesNo > 0) ) {
+        alert ("\nMusí být k dipozici alespoň 1 stůl."); 
         return false;   
       }
 
