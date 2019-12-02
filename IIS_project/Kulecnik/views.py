@@ -336,11 +336,11 @@ def show_profile(request):
     if all_tournaments_s == 0:
         tournament_s_winrate = 0
     else:
-        tournament_s_winrate = won_tournaments_s / all_tournaments_s
+        tournament_s_winrate = round(won_tournaments_s / all_tournaments_s * 100)
     if all_games_s == 0:
         game_s_winrate = 0
     else:
-        game_s_winrate = won_games_s / all_games_s
+        game_s_winrate = round(won_games_s / all_games_s * 100)
     return render(request, template_name='users/profile.html', context={"poradane":poradane, "ucastnene":ucastnene, "tymy_poradane":tymy_poradane, "won_tournaments":won_tournaments_s, "won_games":won_games_s, "tournament_winrate":tournament_s_winrate, "game_winrate":game_s_winrate})
 
 @login_required
