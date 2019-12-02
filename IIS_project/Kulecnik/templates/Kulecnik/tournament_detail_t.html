@@ -76,11 +76,16 @@
                     <td>
                         <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
                     </td>
+                    {% if tournament.host.id == user.id or user.is_superuser%}
+                    {% if tournament.is_past_end %}
+                    {% else %}
                     <td>
                         <a href="/tournament_t/{{ tournament.id }}/refunreg/{{ row.referee.id }}">
                             <input type="button" class="btn btn-danger" value="Odebrat">
                         </a>
                     </td>
+                    {% endif %}
+                    {% endif %}
                 </tr>
                 {% endif %}
                 {% endfor %}
