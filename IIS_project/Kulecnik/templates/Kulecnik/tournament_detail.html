@@ -103,21 +103,23 @@
                 </p>
 
                 <p>
-                    <b>Kapacita:</b> {{tournament.capacity}} hráčů
+                    <b>&nbsp;&nbsp;Kapacita:</b> {{tournament.capacity}} hráčů
                 </p>
 
                 <p>
-                    <b>Obsazenost turnaje:</b> {{pocet}}/{{tournament.capacity}}
+                    <b>&nbsp;&nbsp;Obsazenost turnaje:</b> {{pocet}}/{{tournament.capacity}}
                 </p>
 
                 <p>
-                    <b>Pořadatel:</b> <a href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
+                    <b>&nbsp;&nbsp;Pořadatel:</b> <a style="color: black;" href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
                 </p>
 
                 <p>
-                    <b>Konec registrací:</b> {{tournament.reg_deadline |date:"j.n.Y"}}
+                    <b>&nbsp;&nbsp;Konec registrací:</b> {{tournament.reg_deadline |date:"j.n.Y"}}
                 </p>
+
             </div>
+            
         {% if tournament.is_past_reg %}
         {% else %}
         {% if user.is_authenticated %}

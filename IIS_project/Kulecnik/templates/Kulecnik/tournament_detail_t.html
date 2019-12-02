@@ -91,22 +91,34 @@
 
         <div class="center" style="text-align: center;">
 
-            <p>
-                <h1 style="text-align: center;font-weight: bold;">{{tournament.title}}</h1><br>
-                <h3 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
-            </p>
-                
-            <p>
-                {{tournament.description}}
-            </p>
+            <div style="display: inline-block; text-align: left;">
+                <p>
+                    <h1 style="text-align: center;font-weight: bold;">{{tournament.title}}</h1>
+                    <br>
+                    <h3 style="text-align: center;">{{tournament.start_date|date:"j.n.Y"}} - {{tournament.end_date|date:"j.n.Y"}}</h3>
+                </p>
 
-            <p>
-                {{ucastnici}} (max.: {{tournament.capacity}})
-            </p>
+                <p>
+                    <b>&nbsp;&nbsp;Popis:</b> {{tournament.description}}
+                </p>
 
-            <p>
-                Obsazenost turnaje: {{pocet}}/{{tournament.capacity}}
-            </p>
+                <p>
+                    <b>&nbsp;&nbsp;Kapacita:</b> {{tournament.capacity}} hráčů
+                </p>
+
+                <p>
+                    <b>&nbsp;&nbsp;Obsazenost turnaje:</b> {{pocet}}/{{tournament.capacity}}
+                </p>
+
+                <p>
+                    <b>&nbsp;&nbsp;Pořadatel:</b> <a style="color: black;" href="/profile_page/{{ tournament.host.id }}">{{ tournament.host.username }}</a>
+                </p>
+
+                <p>
+                    <b>&nbsp;&nbsp;Konec registrací:</b> {{tournament.reg_deadline |date:"j.n.Y"}}
+                </p>
+    
+            </div>
 
             {% if user.is_authenticated %}
             {% if is_past %}
