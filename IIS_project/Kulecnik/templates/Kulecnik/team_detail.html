@@ -17,6 +17,10 @@
     table {
         margin-bottom: 30px;
     }
+    td {
+        text-align: left;
+        width: 10rem;
+    }
 </style>
 <div class="row" style="padding-top: 5rem;">
     <div class="col"></div>
@@ -66,33 +70,31 @@
 <div class="row">
     <div class="col"></div>
     <div class="col">
-        <div style="text-align: center;">
-            <h4 style="padding-top: 5rem;">Statistiky</h3>
-            <table>
-                <tr>
-                    <td colspan="2" style="text-align: left;"><b>Turnaje</b></td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width: 10rem;">Počet vyhraných:</td>
-                    <td>{{ won_tournaments }}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width: 10rem;">Procento vyhraných:</td>
-                    <td>{{ tournament_winrate }}%</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: left;"><b>Zápasy</b></td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width: 10rem;">Počet vyhraných:</td>
-                    <td>{{ won_games }}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; width: 10rem;">Procento vyhraných:</td>
-                    <td>{{ game_winrate }}%</td>
-                </tr>
-            </table>
-        </div>
+        <h4 style="padding-top: 5rem;">Statistiky</h3>
+        <table>
+            <tr>
+                <td colspan="2" style="text-align: left;"><b>Turnaje</b></td>
+            </tr>
+            <tr>
+                <td>Počet vyhraných:</td>
+                <td>{{ won_tournaments }}</td>
+            </tr>
+            <tr>
+                <td>Procento vyhraných:</td>
+                <td>{{ tournament_winrate }}%</td>
+            </tr>
+            <tr>
+                <td colspan="2"><b>Zápasy</b></td>
+            </tr>
+            <tr>
+                <td>Počet vyhraných:</td>
+                <td>{{ won_games }}</td>
+            </tr>
+            <tr>
+                <td>Procento vyhraných:</td>
+                <td>{{ game_winrate }}%</td>
+            </tr>
+        </table>
     </div>
     <div class="col"></div>
 </div>
