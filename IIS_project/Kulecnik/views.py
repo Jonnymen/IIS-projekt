@@ -257,7 +257,19 @@ def team_detail(request, team_id):
         if team is None:
             return render(request, template_name='Kulecnik/message.html', context={"message":"Hledaný tým neexistuje!"})
         else:
-            return render(request, template_name='Kulecnik/team_detail.html', context={'team':team, "logo":logo})
+            won_tournaments_t = Tournament_T.objects.filter(winner=team).count()
+            all_tournaments_t = Tournament_Teams.objects.filter(team=team).count()
+            won_games_t = Game_T.objects.filter(winner=team).count()
+            all_games_t = Game_T.objects.filter(team_1=team).count() + Game_T.objects.filter(team_2=team).count()
+            if all_tournaments_t == 0:
+                tournament_winrate = 0
+            else:
+                tournament_winrate = round(won_tournaments_t / all_tournaments_t * 100)
+            if all_games_t == 0:
+                game_winrate = 0
+            else:
+                game_winrate = round(won_games_t / all_games_t * 100)
+            return render(request, template_name='Kulecnik/team_detail.html', context={'team':team, "logo":logo, "won_tournamets":won_tournaments_t, "tournament_winrate":tournament_winrate, "won_games":won_games_t, "game_winrate":game_winrate})
     else:
         logo = EditLogo(request.POST, request.FILES, instance=team)
         if logo.is_valid():
@@ -334,7 +346,7 @@ def show_profile(request):
     ucastnene = Tournament_Players.objects.filter(player=request.user)
     tymy_poradane = Tournament_T.objects.filter(host=request.user)
     won_tournaments_s = Tournament_S.objects.filter(winner=request.user).count()
-    all_tournaments_s = Tournament_S.objects.all().count()
+    all_tournaments_s = ucastnene.count()
     won_games_s = Game_S.objects.filter(winner=request.user).count()
     all_games_s = Game_S.objects.filter(player_1=request.user).count() + Game_S.objects.filter(player_2=request.user).count()
     if all_tournaments_s == 0:
