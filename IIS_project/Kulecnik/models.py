@@ -23,7 +23,7 @@ class Tournament_S(models.Model):
     reg_deadline = models.DateTimeField()
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='host_s')
     winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='winner_ss')
-    tables = models.IntegerField (blank =True, null=True)
+    tables = models.IntegerField ()
 
     @property
     def is_past_start(self):
@@ -48,7 +48,7 @@ class Tournament_T(models.Model):
     reg_deadline = models.DateTimeField()
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='host_t')
     winner = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name='team_tt')
-    tables = models.IntegerField (blank =True, null=True)
+    tables = models.IntegerField ()
 
     @property
     def is_past_start(self):
@@ -67,7 +67,7 @@ class Game_S(models.Model):
     player_2 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="player_2")
     referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="referee_s")
     winner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="winner_s")
-    table = models.IntegerField()
+    table = models.IntegerField(blank =True, null=True)
     tournament = models.ForeignKey(Tournament_S, on_delete=models.CASCADE)
     stage = models.IntegerField(blank=True, null=True)
     next_game = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
@@ -77,7 +77,7 @@ class Game_T(models.Model):
     team_2 = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name="team_2")
     referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name="referee_t")
     winner = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, related_name="winner_t")
-    table = models.IntegerField( )
+    table = models.IntegerField(blank =True, null=True)
     tournament = models.ForeignKey(Tournament_T, on_delete=models.CASCADE)
     stage = models.IntegerField(blank=True, null=True)
     next_game = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
