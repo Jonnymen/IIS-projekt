@@ -75,7 +75,7 @@ def add_tournament_s(request):
             turnaj.save()
             return redirect("/tournament_s/" + str(turnaj.id) + "/")
         else:
-            return render(request, template_name='Kulecnik/index.html', context=None)
+            return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj nešel vytvořit. ", "back":"/addtournament_s/"})
 
 
 @login_required
