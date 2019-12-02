@@ -147,6 +147,14 @@ class AddTournamentFormT(forms.ModelForm):
             "reg_deadline": "Konec registrací",
         }
 
+    def clean(self):
+        start_date = self.cleaned_data['start_date']
+        end_date = self.cleaned_data['end_date']
+
+        if end_date <= start_date:
+            raise forms.ValidationError("Turnaj nemůže skonči dřív než začne.")
+        return super(AddTournamentFormT, self).clean()
+
 class NewTeamForm(forms.ModelForm):
 
     class Meta():
