@@ -628,7 +628,7 @@ def select_winner_s(request, game_id, player_id):
     next_game = game.next_game
     game.winner = player
     if next_game is not None:
-        second_game = Game_T.objects.exclude(id=game_id).get(next_game=game.next_game)
+        second_game = Game_S.objects.exclude(id=game_id).get(next_game=game.next_game)
         if game.id < second_game.id:
             next_game.player_1 = game.winner
         else:
