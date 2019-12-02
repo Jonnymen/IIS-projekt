@@ -6,8 +6,19 @@
 
 {% block content %}
 
+<style>
+    table {
+        margin-bottom: 30px;
+    }
+    td {
+        text-align: left;
+        width: 10rem;
+    }
+</style>
+
 <div class="row">
-    <div class="col-md-4 offset-md-4">
+    <div class="col"></div>
+    <div class="col">
         <div class="img-container" style="text-align: center; padding-top: 10rem;">
             <img class = "rounded-circle account-img" src = "{{user.profile.image.url}}" width="100px">    
         </div>
@@ -24,5 +35,32 @@
             </tr>
         </table>
     </div>
+    <div class="col">
+            <h4>Statistiky</h4>
+            <table>
+                <tr>
+                    <td colspan="2"><b>Turnaje</b></td>
+                </tr>
+                <tr>
+                    <td>Počet vyhraných:</td>
+                    <td>{{ won_tournaments }}</td>
+                </tr>
+                <tr>
+                    <td>Procento vyhraných:</td>
+                    <td>{{ tournament_winrate }}%</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: left;"><b>Zápasy</b></td>
+                </tr>
+                <tr>
+                    <td>Počet vyhraných:</td>
+                    <td>{{ won_games }}</td>
+                </tr>
+                <tr>
+                    <td>Procento vyhraných:</td>
+                    <td>{{ game_winrate }}%</td>
+                </tr>
+            </table>
+        </div>
 </div>
 {% endblock %}
