@@ -429,8 +429,9 @@ def my_teams(request):
     return render(request, template_name="Kulecnik/my_teams.html", context={'teams_c':teams_as_captain, 'teams_p':teams_as_player})
 
 def game_generator_t(request, tournament_id):
-
     current_tournament = Tournament_T.objects.get(id=tournament_id)
+    if current_tournament.is_past_start:
+        return redirect("/tournament_s" + str(tournament_id) + "/")
     games = Game_T.objects.filter(tournament=current_tournament)
 
     if games.count() > 0:
@@ -487,6 +488,8 @@ def game_generator_t(request, tournament_id):
 
 def game_generator_s(request, tournament_id):
     current_tournament = Tournament_S.objects.get(id=tournament_id)
+    if current_tournament.is_past_start:
+        return redirect("/tournament_s" + str(tournament_id) + "/")
     games = Game_S.objects.filter(tournament=current_tournament)
 
     if games.count() > 0:
@@ -605,6 +608,8 @@ def list_games_s(request, tournament_id):
 
 def select_winner_t(request, game_id, team_id):
     game = Game_T.objects.get(id=game_id)
+    if game.tournament.is_past_end:
+        return redirect("/games_t/" + str(game.tournament.id) + "/")
     team = Team.objects.get(id=team_id)
     next_game = game.next_game
     game.winner = team
