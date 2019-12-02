@@ -72,16 +72,19 @@
         return false;
       }
       if( (a.getTime() > b.getTime()) ){
+<<<<<<< HEAD
         alert("Ukončení registrací musí končit před začátkem turnaje!" );
+=======
+        alert("Ukončení registrací musí končit před začátkem turnaje!");
+>>>>>>> bd734c0221b4c2102dc30a2e20b3fb4fdcc83c94
         return false;
       }else if( (b.getTime() > c.getTime()) ){
         alert("Turnaj nemůže skončit dříve než začne!");
         return false;
       }else{
-        alert("Turnaj vytvořen!");
-        return false;
+        //alert("Turnaj vytvořen!");
+        return true;
       }
-      return false;
   }
 </script> 
 
