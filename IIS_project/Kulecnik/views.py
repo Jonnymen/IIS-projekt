@@ -75,7 +75,7 @@ def add_tournament_s(request):
             turnaj.save()
             return redirect("/tournament_s/" + str(turnaj.id) + "/")
         else:
-            return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj nešel vytvořit. ", "back":"/addtournament_s/"})
+            return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj nešel vytvořit. ", "back":"/add_tournament_s/"})
 
 
 @login_required
@@ -90,7 +90,9 @@ def add_tournament_t(request):
             turnaj = form.save(commit=False)
             turnaj.host = request.user
             turnaj.save()
-        return render(request, template_name='Kulecnik/index.html', context=None)
+            return redirect("/tournament_t/" + str(turnaj.id) + "/")
+        else:
+            return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj nešel vytvořit. ", "back":"/add_tournament_t/"})
 
 def list_tournament_s(request):
     query = Tournament_S.objects.all().order_by('start_date', 'reg_deadline')
