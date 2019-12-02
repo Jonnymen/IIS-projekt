@@ -91,7 +91,7 @@ def add_tournament_t(request):
             turnaj.save()
             return redirect("/tournament_t/" + str(turnaj.id) + "/")
         else:
-            None
+            return render(request, template_name='Kulecnik/message.html', context={"message":"Turnaj nešel vytvořit. ", "back":"/add_tournament_t/"})
 
 def list_tournament_s(request):
     query = Tournament_S.objects.all().order_by('start_date', 'reg_deadline')
