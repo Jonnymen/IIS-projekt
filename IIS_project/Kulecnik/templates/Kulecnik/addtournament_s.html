@@ -16,8 +16,8 @@
         alert("Chybné datum " + message + "!");
         return false;
     }else{
-        alert(a.getTime() + " vyhovuje vzhledem k " + today.getTime() );
-        return false;
+        //alert(a.getTime() + " vyhovuje vzhledem k " + today.getTime() );
+        return true;
     }
   }
 
@@ -79,8 +79,8 @@
         alert("Turnaj nemůže skončit dříve než začne!");
         return false;
       }else{
-        //alert("Turnaj vytvořen!");
-        return true;
+        alert("Turnaj vytvořen!");
+        return false;
       }
   }
 </script> 
