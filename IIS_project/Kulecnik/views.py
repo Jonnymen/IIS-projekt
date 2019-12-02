@@ -503,7 +503,7 @@ def game_generator_t(request, tournament_id):
             if table == current_tournament.tables:
                 table = 1
         else:
-            game = Game_T(team_1=team_1, team_2=team_2, tournament=current_tournament, stage=stage)
+            game = Game_T(team_1=team_1, team_2=team_2, tournament=current_tournament, stage=stage, table = table)
             table +=1
             if table == current_tournament.tables:
                 table = 1
