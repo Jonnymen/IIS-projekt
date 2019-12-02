@@ -120,10 +120,9 @@
     
             </div>
 
-            {% if user.is_authenticated %}
-            {% if is_past %}
+            {% if tournament.is_past_reg %}
             {% else %}
-            {% if player_teams.count != 0 %}
+            {% if user.is_authenticated %}
             {% if registered %}
 
             <p>
@@ -156,8 +155,8 @@
             
             {% endif %}
             {% endif %}
-            {% endif %}
-
+            
+            {% if user.is_authenticated %}
             {% if if_referee %}
 
             <p>

@@ -119,126 +119,156 @@
                 </p>
 
             </div>
-            
-        {% if tournament.is_past_reg %}
-        {% else %}
-        {% if user.is_authenticated %}
-        {% if registered %}
-        <p>
-            <form method="post">
-                {% csrf_token %}
-                <input type="hidden" id="registrovan" name="registrovan" value="yes">
-                <button type="submit" align="center" class="btn btn-outline-danger">Odregistruj</button>
-            </form>
-        </p>
-        {% else %}
-        <p>
-            <form method="post">
-                {% csrf_token %}
-                <input type="hidden" id="registrovan" name="registrovan" value="no">
-                <button type="submit" align="center" class="btn btn-outline-success">Registruj</button>
-            </form>
-        </p>
-        {% endif %}
-        {% endif %}
-        {% if user.is_authenticated %}
-        {% if if_referee %}
-        <p>
-            <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ user.id }}/">
-                <input type="button" class="btn btn-outline-danger" value="Odregistrovat jako rozhodčí">
-            </a>
-            Jsi registrován jako rozhodčí
-        </p>
-        {% else %}
-        <p>
-            <a href="/tournament_s/{{ tournament.id }}/refreg/{{ user.id }}/">
-                <input type="button" class="btn btn-outline-success" value="Registrovat jako rozhodčí">
-            </a>
-        </p>
-        {% endif %}
-        {% endif %}
-        {% endif %}
-        {% if tournament.host.id == user.id or user.is_superuser%}
-        {% if is_past %}
-        <div class="center" style="text-align: center;">
-            <a href="/generate_s/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Generovat hry</button></a>
+
+            {% if tournament.is_past_reg %}
+            {% else %}
+            {% if user.is_authenticated %}
+            {% if registered %}
+
+            <p>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" id="registrovan" name="registrovan" value="yes">
+                    <button type="submit" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-danger">Odregistrovat se</button>
+                </form>
+            </p>
+
+            {% else %}
+
+            <p>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" id="registrovan" name="registrovan" value="no">
+                    <button type="submit" style="min-width: 15rem; max-width: 15rem;" align="center" class="btn btn-outline-primary">Registrovat se</button>
+                </form>
+            </p>
+
+            {% endif %}
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            {% if if_referee %}
+
+            <p>
+                <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ user.id }}/">
+                    <input type="button" style="min-width: 15rem; max-width: 15rem;" class="btn btn-outline-danger" value="Odregistrovat jako rozhodčí">
+                </a>
+                Jsi registrován jako rozhodčí
+            </p>
+
+            {% else %}
+
+            <p>
+                <a href="/tournament_s/{{ tournament.id }}/refreg/{{ user.id }}/">
+                    <input type="button" style="min-width: 15rem; max-width: 15rem;" class="btn btn-outline-success" value="Registrovat jako rozhodčí">
+                </a>
+            </p>
+
+            {% endif %}
+            {% endif %}
+            {% endif %}
+
+            {% if tournament.host.id == user.id or user.is_superuser%}
+            {% if is_past %}
+
+            <div class="center" style="text-align: center;">
+                <a href="/generate_s/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Generovat hry</button></a>
+            </div>
+
+            {% else %}
+
+            <div class="center" style="text-align: center;">
+                    <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Generovat hry</button></a>
+            </div>
+
+            {% endif %}
+            {% endif %}
+
+            {% if is_past %}
+
+            <div class="center" style="text-align: center;">
+                    <a href="/bracket_s/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Zobrazit pavouka</button></a>
+            </div>
+
+            <div class="center" style="text-align: center;">
+                    <a href="/games_s/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Zobrazit hry</button></a>
+            </div>
+
+            {% else %}
+
+            <div class="center" style="text-align: center;">
+                    <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Zobrazit pavouka</button></a>
+            </div>
+
+            <div class="center" style="text-align: center;">
+                    <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Zobrazit hry</button></a>
+            </div>
+
+            {% endif %}
+
         </div>
-        {% else %}
-        <div class="center" style="text-align: center;">
-                <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Generovat hry</button></a>
-        </div>
-        {% endif %}
-        {% endif %}
-        {% if is_past %}
-        <div class="center" style="text-align: center;">
-                <a href="/bracket_s/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Zobrazit pavouka</button></a>
-        </div>
-        <div class="center" style="text-align: center;">
-                <a href="/games_s/{{ tournament.id }}/"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-primary">Zobrazit hry</button></a>
-        </div>
-        {% else %}
-        <div class="center" style="text-align: center;">
-                <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Zobrazit pavouka</button></a>
-        </div>
-        <div class="center" style="text-align: center;">
-                <a href="#"><button style="text-align: center; min-width: 12rem; max-width: 12rem;" class="btn btn-outline-light">Zobrazit hry</button></a>
-        </div>
-        {% endif %}
-        </div>
-    </div>
+
+    </div> <!--Ending center-column-->
     
     <div class="col">
-        {% if user.id == tournament.host.id or user.is_superuser %}
 
-        <h3>Žádosti o registraci</h3>
-        <br>
-        <table style="background-color: #FFC300;">
-            {% for row in ucast %}
-            {% if row.registered %}
-            {% else %}
+        <div class="center" style="text-align: center; margin-top: 2rem;">
+            {% if user.id == tournament.host.id or user.is_superuser %}
+
+            <table align="center">
+                <caption>Žádosti hráčů</caption>
+                {% for row in ucast %}
+                {% if row.registered %}
+                {% else %}
+                    <tr>
+                        <td>
+                            <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
+                        </td>
+                        {% if tournament.host.id == user.id or user.is_superuser%}
+                        <td>
+                            <a href="/tournament_s/{{ tournament.id }}/confirm_s/{{ row.player.id }}/">
+                                <input type="button" class="btn btn-outline-success" value="Potvrdit">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
+                                <input type="button" class="btn btn-outline-danger" value="Zamítnout">
+                            </a>
+                        </td>
+                        {% endif %}    
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+
+            <br>
+            <br>
+
+            <table align="center">
+                <caption>Žádosti rozhodčích</caption>
+                {% for row in rozhodci %}
+                {% if row.registered %}
+                {% else %}
                 <tr>
                     <td>
-                        <a href="/profile_page/{{ row.player.pk }}/">{{ row.player.username }}</a>
-                    </td>
-                    {% if tournament.host.id == user.id or user.is_superuser%}
-                    <td>
-                        <a href="/tournament_s/{{ tournament.id }}/confirm_s/{{ row.player.id }}/">
-                            <input type="button" class="btn btn-outline-success" value="Potvrdit">
-                        </a>
+                        <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
                     </td>
                     <td>
-                        <a href="/tournament_s/{{ tournament.id }}/deny_s/{{ row.player.id }}/">
-                            <input type="button" class="btn btn-outline-danger" value="Zamítnout">
-                        </a>
+                        <a href="/tournament_s/{{ tournament.id }}/refconfirm/{{ row.referee.id }}"><input type="button" class="btn btn-success" value="Potvrdit"></a>
                     </td>
-                    {% endif %}    
+                    <td>
+                        <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ row.referee.id }}"><input type="button" class="btn btn-danger" value="Zamítnout"></a>
+                    </td>
                 </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
             {% endif %}
-            {% endfor %}
-        </table>
 
-        <h3>Žádosti rozhodčích</h3>
-        <table>
-            {% for row in rozhodci %}
-            {% if row.registered %}
-            {% else %}
-            <tr>
-                <td>
-                    <a href="/profile_page/{{ row.referee.id }}/">{{ row.referee.username }}</a>
-                </td>
-                <td>
-                    <a href="/tournament_s/{{ tournament.id }}/refconfirm/{{ row.referee.id }}"><input type="button" class="btn btn-success" value="Potvrdit"></a>
-                </td>
-                <td>
-                    <a href="/tournament_s/{{ tournament.id }}/refunreg/{{ row.referee.id }}"><input type="button" class="btn btn-danger" value="Zamítnout"></a>
-                </td>
-            </tr>
-            {% endif %}
-            {% endfor %}
-        </table>
-        {% endif %}
+        </div>
 
     </div>
+
 </div>
 
 {% endblock %}
